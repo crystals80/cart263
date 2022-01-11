@@ -1,0 +1,38 @@
+@import 'https://fonts.googleapis.com/css?family=Passion+One|Poiret+One';
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oleo+Script:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Laila:wght@300;400;500;600;700&display=swap');
+
+/* FONT: Passion One, Poiret One, Libre Baskerville */
+/* COLOUR */
+/* "181f3a",     "092286",    "1d3480", */
+/*  black blue, dark blue, gray purple blue, */
+/* "4c63c3",      "6d8bcd",       "9492c8" */
+/* purple blue, light purple blue, purple, */
+/* "cbb3c9",     "f6bdc9","fcecdf","ffffff" */
+/*  light purple, pink, light pink, white */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Libre Baskerville', 'Times New Roman', georgia, serif;
+  height: 100%;
+  background-color: #fcecdf;
+}
+
+#logo {
+  position: fixed;
+  left: 1em;
+  top: 1em;
+  width: 50px;
+  z-index: 100;
+  animation: scaleout 1s linear;
+  transition: all 1s ease-in-out;
+}
