@@ -1,5 +1,5 @@
 /**
-Activity 1: Where's Sausage Dog?
+Activity 1: Where's Sausage Dog? (Edition Plus)
 Lam Ky Anh Do
 
 Represent a generic "animal" via classes (using inheritance)
