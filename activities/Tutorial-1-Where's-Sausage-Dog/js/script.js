@@ -44,7 +44,7 @@ function setup() {
   // Create sausage dog
   let x = random(0, width);
   let y = random(0, height);
-  let sausageDog = new SausageDog(x, y, sausageDogImg);
+  sausageDog = new SausageDog(x, y, sausageDogImg);
 }
 
 function draw() {
@@ -57,7 +57,7 @@ function draw() {
   }
 
   // Display sausage dog
-  sausage.update();
+  sausageDog.update();
 }
 
 function mousePressed() {
