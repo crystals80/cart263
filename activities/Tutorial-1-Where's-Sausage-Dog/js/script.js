@@ -20,9 +20,7 @@ function preload() {
   for (let i = 0; i < NUM_ANIMAL_IMAGES; i++) {
     let animalImg = loadImage(`assets/images/animal${i}.png`);
     // Push here means to load each images declared from the for loop
-    animalImgs.push {
-      animalImg
-    };
+    animalImgs.push(animalImg);
   }
 }
 
@@ -40,5 +38,11 @@ function setup() {
 }
 
 function draw() {
-  g
+  // Create a coloured background
+  background(255, 255, 0);
+
+  // Display the animals
+  for (let i = 0; i < animals.length; i++) {
+    animals[i].update();
+  }
 }
