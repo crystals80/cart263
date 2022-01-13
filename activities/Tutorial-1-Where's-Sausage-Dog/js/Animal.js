@@ -5,4 +5,18 @@ class Animal {
     this.image = image;
     this.angle = 0;
   }
+
+  update() {
+    this.display();
+  }
+
+  display() {
+    push()
+    imageMode(CENTER);
+    translate(this.x, this.y);
+    rotate(this.angle);
+    // x and y of image() is 0 because they were stated in translate()
+    image(this.image, 0, 0);
+    pop();
+  }
 }
