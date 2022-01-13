@@ -1,9 +1,8 @@
 /**
-Title of Project
-Author Name
+Activity 1: Where's Sausage Dog?
+Lam Ky Anh Do
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+Represent a generic "animal" via classes (using inheritance)
 */
 
 "use strict";
