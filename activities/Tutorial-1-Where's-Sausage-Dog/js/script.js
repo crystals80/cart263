@@ -15,6 +15,9 @@ const NUM_ANIMALS = 100;
 let animalImgs = [];
 let animals = [];
 
+// Declare sausage dog var and its image
+let sausageDogImg, sausageDog;
+
 function preload() {
   // Create a for loop to load all animal images by using iterator i
   for (let i = 0; i < NUM_ANIMAL_IMAGES; i++) {
@@ -22,6 +25,8 @@ function preload() {
     // Push here means to load each images declared from the for loop
     animalImgs.push(animalImg);
   }
+  // Laod sausageDogImg
+  sausageDogImg = loadImage(`assets/images/sausage-dog.png`)
 }
 
 function setup() {
@@ -35,6 +40,11 @@ function setup() {
     let animal = new Animal(x, y, animalImg);
     animals.push(animal);
   }
+
+  // Create sausage dog
+  let x = random(0, width);
+  let y = random(0, height);
+  let sausageDog = new SausageDog(x, y, sausageDogImg);
 }
 
 function draw() {
@@ -45,4 +55,11 @@ function draw() {
   for (let i = 0; i < animals.length; i++) {
     animals[i].update();
   }
+
+  // Display sausage dog
+  sausage.update();
+}
+
+function mousePressed() {
+  sausageDog.mousePressed();
 }
