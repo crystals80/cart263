@@ -7,6 +7,9 @@ Represent a generic "animal" via classes (using inheritance)
 
 "use strict";
 
+// STATE VARIABLE: openScreen, title(s), simulation
+let state = `title`;
+
 // Declare fixed num for animals and their images
 const NUM_ANIMAL_IMAGES = 10;
 const NUM_ANIMALS = 100;
@@ -48,6 +51,21 @@ function setup() {
 }
 
 function draw() {
+  // Create states for screen transitions
+  if (state === `openScreen`) {
+    openScreen();
+  } else if (state === `title`) {
+    title();
+  } else if (state === `simulation`) {
+    simulation();
+  }
+}
+
+function openScreen() {}
+
+function title() {}
+
+function simulation() {
   // Create a coloured background
   background(255, 255, 0);
 
@@ -61,5 +79,6 @@ function draw() {
 }
 
 function mousePressed() {
+  // Clicked on sausage dog when found makes it spin
   sausageDog.mousePressed();
 }
