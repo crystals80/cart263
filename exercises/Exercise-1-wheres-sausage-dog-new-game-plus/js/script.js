@@ -10,6 +10,11 @@ Represent a generic "animal" via classes (using inheritance)
 // STATE VARIABLE: openScreen, title(s), simulation
 let state = `title`;
 
+// VARIABLE FOR TITLE SCREEN, including complete and gameover screens
+let button; // Variable for button (that will initiate the simulation)
+
+
+// SIMULATION VARIABLES
 // Declare fixed num for animals and their images
 const NUM_ANIMAL_IMAGES = 10;
 const NUM_ANIMALS = 100;
@@ -33,7 +38,11 @@ function preload() {
 }
 
 function setup() {
+  // Create canvas window-sized
   createCanvas(windowWidth, windowHeight);
+
+  // Create a button to start the simulation
+  startButton();
 
   // Create animals
   for (let i = 0; i < NUM_ANIMALS; i++) {
@@ -61,7 +70,19 @@ function draw() {
   }
 }
 
-function openScreen() {}
+function startButton() {
+  // Create start button to initiate simulation
+  button = createButton('Of course!');
+  button.position(0, 0);
+  button.center(); // Center the text within the button
+  let noColour = color(255, 255, 255, 0); // Set transparent colour
+  button.style('background-color', noColour); // Apply transparent colour to button initial grey background
+  button.mousePressed(switchState); // Transition to title screens
+}
+
+function openScreen() {
+  background
+}
 
 function title() {}
 
@@ -81,4 +102,8 @@ function simulation() {
 function mousePressed() {
   // Clicked on sausage dog when found makes it spin
   sausageDog.mousePressed();
+}
+
+function switchState() {
+  state = `title`;
 }
