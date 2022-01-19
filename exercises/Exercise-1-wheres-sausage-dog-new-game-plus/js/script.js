@@ -8,10 +8,10 @@ Simulation: Find the intruder among the Zodiac Family
 "use strict";
 
 // STATE VARIABLE: openScreen, title(s), simulation
-let state = `title`;
+let state = `openScreen`;
 
-// VARIABLE FOR TITLE SCREEN, including complete and gameover screens
-let button; // Variable for button (that will initiate the simulation)
+// FONT VARIABLES
+let fontRegular, fontItalic;
 
 // SIMULATION VARIABLES
 // Declare fixed num for animals and their images
@@ -26,6 +26,11 @@ let animals = [];
 let onigiriImg, onigiri;
 
 function preload() {
+
+  // TYPEFACES (see assets README for more info on typeface)
+  fontRegular = loadFont('assets/fonts/PlayfairDisplay-VariableFont_wght.ttf')
+  fontItalic = loadFont('assets/fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf')
+
   // Create a for loop to load all animal images by using iterator i
   for (let i = 0; i < NUM_ANIMAL_IMAGES; i++) {
     let animalImg = loadImage(`assets/images/animal${i}.png`);
@@ -39,9 +44,6 @@ function preload() {
 function setup() {
   // Create canvas window-sized
   createCanvas(windowWidth, windowHeight);
-
-  // Create a button to start the simulation
-  startButton();
 
   // Create animals
   for (let i = 0; i < NUM_ANIMALS; i++) {
@@ -69,21 +71,25 @@ function draw() {
   }
 }
 
-function startButton() {
-  // Create start button to initiate simulation
-  button = createButton('Of course!');
-  button.position(0, 0); // Center the button within the canvas
-  button.center(); // Center the text within the button
-  let noColour = color(255, 255, 255, 0); // Set transparent colour
-  button.style('background-color', noColour); // Apply transparent colour to button initial grey background
-  button.mousePressed(switchState); // Transition to title screens
-}
-
 function openScreen() {
-  background
+  // Introduction message
+  push();
+  textAlign(CENTER, CENTER);
+  textFont(fontRegular);
+  noStroke();
+  fill(255);
+  textSize(60);
+  text(`Welcome!`, width / 2, height / 3);
+  textSize(30);
+  text(`Would you like to proceed?`, width / 2, height / 2);
+  textSize(10);
+  text(`~ PRESS ENTER to continue ~`, width / 2, height - 50);
+  pop();
 }
 
-function title() {}
+function title() {
+
+}
 
 function simulation() {
   // Create a coloured background
@@ -103,7 +109,9 @@ function mousePressed() {
   onigiri.mousePressed();
 }
 
-function switchState() {
+function keyPressed() {
   // Once button is clicked, switch "openScreen" state to "title" state
-  state = `title`;
+  if (state === `openScreen` && keyIsDown(13)) {
+    state = `title`
+  }
 }
