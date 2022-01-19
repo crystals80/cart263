@@ -23,8 +23,8 @@ const NUM_STATIC = 2000; // Static var for background
 let animalImgs = [];
 let animals = [];
 
-// Declare onigiri var and images
-let onigiri, onigiriImg, bg, endBg;
+// Declare onigiri var, images & empty var
+let onigiri, onigiriImg, bg, endBg, shake;
 
 function preload() {
 
@@ -59,10 +59,12 @@ function setup() {
     animals.push(animal);
   }
 
-  // Create sausage dog
+  // Create onigiri
   let x = random(0, width);
   let y = random(0, height);
   onigiri = new Onigiri(x, y, onigiriImg);
+
+  shake = true;
 }
 
 function draw() {
@@ -114,7 +116,7 @@ function title() {
   text(`But first let me introduce you to the case`, width / 2, height / 2);
   textSize(16);
   text(`Chinese New Year is approaching and I have prepare a few offerings for the God of The Chinese Zodiac
-    However, I have my cats have stolen a piece of onigiri! Please help me find it!`, width / 2, 4 * height / 6);
+    However, my cats have stolen a piece of onigiri! Please help me find it!`, width / 2, 4 * height / 6);
   textSize(10);
   text(`~ PRESS SPACE to find the Gullible Onigiri Tohru ~`, width / 2, height - 50);
   pop();
@@ -135,6 +137,9 @@ function simulation() {
   // Display the animals
   for (let i = 0; i < animals.length; i++) {
     animals[i].update();
+    // if (shake == true) {
+    //   translate(random(-5, 5), random(-5, 5));
+    // }
   }
 
   // Display onigiri
@@ -142,16 +147,39 @@ function simulation() {
 }
 
 function mousePressed() {
-  // Clicked on onigiri when found makes it jump
+  // When onigiri found, it spins
   onigiri.mousePressed();
+
+  // if (shake == true) {
+  //   shake = false;
+  // } else {
+  //   shake = true;
+  // }
 }
 
-function ending() {
+function openScreen() {
   // Ending screen's background image
   push()
   imageMode(CENTER);
   image(endBg, width / 2, height / 2, windowWidth, windowHeight);
   pop()
+
+  // Congratulating message
+  push();
+  textAlign(CENTER, CENTER);
+  textFont(fontRegular);
+  noStroke();
+  fill(0);
+  textSize(50);
+  text(`Thank you very much for rescuing me!`, width / 2, height / 12);
+  textSize(24);
+  text(`Now let's go and bring the offerings
+  to the Sohma's estate!`, width / 2, 4.5 * height / 6);
+  textSize(16);
+  text(`Come on! They're waiting for us!`, width / 2, 6.75 * height / 8);
+  textSize(10);
+  text(`~ PRESS SPACE to continue ~`, width / 2, height - 50);
+  pop();
 }
 
 function keyPressed() {
