@@ -22,8 +22,8 @@ const NUM_ANIMALS = 100;
 let animalImgs = [];
 let animals = [];
 
-// Declare sausage dog var and its image
-let onigiriImg, onigiri;
+// Declare onigiri var and images
+let onigiri, onigiriImg, bg;
 
 function preload() {
 
@@ -37,8 +37,11 @@ function preload() {
     // Push here means to load each images declared from the for loop
     animalImgs.push(animalImg);
   }
-  // Laod sausageDogImg
+  // Load onigiri image
   onigiriImg = loadImage(`assets/images/tohru-onigiri.png`)
+
+  // Load background image of title()
+  bg = loadImage(`assets/images/offering.gif`)
 }
 
 function setup() {
@@ -89,6 +92,28 @@ function openScreen() {
 
 function title() {
 
+  // Background image
+  push()
+  imageMode(CENTER);
+  image(bg, width / 2, height / 2, windowWidth, windowHeight);
+  pop()
+
+  // Mission message
+  push();
+  textAlign(CENTER, CENTER);
+  textFont(fontRegular);
+  noStroke();
+  fill(255);
+  textSize(50);
+  text(`I have a special mission for you!`, width / 2, height / 3);
+  textSize(30);
+  text(`But first let me introduce you to the case`, width / 2, height / 2);
+  textSize(16);
+  text(`Chinese New Year is approaching and I have prepare a few offerings for the God of The Chinese Zodiac
+    However, I have my cats have stolen a piece of onigiri! Please help me find it!`, width / 2, 4 * height / 6);
+  textSize(10);
+  text(`~ PRESS SPACE to find the Gullible Onigiri Tohru ~`, width / 2, height - 50);
+  pop();
 }
 
 function simulation() {
@@ -110,7 +135,11 @@ function mousePressed() {
 }
 
 function keyPressed() {
-  // Once button is clicked, switch "openScreen" state to "title" state
+  // Switching from "openScreen" state to "title" state by pressing ENTER
+  if (state === `openScreen` && keyIsDown(13)) {
+    state = `title`
+  }
+  // Switching from "title" state to "simulation" state by pressing ENTER
   if (state === `openScreen` && keyIsDown(13)) {
     state = `title`
   }
