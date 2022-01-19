@@ -149,20 +149,17 @@ function simulation() {
 function mousePressed() {
   // When onigiri found, it spins
   onigiri.mousePressed();
-
-  // if (shake == true) {
-  //   shake = false;
-  // } else {
-  //   shake = true;
-  // }
 }
 
-function openScreen() {
+function ending() {
   // Ending screen's background image
   push()
   imageMode(CENTER);
   image(endBg, width / 2, height / 2, windowWidth, windowHeight);
   pop()
+
+  // Display a happy onigiri
+  onigiri.updateEnd();
 
   // Congratulating message
   push();
