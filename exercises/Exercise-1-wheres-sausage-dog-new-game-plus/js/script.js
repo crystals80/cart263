@@ -134,12 +134,12 @@ function simulation() {
     animals[i].update();
   }
 
-  // Display sausage dog
+  // Display onigiri
   onigiri.update();
 }
 
 function mousePressed() {
-  // Clicked on sausage dog when found makes it spin
+  // Clicked on onigiri when found makes it jump
   onigiri.mousePressed();
 }
 

@@ -2,13 +2,13 @@ class Onigiri extends Animal {
   constructor(x, y, image) {
     super(x, y, image);
     this.found = false; // For tracking finding
-    this.rotationSpeed = 0.25; // For spinning
+    this.rotationSpeed = 0.1; // For spinning
   }
 
   update() {
     super.update(); // Take after the update() of the parent class
 
-    // If The Sausage Dog is found, it will spin
+    // If onigiri is found, it will spin
     if (this.found) {
       this.angle += this.rotationSpeed;
     }
