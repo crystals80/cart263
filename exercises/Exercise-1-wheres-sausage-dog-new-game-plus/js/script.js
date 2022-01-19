@@ -24,7 +24,7 @@ let animalImgs = [];
 let animals = [];
 
 // Declare onigiri var and images
-let onigiri, onigiriImg, bg;
+let onigiri, onigiriImg, bg, endBg;
 
 function preload() {
 
@@ -43,6 +43,7 @@ function preload() {
 
   // Load background image of title()
   bg = loadImage(`assets/images/offering.gif`)
+  endBg = loadImage(`assets/images/human-tohru.png`)
 }
 
 function setup() {
@@ -72,6 +73,8 @@ function draw() {
     title();
   } else if (state === `simulation`) {
     simulation();
+  } else if (state === `ending`) {
+    ending();
   }
 }
 
@@ -93,7 +96,7 @@ function openScreen() {
 
 function title() {
 
-  // Background image
+  // Title screen's background image
   push()
   imageMode(CENTER);
   image(bg, width / 2, height / 2, windowWidth, windowHeight);
@@ -143,13 +146,21 @@ function mousePressed() {
   onigiri.mousePressed();
 }
 
+function ending() {
+  // Ending screen's background image
+  push()
+  imageMode(CENTER);
+  image(endBg, width / 2, height / 2, windowWidth, windowHeight);
+  pop()
+}
+
 function keyPressed() {
   // Switching from "openScreen" state to "title" state by pressing ENTER
   if (state === `openScreen` && keyIsDown(13)) {
-    state = `title`
+    state = `title`;
   }
   // Switching from "title" state to "simulation" state by pressing ENTER
   if (state === `title` && keyIsDown(32)) {
-    state = `simulation`
+    state = `simulation`;
   }
 }
