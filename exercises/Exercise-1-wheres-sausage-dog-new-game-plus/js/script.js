@@ -24,7 +24,7 @@ let animalImgs = [];
 let animals = [];
 
 // Declare sausage dog var and its image
-let sausageDogImg, sausageDog;
+let onigiriImg, onigiriDog;
 
 function preload() {
   // Create a for loop to load all animal images by using iterator i
@@ -34,7 +34,7 @@ function preload() {
     animalImgs.push(animalImg);
   }
   // Laod sausageDogImg
-  sausageDogImg = loadImage(`assets/images/sausage-dog.png`)
+  onigiriImg = loadImage(`assets/images/tohru-onigiri.png`)
 }
 
 function setup() {
@@ -56,7 +56,7 @@ function setup() {
   // Create sausage dog
   let x = random(0, width);
   let y = random(0, height);
-  sausageDog = new SausageDog(x, y, sausageDogImg);
+  onigiri = new Onigiri(x, y, onigiriImg);
 }
 
 function draw() {
@@ -73,7 +73,7 @@ function draw() {
 function startButton() {
   // Create start button to initiate simulation
   button = createButton('Of course!');
-  button.position(0, 0);
+  button.position(0, 0); // Center the button within the canvas
   button.center(); // Center the text within the button
   let noColour = color(255, 255, 255, 0); // Set transparent colour
   button.style('background-color', noColour); // Apply transparent colour to button initial grey background
@@ -96,12 +96,12 @@ function simulation() {
   }
 
   // Display sausage dog
-  sausageDog.update();
+  onigiri.update();
 }
 
 function mousePressed() {
   // Clicked on sausage dog when found makes it spin
-  sausageDog.mousePressed();
+  onigiri.mousePressed();
 }
 
 function switchState() {
