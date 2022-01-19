@@ -1,4 +1,4 @@
-# Where's Tohru?
+# Where's Where's the Gullible Onigiri, Tohru?
 
 This first exercise is inspired from its tutorial "Where's Sausage Dog?" So instead of making improvements on the tutorial and naming it "Where's Sausage Dog? Edition Plus," I would like to change the theme of the simulation and add images that I want to try out.
 

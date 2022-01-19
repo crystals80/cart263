@@ -14,13 +14,20 @@ class Onigiri extends Animal {
     }
   }
 
+  winState() {
+    state = `ending`;
+  }
+
   mousePressed() {
-    // If mouse is within the dimension of Sausage Dog's img, then img is found when clicked
+    // If mouse is within the dimension of onigiri's img, then img is found when clicked
     //if (mouseX > this.x - this.image.width / 2 && mouseX < this.x + this.image.width / 2 && mouseY > this.y - this.image.height / 2 && mouseY < this.y + this.image.height / 2) {
 
     // Same as previous condition but more neat as previous condition moved to parent class
     if (this.overlap(mouseX, mouseY)) {
       this.found = true;
+      // Trigger state after a delay
+      // By adding ".bind(this)" it helps trigger any function in setTimeout (in a class file)
+      setTimeout(this.winState.bind(this), 5000);
     }
   }
 }
