@@ -3,6 +3,7 @@ class Animal {
     this.x = x;
     this.y = y;
     this.image = image;
+    this.size = 100;
     this.angle = 0;
   }
 
@@ -16,7 +17,7 @@ class Animal {
     translate(this.x, this.y);
     rotate(this.angle);
     // x and y of image() is 0 because they were stated in translate()
-    image(this.image, 0, 0);
+    image(this.image, 0, 0, this.size, this.size);
     pop();
   }
 
