@@ -7,7 +7,7 @@ Simulation: Find the intruder among the Zodiac Family
 
 "use strict";
 
-// STATE VARIABLE: openScreen, title(s), simulation
+// STATE VARIABLE: openScreen, title, simulation
 let state = `openScreen`;
 
 // FONT VARIABLES
@@ -16,7 +16,8 @@ let fontRegular, fontItalic;
 // SIMULATION VARIABLES
 // Declare fixed num for animals and their images
 const NUM_ANIMAL_IMAGES = 10;
-const NUM_ANIMALS = 100;
+const NUM_ANIMALS = 200;
+const NUM_STATIC = 2000; // Static var for background
 
 // Declare empty array variables for animals and their images
 let animalImgs = [];
@@ -118,7 +119,15 @@ function title() {
 
 function simulation() {
   // Create a coloured background
-  background(255, 255, 0);
+  background(map(mouseX, 0, width, 100, 230));
+
+  //Display static
+  for (let i = 0; i < NUM_STATIC; i++) {
+    let x = random(0, width);
+    let y = random(0, height);
+    stroke(random(255));
+    point(x, y);
+  }
 
   // Display the animals
   for (let i = 0; i < animals.length; i++) {
@@ -140,7 +149,7 @@ function keyPressed() {
     state = `title`
   }
   // Switching from "title" state to "simulation" state by pressing ENTER
-  if (state === `openScreen` && keyIsDown(13)) {
-    state = `title`
+  if (state === `title` && keyIsDown(32)) {
+    state = `simulation`
   }
 }
