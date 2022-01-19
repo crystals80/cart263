@@ -1,4 +1,4 @@
-class SausageDog extends Animal {
+class Onigiri extends Animal {
   constructor(x, y, image) {
     super(x, y, image);
     this.found = false; // For tracking finding

@@ -1,8 +1,8 @@
 /**
-Activity 1: Where's Sausage Dog? (Edition Plus)
+Exercise 1: Where's the Gullible Onigiri, Tohru?
 Lam Ky Anh Do
 
-Represent a generic "animal" via classes (using inheritance)
+Simulation: Find the intruder among the Zodiac Family
 */
 
 "use strict";
@@ -12,7 +12,6 @@ let state = `title`;
 
 // VARIABLE FOR TITLE SCREEN, including complete and gameover screens
 let button; // Variable for button (that will initiate the simulation)
-
 
 // SIMULATION VARIABLES
 // Declare fixed num for animals and their images
@@ -24,7 +23,7 @@ let animalImgs = [];
 let animals = [];
 
 // Declare sausage dog var and its image
-let onigiriImg, onigiriDog;
+let onigiriImg, onigiri;
 
 function preload() {
   // Create a for loop to load all animal images by using iterator i
@@ -105,5 +104,6 @@ function mousePressed() {
 }
 
 function switchState() {
+  // Once button is clicked, switch "openScreen" state to "title" state
   state = `title`;
 }
