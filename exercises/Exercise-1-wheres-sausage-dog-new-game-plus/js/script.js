@@ -7,7 +7,7 @@ Simulation: Find the intruder among the Zodiac Family
 
 "use strict";
 
-// STATE VARIABLE: openScreen, title, simulation
+// STATE VARIABLE: openScreen, title, simulation, ending and restart
 let state = `openScreen`;
 
 // FONT VARIABLES
@@ -24,7 +24,7 @@ let animalImgs = [];
 let animals = [];
 
 // Declare onigiri var, images & empty var
-let onigiri, onigiriImg, bg, endBg, shake;
+let onigiri, onigiriImg, bg, endBg, restartBg;
 
 function preload() {
 
@@ -41,9 +41,10 @@ function preload() {
   // Load onigiri image
   onigiriImg = loadImage(`assets/images/tohru-onigiri.png`)
 
-  // Load background image of title()
-  bg = loadImage(`assets/images/offering.gif`)
-  endBg = loadImage(`assets/images/human-tohru.png`)
+  // Load background images
+  bg = loadImage(`assets/images/offering.gif`);
+  endBg = loadImage(`assets/images/human-tohru.png`);
+  restartBg = loadImage(`assets/images/ohno.jpg`);
 }
 
 function setup() {
@@ -63,8 +64,6 @@ function setup() {
   let x = random(0, width);
   let y = random(0, height);
   onigiri = new Onigiri(x, y, onigiriImg);
-
-  shake = true;
 }
 
 function draw() {
@@ -77,6 +76,8 @@ function draw() {
     simulation();
   } else if (state === `ending`) {
     ending();
+  } else if (state === `restart`) {
+    restart();
   }
 }
 
@@ -87,10 +88,12 @@ function openScreen() {
   textFont(fontRegular);
   noStroke();
   fill(255);
-  textSize(60);
-  text(`Welcome!`, width / 2, height / 3);
+  textSize(50);
+  text(`Hello! `, width / 2, height / 3);
   textSize(30);
-  text(`Would you like to proceed?`, width / 2, height / 2);
+  text(`I'm Ritsu and I need your help!`, width / 2, height / 2);
+  textSize(16);
+  text(`Would you lend me some of your time?`, width / 2, 4 * height / 6);
   textSize(10);
   text(`~ PRESS ENTER to continue ~`, width / 2, height - 50);
   pop();
@@ -99,10 +102,10 @@ function openScreen() {
 function title() {
 
   // Title screen's background image
-  push()
+  push();
   imageMode(CENTER);
   image(bg, width / 2, height / 2, windowWidth, windowHeight);
-  pop()
+  pop();
 
   // Mission message
   push();
@@ -115,8 +118,8 @@ function title() {
   textSize(30);
   text(`But first let me introduce you to the case`, width / 2, height / 2);
   textSize(16);
-  text(`Chinese New Year is approaching and I have prepare a few offerings for the God of The Chinese Zodiac
-    However, my cats have stolen a piece of onigiri! Please help me find it!`, width / 2, 4 * height / 6);
+  text(`Chinese New Year is approaching and Tohru and I have prepare a few offerings for the God of The Chinese Zodiac
+    However, some stray cats have stolen a piece of onigiri! Please help me find it!`, width / 2, 4 * height / 6);
   textSize(10);
   text(`~ PRESS SPACE to find the Gullible Onigiri Tohru ~`, width / 2, height - 50);
   pop();
@@ -137,9 +140,6 @@ function simulation() {
   // Display the animals
   for (let i = 0; i < animals.length; i++) {
     animals[i].update();
-    // if (shake == true) {
-    //   translate(random(-5, 5), random(-5, 5));
-    // }
   }
 
   // Display onigiri
@@ -153,10 +153,10 @@ function mousePressed() {
 
 function ending() {
   // Ending screen's background image
-  push()
+  push();
   imageMode(CENTER);
   image(endBg, width / 2, height / 2, windowWidth, windowHeight);
-  pop()
+  pop();
 
   // Display a happy onigiri
   onigiri.updateEnd();
@@ -169,13 +169,39 @@ function ending() {
   fill(0);
   textSize(50);
   text(`Thank you very much for rescuing me!`, width / 2, height / 12);
-  textSize(24);
-  text(`Now let's go and bring the offerings
-  to the Sohma's estate!`, width / 2, 4.5 * height / 6);
+  textSize(20);
+  text(`A part of my soul was in this happy onigiri but nevermind that!
+    Let's bring the offerings to the Sohma's estate!`, width / 2, 4.5 * height / 6);
   textSize(16);
   text(`Come on! They're waiting for us!`, width / 2, 6.75 * height / 8);
   textSize(10);
   text(`~ PRESS SPACE to continue ~`, width / 2, height - 50);
+  pop();
+}
+
+function restart() {
+  // Restart screen's background image
+  push()
+  imageMode(CENTER);
+  image(restartBg, width / 2, height / 2, windowWidth, windowHeight);
+  pop();
+
+  // Restart message
+  push();
+  textAlign(CENTER, CENTER);
+  textFont(fontRegular);
+  noStroke();
+  fill(0);
+  textSize(50);
+  text(`Oh no!
+    The cats snatched Tohru away!`, width / 2, height / 2.25);
+  textSize(24);
+  text(`We have to find her before Akito comes for us!`, width / 2, 4 * height / 6);
+  textSize(16);
+  text(`Come on! Help me find Tohru!`, width / 2, 5.5 * height / 7);
+  textSize(10);
+  text(`~ PRESS ENTER to restart ~`, width / 2, height - 50);
+  text(`Note: You must watch the anime or read the manga to know about the context! Enjoy!`, width / 2, height - 30);
   pop();
 }
 
@@ -184,8 +210,16 @@ function keyPressed() {
   if (state === `openScreen` && keyIsDown(13)) {
     state = `title`;
   }
-  // Switching from "title" state to "simulation" state by pressing ENTER
+  // Switching from "title" state to "simulation" state by pressing SPACE
   if (state === `title` && keyIsDown(32)) {
     state = `simulation`;
+  }
+  // Switching from "ending" state to "restart" state by pressing SPACE
+  if (state === `ending` && keyIsDown(32)) {
+    state = `restart`;
+  }
+  // Switching from "restart" state to "openScreen" state by pressing ENTER
+  if (state === `restart` && keyIsDown(13)) {
+    state = `openScreen`;
   }
 }
