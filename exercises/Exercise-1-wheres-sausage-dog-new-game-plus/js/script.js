@@ -94,7 +94,7 @@ function openScreen() {
   text(`I'm Ritsu and I need your help!`, width / 2, height / 2);
   textSize(16);
   text(`Would you lend me some of your time?`, width / 2, 4 * height / 6);
-  textSize(10);
+  textSize(12);
   text(`~ PRESS ENTER to continue ~`, width / 2, height - 50);
   pop();
 }
@@ -120,7 +120,7 @@ function title() {
   textSize(16);
   text(`Chinese New Year is approaching and Tohru and I have prepare a few offerings for the God of The Chinese Zodiac
     However, some stray cats have stolen a piece of onigiri! Please help me find it!`, width / 2, 4 * height / 6);
-  textSize(10);
+  textSize(12);
   text(`~ PRESS SPACE to find the Gullible Onigiri Tohru ~`, width / 2, height - 50);
   pop();
 }
@@ -174,7 +174,7 @@ function ending() {
     Let's bring the offerings to the Sohma's estate!`, width / 2, 4.5 * height / 6);
   textSize(16);
   text(`Come on! They're waiting for us!`, width / 2, 6.75 * height / 8);
-  textSize(10);
+  textSize(12);
   text(`~ PRESS SPACE to continue ~`, width / 2, height - 50);
   pop();
 }
@@ -199,9 +199,10 @@ function restart() {
   text(`We have to find her before Akito comes for us!`, width / 2, 4 * height / 6);
   textSize(16);
   text(`Come on! Help me find Tohru!`, width / 2, 5.5 * height / 7);
+  textSize(12);
+  text(`~ CTRL + R or COMMAND + R to restart ~`, width / 2, height - 50);
   textSize(10);
-  text(`~ PRESS ENTER to restart ~`, width / 2, height - 50);
-  text(`Note: You must watch the anime or read the manga to know about the context! Enjoy!`, width / 2, height - 30);
+  text(`Note: You must watch the anime or read the manga to know about the context! Enjoy!`, width / 2, 6.25 * height / 7);
   pop();
 }
 
@@ -217,9 +218,5 @@ function keyPressed() {
   // Switching from "ending" state to "restart" state by pressing SPACE
   if (state === `ending` && keyIsDown(32)) {
     state = `restart`;
-  }
-  // Switching from "restart" state to "openScreen" state by pressing ENTER
-  if (state === `restart` && keyIsDown(13)) {
-    state = `openScreen`;
   }
 }
