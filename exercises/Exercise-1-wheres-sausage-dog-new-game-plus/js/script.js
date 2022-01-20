@@ -118,8 +118,10 @@ function title() {
   textSize(30);
   text(`But first let me introduce you to the case`, width / 2, height / 2);
   textSize(16);
-  text(`Chinese New Year is approaching and Tohru and I have prepare a few offerings for the God of The Chinese Zodiac
-    However, some stray cats have stolen a piece of onigiri! Please help me find it!`, width / 2, 4 * height / 6);
+  text(`Chinese New Year is approaching!
+    Tohru and I have prepare a few offerings for the God of The Chinese Zodiac`, width / 2, 4 * height / 6);
+  text(`However, some stray cats have stolen a piece of onigiri!
+    Please help me find it!`, width / 2, 4.5 * height / 6);
   textSize(12);
   text(`~ PRESS SPACE to find the Gullible Onigiri Tohru ~`, width / 2, height - 50);
   pop();
