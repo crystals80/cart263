@@ -85,7 +85,7 @@ function draw() {
 }*/
 
 // THE PROGRAM'S FACE
-let face = `:-|`;
+/*let face = `:-|`;
 
 function setup() {
   createCanvas(500, 500);
@@ -137,8 +137,10 @@ function hate() {
   // rect(width / 2, height / 2, 500, 500);
   // pop();
   face = `:-(`;
-}
+}*/
 
+
+// BONUS
 
 // "SPLATS"
 /*const commands = {
@@ -155,7 +157,7 @@ const showFlickr = function(tag) {
 // (3) GREETING USER BY NAME
 
 // Default name
-/*let userName = `stranger`
+let userName = `stranger`
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -187,4 +189,4 @@ function draw() {
   rectMode(CENTER);
   text(`Hi there, ${userName}!`, 100, 100);
   pop();
-}*/
+}
