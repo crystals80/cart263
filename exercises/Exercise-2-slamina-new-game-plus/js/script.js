@@ -190,6 +190,7 @@ function simulation() {
   instruction();
   // Display ResponsiveVoice suggestion
   fill(0);
+  textSize(32)
   text(`Can you see the ${reverseAnimal}?`, width / 4, height / 6)
   // Display point counter
   text(gainPoint, width - 50, 50);
@@ -222,6 +223,7 @@ function instruction() {
 function displayAnswer() {
   // Set fill text colour with colours set with textColor
   fill(textColor);
+  textSize(32)
   // Display answer a bit to the right
   text(`I can see the ${currentAnswer}`, 4 * width / 6, height / 6);
 }
