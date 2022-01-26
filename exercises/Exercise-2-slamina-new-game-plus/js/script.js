@@ -98,7 +98,7 @@ function setup() {
     annyang.addCommands(commands);
     // Start listening
     annyang.start();
-    //annyang.debug(true); // To debug annyang, assign true/false
+    annyang.debug(true); // To debug annyang, assign true/false
   } else {
     // annyang doesn't work
     alert(`Please visit this page on Google Chrome!`)
