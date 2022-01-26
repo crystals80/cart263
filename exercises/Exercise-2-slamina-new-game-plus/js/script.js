@@ -14,7 +14,7 @@ let state = "title";
 let fontRegular, fontItalic;
 
 // IMAGE VARIABLES
-let titleImg;
+let titleImg, simulationImg;
 
 // TITLE SCREEN VARIABLES
 let width, height;
@@ -134,6 +134,12 @@ function pointillismBg(sourceImage) {
 
 // Function showing simulation state aka where ResponsiveVoice and annyang are in play
 function simulation() {
+  // Display simulation's background
+  background(253, 253, 253);
+  simulationImg = createImg('assets/images/walking-animals.gif');
+  simulationImg.position(300, 200);
+  simulationImg.size(width * 1.5, AUTO);
+  // Display annyang's answer
   displayAnswer();
 }
 
@@ -181,5 +187,6 @@ function keyPressed() {
   //
   if (state === `simulation` && keyIsDown(16)) {
     sayAnimalBackwards();
+    removeElements();
   }
 }
