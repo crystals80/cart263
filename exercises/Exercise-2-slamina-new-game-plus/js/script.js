@@ -197,7 +197,7 @@ function simulation() {
   displayAnswer();
 
   // Trigger "ending" state user accidentally presses SPACE
-  if (state === `simulation` && gainPoint == 1) {
+  if (state === `simulation` && gainPoint == 10) {
     state = `goodEnding`;
   }
 }
