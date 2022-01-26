@@ -17,7 +17,7 @@ let fontRegular, fontItalic;
 let titleImg, simulationImg;
 
 // TITLE SCREEN VARIABLES
-let titleWidth, titleHeight, reverseAnimal;
+let titleWidth, titleHeight;
 
 // SIMULATION VARIABLES
 // Fixed var for animals in an array
@@ -26,10 +26,11 @@ const animals = ["aardvark", "alligator", "alpaca", "antelope", "ape", "armadill
 // Variables stating the current animal or speech recognition answer
 let currentAnimal = ``;
 let currentAnswer = ``;
-let noGuess = true;
-let goodGuess = 0;
-let textColor;
+let noGuess = true; // Variable for when there is no guess at the beginning of the simulation
+let gainPoint = 0; // Variable for point counter
+let reverseAnimal, textColor;
 
+// Function that loads necessary assets before the program runs
 function preload() {
   // TYPEFACES (see assets README for more info on typeface)
   fontRegular = loadFont('assets/fonts/PlayfairDisplay-VariableFont_wght.ttf')
@@ -47,11 +48,16 @@ function setup() {
   // Set up pointillism background image for title screen
   // NOTE: To set up pointillism background in different states, every image is required to be set up separately for it to work
   push();
+  // Declare width and height for title screen background image
   titleWidth = titleImg.width;
   titleHeight = titleImg.height;
+  // Center the background image
   imageMode(CENTER);
+  // Resize the background image to window size
   titleImg.resize(windowWidth, windowHeight);
+  // Delete border of the background image
   noStroke();
+  // Make background white so that background image can load in pixel
   background(255);
   titleImg.loadPixels();
   pop();
@@ -76,12 +82,12 @@ function setup() {
   textSize(32);
   textStyle(BOLD);
   textAlign(CENTER);
-  textColor = color(0);
+  textColor = color(0); // Set text color in black initially
 }
 
 // Function to run the program
 function draw() {
-
+  // Display states
   if (state === `title`) {
     title();
   } else if (state === `simulation`) {
@@ -100,13 +106,23 @@ function title() {
   noStroke();
   fill(39, 12, 105);
   textSize(50);
-  text(`Welcome to Slamina Zoo!`, width / 2, height / 3);
+  text(`Welcome to Slamina Zoo!`, width / 2, height / 7);
   textSize(30);
-  text(`Are you ready for an adventure?!`, width / 2, height / 2);
+  text(`Are you ready for an adventure?!`, width / 2, height / 4);
   textSize(16);
-  text(`Follow me! I'll give you a tour!`, width / 2, 4 * height / 6);
+  text(`Follow me! I'll give you a tour!`, width / 2, height / 3);
+  textBox();
   textSize(12);
   text(`~ PRESS ENTER to continue ~`, width / 2, height - 50);
+  pop();
+}
+
+function textBox() {
+  push();
+  rectMode(CENTER);
+  fill(255, 255, 255, 20);
+  // Draw a rectangle with rounded corners, each having a radius of 20.
+  rect(width / 2, height - 47, 200, 25, 20);
   pop();
 }
 
@@ -122,7 +138,7 @@ function sayAnimalBackwards() {
 
 // Function to set up pointillism background using any image
 function pointillismBg(sourceImage) {
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 5; i++) {
     // floor allows random to give decimal
     let x = floor(random(sourceImage.width));
     let y = floor(random(sourceImage.height));
