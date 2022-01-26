@@ -32,12 +32,15 @@ let numBubble = 20; // Number of bubble
 // Fixed var for animals in an array
 const animals = ["aardvark", "alligator", "alpaca", "antelope", "ape", "armadillo", "baboon", "badger", "bat", "bear", "beaver", "bison", "boar", "buffalo", "bull", "camel", "canary", "capybara", "cat", "chameleon", "cheetah", "chimpanzee", "chinchilla", "chipmunk", "cougar", "cow", "coyote", "crocodile", "crow", "deer", "dingo", "dog", "donkey", "dromedary", "elephant", "elk", "ewe", "ferret", "finch", "fish", "fox", "frog", "gazelle", "gila monster", "giraffe", "gnu", "goat", "gopher", "gorilla", "grizzly bear", "ground hog", "guinea pig", "hamster", "hedgehog", "hippopotamus", "hog", "horse", "hyena", "ibex", "iguana", "impala", "jackal", "jaguar", "kangaroo", "koala", "lamb", "lemur", "leopard", "lion", "lizard", "llama", "lynx", "mandrill", "marmoset", "mink", "mole", "mongoose", "monkey", "moose", "mountain goat", "mouse", "mule", "muskrat", "mustang", "mynah bird", "newt", "ocelot", "opossum", "orangutan", "oryx", "otter", "ox", "panda", "panther", "parakeet", "parrot", "pig", "platypus", "polar bear", "porcupine", "porpoise", "prairie dog", "puma", "rabbit", "raccoon", "ram", "rat", "reindeer", "reptile", "rhinoceros", "salamander", "seal", "sheep", "shrew", "silver fox", "skunk", "sloth", "snake", "squirrel", "tapir", "tiger", "toad", "turtle", "walrus", "warthog", "weasel", "whale", "wildcat", "wolf", "wolverine", "wombat", "woodchuck", "yak", "zebra"]
 
-// Variables stating the current animal or speech recognition answer
+// Variables storing strings
 let currentAnimal = ``;
 let currentAnswer = ``;
-let noGuess = true; // Variable for when there is no guess at the beginning of the simulation
-let gainPoint = 0; // Variable for point counter
 let reverseAnimal = ``;
+// Variable for when there is no guess at the beginning of the simulation
+let noGuess = true;
+// Variable for point counter
+let gainPoint = 0;
+// Variable for text colour
 let textColor;
 
 // Function that loads necessary assets before the program runs
@@ -254,7 +257,7 @@ function sayAnimalBackwards() {
   // Say currentAnimal backwards
   reverseAnimal = reverseString(currentAnimal);
   // Use ResponsiveVoice to speak reverse animal names
-  responsiveVoice.speak(reverseAnimal, "US English Female");
+  responsiveVoice.speak(reverseAnimal, "Japanese Female");
 }
 
 // Function reversing the provided string via annyang capturing user's voice
