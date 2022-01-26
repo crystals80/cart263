@@ -14,10 +14,19 @@ let state = "title";
 let fontRegular, fontItalic;
 
 // IMAGE VARIABLES
-let titleImg, simulationImg, bubbleSpeech1, bubbleSpeech2, bubbleSpeech3;
+let titleImg, simulationImg, bubbleSpeech1, bubbleSpeech2, bubbleSpeech3, bubbleImg;
+
+// AUDIO VARIABLES
+let bubblySFX = []; // Array variable storing bubble rising SFX
+let bubbly, bgAudio1; // Variables for background music
 
 // TITLE SCREEN VARIABLES
 let titleWidth, titleHeight;
+
+// GOOD ENDING VARIABLES
+let bubble;
+let bubbles = []; // Bubble array variable
+let numBubble = 20; // Number of bubble
 
 // SIMULATION VARIABLES
 // Fixed var for animals in an array
@@ -33,16 +42,26 @@ let textColor;
 
 // Function that loads necessary assets before the program runs
 function preload() {
-  // TYPEFACES (see assets README for more info on typeface)
+  // TYPEFACES (see fonts README in assets folder for more info on typeface)
   fontRegular = loadFont('assets/fonts/PlayfairDisplay-VariableFont_wght.ttf')
   fontItalic = loadFont('assets/fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf')
 
-  // IMAGES
+  // IMAGES (see images README in assets folder for more info on images)
+  // Background images
   titleImg = loadImage('assets/images/animals.jpg');
   simulationImg = loadImage('assets/images/walking-animals.jpg');
+  // Text speeches for simulation screen
   bubbleSpeech1 = loadImage('assets/images/bubble-speech-1.png');
   bubbleSpeech2 = loadImage('assets/images/bubble-speech-2.png');
   bubbleSpeech3 = loadImage('assets/images/bubble-speech-3.png');
+  // Good ending special effect
+  bubbleImg = loadImage('assets/images/bubble.png')
+
+  // AUDIO (see sounds README in assets folder for more info on sounds)
+  // Audios for good ending screen
+  bubblySFX[0] = loadSound('assets/sounds/zapsplat-bubble_rising1.mp3');
+  bubblySFX[1] = loadSound('assets/sounds/zapsplat-bubble_rising2.mp3');
+  bgAudio1 = loadSound('assets/sounds/YAL_Seaside_Piazza_Aaron_Kenny.mp3'); // Good ending background audio
 }
 
 // Function to set up the program
@@ -87,6 +106,14 @@ function setup() {
   textStyle(BOLD);
   textAlign(CENTER);
   textColor = color(0); // Set text color in black initially
+
+  // Create new bubbles and store them in an array
+  // Bubble floating up
+  bubble = new Bubble(bubbleImg);
+  for (let b = 0; b < numBubble; b++) {
+    let bubble = new Bubble(bubbleImg)
+    bubbles.push(bubble);
+  }
 }
 
 // Function to run the program
@@ -96,8 +123,10 @@ function draw() {
     title();
   } else if (state === `simulation`) {
     simulation();
-  } else if (state === `ending`) {
-    ending();
+  } else if (state === `goodEnding`) {
+    goodEnding();
+  } else if (state === `badEnding`) {
+    badEnding();
   }
 }
 
@@ -166,7 +195,7 @@ function simulation() {
 
   // Trigger "ending" state user accidentally presses SPACE
   if (state === `simulation` && gainPoint == 1) {
-    state = `ending`;
+    state = `goodEnding`;
   }
 }
 
@@ -240,7 +269,60 @@ function reverseString(string) {
   return result;
 }
 
-function ending() {
+function goodEnding() {
+  // Play bubbly sound effects at random
+  bubbly = random(bubblySFX);
+  playAudio1(); // Play audio setup for title screen
+
+  // Set up gradient background
+  let c1, c2, n;
+  c1 = color(63, 191, 191); // Light teal
+  //c2 = color(63,76,191); // light indigo
+  c2 = color(63, 108, 191); // light blue
+
+  for (let c = 0; c < height; c++) {
+    n = map(c, 0, height, 0, 1);
+    let newColor = lerpColor(c1, c2, n);
+    stroke(newColor);
+    line(0, c, width, c);
+  }
+
+  // Congratulating message + Next step instruction
+  push();
+  textAlign(CENTER, CENTER);
+  textFont(fontRegular);
+  noStroke();
+  fill(255);
+  textSize(50);
+  text(`Congratulation!`, width / 2, height / 4);
+  textSize(30);
+  text(`You are good at this!`, width / 2, height / 2);
+  textSize(16);
+  text(`Let's continue our adventure!`, width / 2, 50 + height / 2);
+  textSize(12);
+  text(`~ PRESS ENTER to continue ~`, width / 2, height - 50);
+
+
+  // For every bubble object in the bubbles array, call the display and move functions
+  for (let i = 0; i < bubbles.length; i++) {
+    let bubble = bubbles[i];
+    bubble.move();
+    bubble.display();
+  }
+}
+
+// Play SFX audio for good ending screen
+function playAudio1() {
+  // If bubblySFX isn't playing then play and loop it over and over, and play/loop bgAudio1 on the same time
+  if (!bubbly.isPlaying() && !bgAudio1.isPlaying()) {
+    bubbly.setVolume(0.3); // Lower SFX volume from 1 to 0.3
+    bubbly.loop(); // Loop SFX to make a continuous audio
+    bgAudio1.setVolume(0.32); // Lower background music from 1 to 0.32 in order to hear a bit of the SFX
+    bgAudio1.loop(); // Replay background music after it ends
+  }
+}
+
+function badEnding() {
   background(0)
 }
 
@@ -253,8 +335,16 @@ function keyPressed() {
   // Trigger ResponsiveVoice by pressing SHIFT
   if (state === `simulation` && keyIsDown(16)) {
     sayAnimalBackwards();
-  } // Trigger "ending" state user accidentally presses SPACE
+  }
+  // Switching from "goodEnding" state to "title" state by pressing ENTER
+  if (state === `goodEnding` && keyIsDown(13)) {
+    state = `title`;
+    background(255);
+    bubbly.stop();; // Stop bubblySFX
+    bgAudio1.stop(); // Stop background audio of title screen
+  }
+  // Trigger "badEnding" state user accidentally presses SPACE
   if (state === `simulation` && keyIsDown(32)) {
-    state = `ending`;
+    state = `badEnding`;
   }
 }
