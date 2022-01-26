@@ -302,7 +302,6 @@ function goodEnding() {
   textSize(12);
   text(`~ PRESS ENTER to continue ~`, width / 2, height - 50);
 
-
   // For every bubble object in the bubbles array, call the display and move functions
   for (let i = 0; i < bubbles.length; i++) {
     let bubble = bubbles[i];
@@ -324,6 +323,24 @@ function playAudio1() {
 
 function badEnding() {
   background(0)
+
+  // Game over message + Next step instruction
+  push();
+  textAlign(CENTER, CENTER);
+  textFont(fontRegular);
+  noStroke();
+  fill(255);
+  textSize(50);
+  text(`HEY YOU! YEAH YOU!`, width / 2, height / 4);
+  textSize(30);
+  text(`What are you doing?!`, width / 2, 50 + height / 3);
+  textSize(16);
+  text(`You cannot feed the animals without my permission! It's dangerous!
+  I will kindly ask you to go to the entrance while my collegue fills up a report for yourunacceptable behaviour! `, width / 2, 25 + height / 2);
+  textSize(100);
+  text(`>:(`, width / 2, 3.5 * height / 5);
+  textSize(12);
+  text(`~ PRESS ENTER to continue ~`, width / 2, height - 50);
 }
 
 // Function allows user to switch states by having certain keys pressed down and
@@ -339,12 +356,17 @@ function keyPressed() {
   // Switching from "goodEnding" state to "title" state by pressing ENTER
   if (state === `goodEnding` && keyIsDown(13)) {
     state = `title`;
-    background(255);
+    background(255); // Re-integrate white background
     bubbly.stop();; // Stop bubblySFX
     bgAudio1.stop(); // Stop background audio of title screen
   }
   // Trigger "badEnding" state user accidentally presses SPACE
   if (state === `simulation` && keyIsDown(32)) {
     state = `badEnding`;
+  }
+  // Switching from "goodEnding" state to "title" state by pressing ENTER
+  if (state === `badEnding` && keyIsDown(13)) {
+    state = `title`;
+    background(255); // Re-integrate white background
   }
 }
