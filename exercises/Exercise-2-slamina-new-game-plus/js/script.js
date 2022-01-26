@@ -17,7 +17,7 @@ let fontRegular, fontItalic;
 let titleImg, simulationImg;
 
 // TITLE SCREEN VARIABLES
-let width, height;
+let titleWidth, titleHeight, reverseAnimal;
 
 // SIMULATION VARIABLES
 // Fixed var for animals in an array
@@ -26,6 +26,9 @@ const animals = ["aardvark", "alligator", "alpaca", "antelope", "ape", "armadill
 // Variables stating the current animal or speech recognition answer
 let currentAnimal = ``;
 let currentAnswer = ``;
+let noGuess = true;
+let goodGuess = 0;
+let textColor;
 
 function preload() {
   // TYPEFACES (see assets README for more info on typeface)
@@ -44,8 +47,8 @@ function setup() {
   // Set up pointillism background image for title screen
   // NOTE: To set up pointillism background in different states, every image is required to be set up separately for it to work
   push();
-  width = titleImg.width;
-  height = titleImg.height;
+  titleWidth = titleImg.width;
+  titleHeight = titleImg.height;
   imageMode(CENTER);
   titleImg.resize(windowWidth, windowHeight);
   noStroke();
@@ -57,7 +60,7 @@ function setup() {
   if (annyang) {
     // Let program guess animal by your guess via annyang!'s speech recognition
     let commands = {
-      'I think it is *animal': guessAnimal
+      'I can see the *animal': guessAnimal
     };
     // Add our commands to annyang
     annyang.addCommands(commands);
@@ -73,6 +76,7 @@ function setup() {
   textSize(32);
   textStyle(BOLD);
   textAlign(CENTER);
+  textColor = color(0);
 }
 
 // Function to run the program
@@ -111,14 +115,9 @@ function sayAnimalBackwards() {
   // Assign a random animal name from the animals array to currentAnimal
   currentAnimal = random(animals);
   // Say currentAnimal backwards
-  let reverseAnimal = reverseString(currentAnimal);
+  reverseAnimal = reverseString(currentAnimal);
   // Use ResponsiveVoice to speak reverse animal names
   responsiveVoice.speak(reverseAnimal, "US English Female");
-
-  if (responsiveVoice.isPlaying()) {
-    fill(0);
-    text(reverseString(currentAnimal), 150 + width / 2, height / 6)
-  }
 }
 
 // Function to set up pointillism background using any image
@@ -141,29 +140,43 @@ function simulation() {
   imageMode(CENTER);
   image(simulationImg, width / 2, 3 * height / 4, windowWidth - 100, windowHeight - 200);
   // Display ResponsiveVoice suggestion
-  // sayAnimalBackwards()
+  fill(0);
+  text(reverseAnimal, -150 + width / 2, height / 6)
   // Display annyang's answer
   displayAnswer();
+
+  fill(0);
+  text(goodGuess, 100, 100);
 }
 
 // Function displaying the correct/wrong guess
 function displayAnswer() {
-  // Display whether a guess is right or wrong
-  if (currentAnswer === currentAnimal) {
-    fill(0, 255, 0);
-  } else {
-    fill(255, 0, 0);
-  }
-  text(`I think it is ${currentAnswer}`, 150 + width / 2, height / 6);
+
+  fill(textColor);
+
+  text(`I can see the ${currentAnswer}`, 150 + width / 2, height / 6);
   text(`______`, 265 + width / 2, height / 6)
 }
 
 // Called by annyang!, when it catches user's verbal guess
 function guessAnimal(animal) {
+  noGuess = false;
   // Assign the animal guess as the current answer (in lower case)
   currentAnswer = animal.toLowerCase();
   // Track answers
   console.log(currentAnswer);
+
+  if (noGuess === true) {
+    textColor = color(0);
+  } else {
+    // Display whether a guess is right or wrong
+    if (currentAnswer === currentAnimal) {
+      textColor = color(0, 255, 0);
+      goodGuess += 1;
+    } else {
+      textColor = color(255, 0, 0);
+    }
+  }
 }
 
 // Function reversing the provided string via annyang capturing user's voice
