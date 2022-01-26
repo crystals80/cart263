@@ -126,16 +126,6 @@ function textBox() {
   pop();
 }
 
-// Function triggering ResponsiveVoice to say the reversed animal name
-function sayAnimalBackwards() {
-  // Assign a random animal name from the animals array to currentAnimal
-  currentAnimal = random(animals);
-  // Say currentAnimal backwards
-  reverseAnimal = reverseString(currentAnimal);
-  // Use ResponsiveVoice to speak reverse animal names
-  responsiveVoice.speak(reverseAnimal, "US English Female");
-}
-
 // Function to set up pointillism background using any image
 function pointillismBg(sourceImage) {
   for (let i = 0; i < 5; i++) {
@@ -167,32 +157,44 @@ function simulation() {
 
 // Function displaying the correct/wrong guess
 function displayAnswer() {
-
+  // Set fill text colour with colours set with textColor
   fill(textColor);
-
+  // Display answer a bit to the right
   text(`I can see the ${currentAnswer}`, 150 + width / 2, height / 6);
-  text(`______`, 265 + width / 2, height / 6)
 }
 
 // Called by annyang!, when it catches user's verbal guess
 function guessAnimal(animal) {
+  // As there is no guess, at the beginning of the simulation, then the text will remain black.
   noGuess = false;
-  // Assign the animal guess as the current answer (in lower case)
-  currentAnswer = animal.toLowerCase();
-  // Track answers
-  console.log(currentAnswer);
-
   if (noGuess === true) {
     textColor = color(0);
   } else {
     // Display whether a guess is right or wrong
     if (currentAnswer === currentAnimal) {
+      // Once user starts guessing, the text turns green if the guess is correct
       textColor = color(0, 255, 0);
+      // Every time user guesses correctly, they gain a point
       goodGuess += 1;
     } else {
+      // Once user starts guessing, the text turns red if the guess is wrong
       textColor = color(255, 0, 0);
     }
   }
+  // Assign the animal guess as the current answer (in lower case)
+  currentAnswer = animal.toLowerCase();
+  // Track answers
+  console.log(currentAnswer);
+}
+
+// Function triggering ResponsiveVoice to say the reversed animal name
+function sayAnimalBackwards() {
+  // Assign a random animal name from the animals array to currentAnimal
+  currentAnimal = random(animals);
+  // Say currentAnimal backwards
+  reverseAnimal = reverseString(currentAnimal);
+  // Use ResponsiveVoice to speak reverse animal names
+  responsiveVoice.speak(reverseAnimal, "US English Female");
 }
 
 // Function reversing the provided string via annyang capturing user's voice
@@ -207,13 +209,13 @@ function reverseString(string) {
   return result;
 }
 
-// Function allows user to switch states by having certain keys pressed down and to activate ResponsiveVoice
+// Function allows user to switch states by having certain keys pressed down and
 function keyPressed() {
-  // Switching from "openScreen" state to "title" state by pressing ENTER
+  // Switching from "title" state to "simulation" state by pressing ENTER
   if (state === `title` && keyIsDown(13)) {
     state = `simulation`;
   }
-  //
+  // Trigger ResponsiveVoice by pressing SHIFT
   if (state === `simulation` && keyIsDown(16)) {
     sayAnimalBackwards();
   }
