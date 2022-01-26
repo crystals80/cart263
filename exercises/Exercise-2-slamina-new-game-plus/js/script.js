@@ -1,5 +1,5 @@
 /**
-Slamina New Game Plus
+Welcome to the Slamina Zoo!
 Lam Ky Anh Do
 
 ResponsiveVoice (https://responsivevoice.org/) & annyang! (https://www.talater.com/annyang/)
