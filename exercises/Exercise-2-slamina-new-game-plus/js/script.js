@@ -14,7 +14,7 @@ let state = "title";
 let fontRegular, fontItalic;
 
 // IMAGE VARIABLES
-let titleImg, simulationImg;
+let titleImg, simulationImg, bubbleSpeech1, bubbleSpeech2;
 
 // TITLE SCREEN VARIABLES
 let titleWidth, titleHeight;
@@ -28,7 +28,8 @@ let currentAnimal = ``;
 let currentAnswer = ``;
 let noGuess = true; // Variable for when there is no guess at the beginning of the simulation
 let gainPoint = 0; // Variable for point counter
-let reverseAnimal, textColor;
+let reverseAnimal = ``;
+let textColor;
 
 // Function that loads necessary assets before the program runs
 function preload() {
@@ -39,6 +40,8 @@ function preload() {
   // IMAGES
   titleImg = loadImage('assets/images/animals.jpg');
   simulationImg = loadImage('assets/images/walking-animals.jpg');
+  bubbleSpeech1 = loadImage('assets/images/bubble-speech-1.png');
+  bubbleSpeech2 = loadImage('assets/images/bubble-speech-2.png');
 }
 
 // Function to set up the program
@@ -144,15 +147,32 @@ function simulation() {
   // Display simulation's background
   background(255)
   imageMode(CENTER);
-  image(simulationImg, width / 2, 3 * height / 4, windowWidth - 100, windowHeight - 200);
+  image(simulationImg, width / 2, 2.5 * height / 4, windowWidth - 100, windowHeight - 200);
+  // Display instruction on how to play game
+  textAlign(CENTER, CENTER);
+  textFont(fontRegular);
+  noStroke();
+  instruction();
   // Display ResponsiveVoice suggestion
   fill(0);
-  text(reverseAnimal, -150 + width / 2, height / 6)
+  text(`Can you see the ${reverseAnimal}?`, width / 4, height / 6)
+  // Display point counter
+  text(gainPoint, width - 50, 50);
   // Display annyang's answer
   displayAnswer();
+}
 
-  fill(0);
-  text(goodGuess, 100, 100);
+function instruction() {
+  push();
+  imageMode(CENTER);
+  image(bubbleSpeech1, width / 6, 2.55 * height / 4, 350, 100);
+  image(bubbleSpeech2, 8.5 * width / 10, 5 + 2.25 * height / 4, 225, 75);
+  fill(25, 101, 125); // Dark turquoise
+  textSize(12);
+  text(`Pssst, read the illegible word backwards!!!`, -25 + width / 6, 3.9 * height / 6);
+  fill(242, 181, 54); // Rich Yellow
+  text(`Press SHIFT for a new prompt!`, 8.5 * width / 10, 2.25 * height / 4);
+  pop();
 }
 
 // Function displaying the correct/wrong guess
@@ -160,11 +180,15 @@ function displayAnswer() {
   // Set fill text colour with colours set with textColor
   fill(textColor);
   // Display answer a bit to the right
-  text(`I can see the ${currentAnswer}`, 150 + width / 2, height / 6);
+  text(`I can see the ${currentAnswer}`, 4 * width / 6, height / 6);
 }
 
 // Called by annyang!, when it catches user's verbal guess
 function guessAnimal(animal) {
+  // Assign the animal guess as the current answer (in lower case)
+  currentAnswer = animal.toLowerCase();
+  // Track answers
+  console.log(currentAnswer);
   // As there is no guess, at the beginning of the simulation, then the text will remain black.
   noGuess = false;
   if (noGuess === true) {
@@ -175,16 +199,12 @@ function guessAnimal(animal) {
       // Once user starts guessing, the text turns green if the guess is correct
       textColor = color(0, 255, 0);
       // Every time user guesses correctly, they gain a point
-      goodGuess += 1;
+      gainPoint += 1;
     } else {
       // Once user starts guessing, the text turns red if the guess is wrong
       textColor = color(255, 0, 0);
     }
   }
-  // Assign the animal guess as the current answer (in lower case)
-  currentAnswer = animal.toLowerCase();
-  // Track answers
-  console.log(currentAnswer);
 }
 
 // Function triggering ResponsiveVoice to say the reversed animal name
