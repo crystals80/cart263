@@ -34,6 +34,7 @@ function preload() {
 
   // IMAGES
   titleImg = loadImage('assets/images/animals.jpg');
+  simulationImg = loadImage('assets/images/walking-animals.jpg');
 }
 
 // Function to set up the program
@@ -81,10 +82,6 @@ function draw() {
     title();
   } else if (state === `simulation`) {
     simulation();
-  } else if (state === `ending`) {
-    ending();
-  } else if (state === `restart`) {
-    restart();
   }
 }
 
@@ -116,7 +113,12 @@ function sayAnimalBackwards() {
   // Say currentAnimal backwards
   let reverseAnimal = reverseString(currentAnimal);
   // Use ResponsiveVoice to speak reverse animal names
-  responsiveVoice.speak(reverseAnimal);
+  responsiveVoice.speak(reverseAnimal, "US English Female");
+
+  if (responsiveVoice.isPlaying()) {
+    fill(0);
+    text(reverseString(currentAnimal), 150 + width / 2, height / 6)
+  }
 }
 
 // Function to set up pointillism background using any image
@@ -135,10 +137,11 @@ function pointillismBg(sourceImage) {
 // Function showing simulation state aka where ResponsiveVoice and annyang are in play
 function simulation() {
   // Display simulation's background
-  background(253, 253, 253);
-  simulationImg = createImg('assets/images/walking-animals.gif');
-  simulationImg.position(300, 200);
-  simulationImg.size(width * 1.5, AUTO);
+  background(255)
+  imageMode(CENTER);
+  image(simulationImg, width / 2, 3 * height / 4, windowWidth - 100, windowHeight - 200);
+  // Display ResponsiveVoice suggestion
+  // sayAnimalBackwards()
   // Display annyang's answer
   displayAnswer();
 }
@@ -151,7 +154,8 @@ function displayAnswer() {
   } else {
     fill(255, 0, 0);
   }
-  text(currentAnswer, width / 2, height / 2);
+  text(`I think it is ${currentAnswer}`, 150 + width / 2, height / 6);
+  text(`______`, 265 + width / 2, height / 6)
 }
 
 // Called by annyang!, when it catches user's verbal guess
@@ -174,19 +178,14 @@ function reverseString(string) {
   return result;
 }
 
-// Function allows user to mainly switch states by having certain keys pressed down and to activate ResponsiveVoice
+// Function allows user to switch states by having certain keys pressed down and to activate ResponsiveVoice
 function keyPressed() {
   // Switching from "openScreen" state to "title" state by pressing ENTER
   if (state === `title` && keyIsDown(13)) {
     state = `simulation`;
   }
-  // Switching from "title" state to "simulation" state by pressing SPACE
-  if (state === `simulation` && keyIsDown(32)) {
-    state = `ending`;
-  }
   //
   if (state === `simulation` && keyIsDown(16)) {
     sayAnimalBackwards();
-    removeElements();
   }
 }
