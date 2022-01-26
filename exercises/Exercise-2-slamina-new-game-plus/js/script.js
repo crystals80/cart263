@@ -14,7 +14,7 @@ let state = "title";
 let fontRegular, fontItalic;
 
 // IMAGE VARIABLES
-let titleImg, simulationImg, bubbleSpeech1, bubbleSpeech2;
+let titleImg, simulationImg, bubbleSpeech1, bubbleSpeech2, bubbleSpeech3;
 
 // TITLE SCREEN VARIABLES
 let titleWidth, titleHeight;
@@ -42,6 +42,7 @@ function preload() {
   simulationImg = loadImage('assets/images/walking-animals.jpg');
   bubbleSpeech1 = loadImage('assets/images/bubble-speech-1.png');
   bubbleSpeech2 = loadImage('assets/images/bubble-speech-2.png');
+  bubbleSpeech3 = loadImage('assets/images/bubble-speech-3.png');
 }
 
 // Function to set up the program
@@ -95,6 +96,8 @@ function draw() {
     title();
   } else if (state === `simulation`) {
     simulation();
+  } else if (state === `ending`) {
+    ending();
   }
 }
 
@@ -160,6 +163,11 @@ function simulation() {
   text(gainPoint, width - 50, 50);
   // Display annyang's answer
   displayAnswer();
+
+  // Trigger "ending" state user accidentally presses SPACE
+  if (state === `simulation` && gainPoint == 1) {
+    state = `ending`;
+  }
 }
 
 function instruction() {
@@ -167,11 +175,14 @@ function instruction() {
   imageMode(CENTER);
   image(bubbleSpeech1, width / 6, 2.55 * height / 4, 350, 100);
   image(bubbleSpeech2, 8.5 * width / 10, 5 + 2.25 * height / 4, 225, 75);
+  image(bubbleSpeech3, 15 + width / 2, 5 + 2.5 * height / 4, 300, 75);
   fill(25, 101, 125); // Dark turquoise
   textSize(12);
   text(`Pssst, read the illegible word backwards!!!`, -25 + width / 6, 3.9 * height / 6);
   fill(242, 181, 54); // Rich Yellow
   text(`Press SHIFT for a new prompt!`, 8.5 * width / 10, 2.25 * height / 4);
+  fill(225, 96, 54); // Rich Yellow
+  text(`Press SPACE to give me some food!`, 30 + width / 2, 2.475 * height / 4);
   pop();
 }
 
@@ -229,6 +240,10 @@ function reverseString(string) {
   return result;
 }
 
+function ending() {
+  background(0)
+}
+
 // Function allows user to switch states by having certain keys pressed down and
 function keyPressed() {
   // Switching from "title" state to "simulation" state by pressing ENTER
@@ -238,5 +253,8 @@ function keyPressed() {
   // Trigger ResponsiveVoice by pressing SHIFT
   if (state === `simulation` && keyIsDown(16)) {
     sayAnimalBackwards();
+  } // Trigger "ending" state user accidentally presses SPACE
+  if (state === `simulation` && keyIsDown(32)) {
+    state = `ending`;
   }
 }
