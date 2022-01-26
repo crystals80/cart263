@@ -9,6 +9,10 @@ ResponsiveVoice (https://responsivevoice.org/) & annyang! (https://www.talater.c
 
 // STATE VARIABLE: title, simulation, ending and restart
 let state = "title";
+
+// FONT VARIABLES
+let fontRegular, fontItalic;
+
 // IMAGE VARIABLES
 let titleImg;
 
@@ -24,13 +28,20 @@ let currentAnimal = ``;
 let currentAnswer = ``;
 
 function preload() {
+  // TYPEFACES (see assets README for more info on typeface)
+  fontRegular = loadFont('assets/fonts/PlayfairDisplay-VariableFont_wght.ttf')
+  fontItalic = loadFont('assets/fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf')
+
+  // IMAGES
   titleImg = loadImage('assets/images/animals.jpg');
 }
 
+// Function to set up the program
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
   // Set up pointillism background image for title screen
+  // NOTE: To set up pointillism background in different states, every image is required to be set up separately for it to work
   push();
   width = titleImg.width;
   height = titleImg.height;
@@ -63,12 +74,11 @@ function setup() {
   textAlign(CENTER);
 }
 
-
+// Function to run the program
 function draw() {
 
   if (state === `title`) {
     title();
-    pointillismBg(titleImg);
   } else if (state === `simulation`) {
     simulation();
   } else if (state === `ending`) {
@@ -78,12 +88,29 @@ function draw() {
   }
 }
 
+// Function showing title screen aka introducing the simulation with some instructions
 function title() {
-
+  // Display pointillism background
+  pointillismBg(titleImg);
+  // Introduction message
+  push();
+  textAlign(CENTER, CENTER);
+  textFont(fontRegular);
+  noStroke();
+  fill(39, 12, 105);
+  textSize(50);
+  text(`Welcome to Slamina Zoo!`, width / 2, height / 3);
+  textSize(30);
+  text(`Are you ready for an adventure?!`, width / 2, height / 2);
+  textSize(16);
+  text(`Follow me! I'll give you a tour!`, width / 2, 4 * height / 6);
+  textSize(12);
+  text(`~ PRESS ENTER to continue ~`, width / 2, height - 50);
+  pop();
 }
 
-// Trigger ResponsiveVoice to say the reversed animal name
-function mousePressed() {
+// Function triggering ResponsiveVoice to say the reversed animal name
+function sayAnimalBackwards() {
   // Assign a random animal name from the animals array to currentAnimal
   currentAnimal = random(animals);
   // Say currentAnimal backwards
@@ -92,6 +119,7 @@ function mousePressed() {
   responsiveVoice.speak(reverseAnimal);
 }
 
+// Function to set up pointillism background using any image
 function pointillismBg(sourceImage) {
   for (let i = 0; i < 2; i++) {
     // floor allows random to give decimal
@@ -104,10 +132,12 @@ function pointillismBg(sourceImage) {
   }
 }
 
+// Function showing simulation state aka where ResponsiveVoice and annyang are in play
 function simulation() {
   displayAnswer();
 }
 
+// Function displaying the correct/wrong guess
 function displayAnswer() {
   // Display whether a guess is right or wrong
   if (currentAnswer === currentAnimal) {
@@ -118,7 +148,7 @@ function displayAnswer() {
   text(currentAnswer, width / 2, height / 2);
 }
 
-// Called by annyang!, when it gears a guess
+// Called by annyang!, when it catches user's verbal guess
 function guessAnimal(animal) {
   // Assign the animal guess as the current answer (in lower case)
   currentAnswer = animal.toLowerCase();
@@ -126,7 +156,7 @@ function guessAnimal(animal) {
   console.log(currentAnswer);
 }
 
-// Reverses the provided string
+// Function reversing the provided string via annyang capturing user's voice
 function reverseString(string) {
   // Split (break apart) the string into an array of characters
   let characters = string.split('');
@@ -136,4 +166,20 @@ function reverseString(string) {
   let result = reverseCharacters.join('');
   // Return the result
   return result;
+}
+
+// Function allows user to mainly switch states by having certain keys pressed down and to activate ResponsiveVoice
+function keyPressed() {
+  // Switching from "openScreen" state to "title" state by pressing ENTER
+  if (state === `title` && keyIsDown(13)) {
+    state = `simulation`;
+  }
+  // Switching from "title" state to "simulation" state by pressing SPACE
+  if (state === `simulation` && keyIsDown(32)) {
+    state = `ending`;
+  }
+  //
+  if (state === `simulation` && keyIsDown(16)) {
+    sayAnimalBackwards();
+  }
 }
