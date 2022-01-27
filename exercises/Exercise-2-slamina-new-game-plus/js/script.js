@@ -30,7 +30,7 @@ let numBubble = 20; // Number of bubble
 
 // SIMULATION VARIABLES
 // Fixed var for animals in an array
-const animals = ["aardvark", "alligator", "alpaca", "antelope", "ape", "armadillo", "baboon", "badger", "bat", "bear", "beaver", "bison", "boar", "buffalo", "bull", "camel", "canary", "capybara", "cat", "chameleon", "cheetah", "chimpanzee", "chinchilla", "chipmunk", "cougar", "cow", "coyote", "crocodile", "crow", "deer", "dingo", "dog", "donkey", "dromedary", "elephant", "elk", "ewe", "ferret", "finch", "fish", "fox", "frog", "gazelle", "gila monster", "giraffe", "gnu", "goat", "gopher", "gorilla", "grizzly bear", "ground hog", "guinea pig", "hamster", "hedgehog", "hippopotamus", "hog", "horse", "hyena", "ibex", "iguana", "impala", "jackal", "jaguar", "kangaroo", "koala", "lamb", "lemur", "leopard", "lion", "lizard", "llama", "lynx", "mandrill", "marmoset", "mink", "mole", "mongoose", "monkey", "moose", "mountain goat", "mouse", "mule", "muskrat", "mustang", "mynah bird", "newt", "ocelot", "opossum", "orangutan", "oryx", "otter", "ox", "panda", "panther", "parakeet", "parrot", "pig", "platypus", "polar bear", "porcupine", "porpoise", "prairie dog", "puma", "rabbit", "raccoon", "ram", "rat", "reindeer", "reptile", "rhinoceros", "salamander", "seal", "sheep", "shrew", "silver fox", "skunk", "sloth", "snake", "squirrel", "tapir", "tiger", "toad", "turtle", "walrus", "warthog", "weasel", "whale", "wildcat", "wolf", "wolverine", "wombat", "woodchuck", "yak", "zebra"]
+const animals = ["aardvark", "alligator", "alpaca", "antelope", "ape", "armadillo", "baboon", "badger", "bat", "bear", "beaver", "bison", "boar", "buffalo", "bull", "camel", "canary", "capybara", "cat", "chameleon", "cheetah", "chimpanzee", "chinchilla", "chipmunk", "cougar", "cow", "coyote", "crocodile", "crow", "deer", "dingo", "dog", "donkey", "dromedary", "elephant", "elk", "ewe", "ferret", "finch", "fish", "fox", "frog", "gazelle", "gila monster", "giraffe", "gnu", "goat", "gopher", "gorilla", "grizzlybear", "groundhog", "guinea pig", "hamster", "hedgehog", "hippopotamus", "hog", "horse", "hyena", "ibex", "iguana", "impala", "jackal", "jaguar", "kangaroo", "koala", "lamb", "lemur", "leopard", "lion", "lizard", "llama", "lynx", "mandrill", "marmoset", "mink", "mole", "mongoose", "monkey", "moose", "mountain goat", "mouse", "mule", "muskrat", "mustang", "mynahbird", "newt", "ocelot", "opossum", "orangutan", "oryx", "otter", "ox", "panda", "panther", "parakeet", "parrot", "pig", "platypus", "polar bear", "porcupine", "porpoise", "prairiedog", "puma", "rabbit", "raccoon", "ram", "rat", "reindeer", "reptile", "rhinoceros", "salamander", "seal", "sheep", "shrew", "silver fox", "skunk", "sloth", "snake", "squirrel", "tapir", "tiger", "toad", "turtle", "walrus", "warthog", "weasel", "whale", "wildcat", "wolf", "wolverine", "wombat", "woodchuck", "yak", "zebra"]
 
 // Variables storing strings
 let currentAnimal = ``;
@@ -198,7 +198,7 @@ function simulation() {
   displayAnswer();
 
   // Trigger "ending" state user accidentally presses SPACE
-  if (state === `simulation` && gainPoint == 10) {
+  if (state === `simulation` && gainPoint == 1) {
     state = `goodEnding`;
   }
 }
@@ -362,16 +362,25 @@ function keyPressed() {
   if (state === `goodEnding` && keyIsDown(13)) {
     state = `title`;
     background(255); // Re-integrate white background
-    bubbly.stop();; // Stop bubblySFX
-    bgAudio1.stop(); // Stop background audio of title screen
+    resetGoodEnding()
   }
   // Trigger "badEnding" state user accidentally presses SPACE
   if (state === `simulation` && keyIsDown(32)) {
     state = `badEnding`;
   }
-  // Switching from "goodEnding" state to "title" state by pressing ENTER
+  // Switching from "badEnding" state to "title" state by pressing ENTER
   if (state === `badEnding` && keyIsDown(13)) {
     state = `title`;
     background(255); // Re-integrate white background
   }
+}
+
+function resetGoodEnding() {
+  bubbly.stop(); // Stop bubblySFX 
+  bgAudio1.stop(); // Stop background audio of title screen
+  textColor = color(0); // Reset text color in black initially
+  currentAnimal = ``; // Reset guess
+  currentAnswer = ``; // Reset guess
+  reverseAnimal = ``; // Reset prompt
+  gainPoint = 0; // Reset point counter to 0
 }
