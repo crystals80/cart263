@@ -198,7 +198,7 @@ function simulation() {
   displayAnswer();
 
   // Trigger "ending" state user accidentally presses SPACE
-  if (state === `simulation` && gainPoint == 1) {
+  if (state === `simulation` && gainPoint == 10) {
     state = `goodEnding`;
   }
 }
@@ -376,7 +376,7 @@ function keyPressed() {
 }
 
 function resetGoodEnding() {
-  bubbly.stop(); // Stop bubblySFX 
+  bubbly.stop(); // Stop bubblySFX
   bgAudio1.stop(); // Stop background audio of title screen
   textColor = color(0); // Reset text color in black initially
   currentAnimal = ``; // Reset guess
