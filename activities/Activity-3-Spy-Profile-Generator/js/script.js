@@ -1,77 +1,90 @@
 /**
-Slamina
+Spy Profile Generator
 Lam Ky Anh Do
 
-Using ResponsiveVoice and annyang!, the program will speak the name of a common animal backwards and the user will have to say (with their voice) what they think it is in the form “I think it is x.”
-
-If they get it right, their guess will be displayed in green, if they get it wrong, their guess will be displayed in red.
+Generate a randomized spy profile for the user and password protecting it
 */
 
 "use strict";
 
-const animals = ["aardvark", "alligator", "alpaca", "antelope", "ape", "armadillo", "baboon", "badger", "bat", "bear", "beaver", "bison", "boar", "buffalo", "bull", "camel", "canary", "capybara", "cat", "chameleon", "cheetah", "chimpanzee", "chinchilla", "chipmunk", "cougar", "cow", "coyote", "crocodile", "crow", "deer", "dingo", "dog", "donkey", "dromedary", "elephant", "elk", "ewe", "ferret", "finch", "fish", "fox", "frog", "gazelle", "gila monster", "giraffe", "gnu", "goat", "gopher", "gorilla", "grizzly bear", "ground hog", "guinea pig", "hamster", "hedgehog", "hippopotamus", "hog", "horse", "hyena", "ibex", "iguana", "impala", "jackal", "jaguar", "kangaroo", "koala", "lamb", "lemur", "leopard", "lion", "lizard", "llama", "lynx", "mandrill", "marmoset", "mink", "mole", "mongoose", "monkey", "moose", "mountain goat", "mouse", "mule", "muskrat", "mustang", "mynah bird", "newt", "ocelot", "opossum", "orangutan", "oryx", "otter", "ox", "panda", "panther", "parakeet", "parrot", "pig", "platypus", "polar bear", "porcupine", "porpoise", "prairie dog", "puma", "rabbit", "raccoon", "ram", "rat", "reindeer", "reptile", "rhinoceros", "salamander", "seal", "sheep", "shrew", "silver fox", "skunk", "sloth", "snake", "squirrel", "tapir", "tiger", "toad", "turtle", "walrus", "warthog", "weasel", "whale", "wildcat", "wolf", "wolverine", "wombat", "woodchuck", "yak", "zebra"]
+let spyProfile = {
+  name: `**REDACTED**`,
+  alias: `**REDACTED**`,
+  secretWeapon: `**REDACTED**`,
+  password: `**REDACTED**`,
+};
 
-let currentAnimal = ``;
-let currentAnswer = ``;
+let instrumentData, objectData, tarotData;
+
+function preload() {
+  instrumentData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/music/instruments.json`);
+  objectData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/objects/objects.json`);
+  tarotData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json`);
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  if (annyang) {
-    // Let program guess animal by your guess via annyang!'s speech recognition
-    let commands = {
-      'I think it is *animal': guessAnimal
-    };
-    // Add our commands to annyang
-    annyang.addCommands(commands);
-    // Start listening
-    annyang.start();
-
-    textSize(32);
-    textStyle(BOLD);
-    textAlign(CENTER);
+  // Pop-up msg as prompt to ask for name
+  // generateSpyProfile();
+  // Have generateSpyProfile() only doesn't save the data BUT adding localStorage will
+  let data = JSON.parse(localStorage.getItem(`spy-profile-data`));
+  // Save and load the generated profile (even after reloading page)
+  if (data !== null) {
+    let password = prompt(`Agent! What is your password?`);
+    if (password === data.password) {
+      spyProfile.name = data.name;
+      spyProfile.alias = data.alias;
+      spyProfile.secretWeapon = data.secretWeapon;
+      spyProfile.password = data.password;
+    }
+  } else {
+    generateSpyProfile();
   }
+}
 
+// Generate a profile using JSON data
+function generateSpyProfile() {
+  // Type in your name
+  spyProfile.name = prompt(`Agent! What is your name?`);
+  // Generate alias
+  let instrument = random(instrumentData.instruments)
+  spyProfile.alias = `The ${instrument}`;
+  // Generate secret weapon
+  let object = random(objectData.objects)
+  spyProfile.secretWeapon = random(objectData.objects);
+  // Generate password
+  let card = random(tarotData.tarot_interpretations);
+  spyProfile.password = random(card.keywords);
+
+  localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile))
 }
 
 function draw() {
-  background(0);
+  background(100, 100, 100);
 
-  // Display whether a guess is right or wrong
-  if (currentAnswer === currentAnimal) {
-    fill(0, 255, 0);
-  } else {
-    fill(255, 0, 0);
-  }
-  text(currentAnswer, width / 2, height / 2);
+  // Get the user’s name and display a default profile
+  let profile = `** SPY PROFILE! DO NOT DISTRIBUTE! **
+
+  Name: ${spyProfile.name}
+  Alias: ${spyProfile.alias}
+  Secret Weapon: ${spyProfile.secretWeapon}
+  Password: ${spyProfile.password}`;
+
+  push();
+  textFont(`Courier,monospace`);
+  textSize(24);
+  textAlign(LEFT, TOP);
+  // Instead of having text aligned on after another, set a profile template (see above)
+  // text(spyProfile.name, 100, 100);
+  // text(spyProfile.alias, 100, 200);
+  // text(spyProfile.secretWeapon, 100, 300);
+  // text(spyProfile.password, 100, 400);
+  text(profile, 100, 100);
+  pop();
 }
 
-// Trigger ResponsiveVoice to say the reversed animal name
+
 function mousePressed() {
-  // Assign a random animal name from the animals array to currentAnimal
-  currentAnimal = random(animals);
-  // Reverse currentAnimal using reverseString
-  let reverseAnimal = reverseString(currentAnimal);
-  // Use ResponsiveVoice to speak reverseAnimal
-  responsiveVoice.speak(reverseAnimal);
-}
 
-// Called by annyang!, when it gears a guess
-function guessAnimal(animal) {
-  // Assign the animal guess as the current answer (in lower case)
-  currentAnswer = animal.toLowerCase();
-  // Track answers
-  console.log(currentAnswer);
-}
-
-// Reverses the provided string
-function reverseString(string) {
-  // Split (break apart) the string into an array of characters
-  let characters = string.split('');
-  // Reverse the array of characters
-  let reverseCharacters = characters.reverse();
-  // Join the array of characters back into a string
-  let result = reverseCharacters.join('');
-  // Return the result
-  return result;
 }
