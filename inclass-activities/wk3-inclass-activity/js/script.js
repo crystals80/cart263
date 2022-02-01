@@ -1,5 +1,5 @@
 /**
-In-class Activity - Week 2
+In-class Activity - Week 3
 Lam Ky Anh Do
 
 Reviewing lecture 2
