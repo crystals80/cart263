@@ -33,14 +33,18 @@ function setup() {
   if (data !== null) {
     let password = prompt(`Agent! What is your password?`);
     if (password === data.password) {
-      spyProfile.name = data.name;
-      spyProfile.alias = data.alias;
-      spyProfile.secretWeapon = data.secretWeapon;
-      spyProfile.password = data.password;
+      setSpyData();
     }
   } else {
     generateSpyProfile();
   }
+}
+
+function setSpyData() {
+  spyProfile.name = data.name;
+  spyProfile.alias = data.alias;
+  spyProfile.secretWeapon = data.secretWeapon;
+  spyProfile.password = data.password;
 }
 
 // Generate a profile using JSON data
