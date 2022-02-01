@@ -31,7 +31,7 @@ function setup() {
   let data = JSON.parse(localStorage.getItem(`spy-profile-data`));
   // Save and load the generated profile (even after reloading page)
   if (data !== null) {
-    let password = prompt(`Agent! What is your password?`);
+    let password = prompt(`Agent! What is your password? (Pressed C if you forgot your password)`);
     if (password === data.password) {
       setSpyData();
     }
@@ -91,4 +91,14 @@ function draw() {
 
 function mousePressed() {
 
+}
+
+// Function allowing user to clear data if they forgot their password
+function keyPressed() {
+  if (key === `c`) {
+    // Delete the saved data
+    localStorage.removeItem(`game-data`);
+    // Delete all data stored (NOT RECOMMENDED UNLESS RLY NEED IT)
+    // localStorage.clear(`game-data`);
+  }
 }
