@@ -94,7 +94,6 @@ function generateSpyProfile() {
   let card = random(tarotData.tarot_interpretations);
   spyProfile.password = random(card.keywords);
 
-
   // TARGET'S PROFILE
   // Display a randomly generated target's name
   let target = random(targetData.lastNames);
@@ -131,14 +130,18 @@ function draw() {
   Occupation: ${spyProfile.occupation}
   Location: ${spyProfile.location}
 
-  YOU KNOW WHAT TO DO`;
+  YOU KNOW WHAT TO DO.
+  THANK YOU FOR YOUR SERVICE.
+  MAY LUCK BE BY YOUR SIDE.
+
+  PRESSED ENTER TO PROCEED.`;
 
   // Display text in a formal setting (government document)
   push();
   textFont(`Courier,monospace`);
-  textSize(24);
+  textSize(20);
   textAlign(LEFT, TOP);
-  text(profile, 100, 100);
+  text(profile, 100, 90);
   pop();
 }
 
