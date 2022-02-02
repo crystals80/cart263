@@ -35,7 +35,7 @@ body {
 .stamp {
   position: absolute;
   left: 50%;
-  top: 20%;
+  top: 12%;
   font-family: 'Courier';
   font-weight: 700;
   color: #D23;
@@ -45,7 +45,7 @@ body {
   display: inline-block;
   padding: 0.25rem 1rem;
   -webkit-mask-position: 13rem 6rem;
-  transform: rotate(14deg);
+  transform: rotate(5deg);
   -webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
   -webkit-mask-size: 944px 604px;
   mix-blend-mode: multiply;
@@ -53,10 +53,10 @@ body {
 
 .is-approved {
   left: 30%;
-  top: 73%;
+  top: 68%;
   color: #0A9928;
-  font-size: 2.25rem;
-  border: 1rem double #0A9928;
+  font-size: 3rem;
+  border: 1.35rem double #0A9928;
   display: flex;
   justify-content: center;
   align-items: center;

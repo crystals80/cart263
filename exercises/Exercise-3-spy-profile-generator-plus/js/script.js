@@ -50,15 +50,12 @@ function setup() {
   // Add a password check
   if (data !== null) {
     // Type in user's password (after user's profile is generated) + message for user to reset profile if they forget the password
-    let password = prompt(`Agent! What is your password? (Pressed C if you forgot your password)`);
+    let password = prompt(`Agent! What is your password?`);
     // If user's password matches the one from their profile, they can access their profile
     if (password === data.password) {
       loadSpyData();
-      // Display stamps only when the spy profile is generated/loaded
-      document.getElementById('top-secret').style.display = 'block';
-      console.log(document.getElementById('top-secret'));
-      document.getElementById('approved').style.display = 'block';
-      console.log(document.getElementById('approved'));
+      // Display stamps
+      displayStamps()
     }
   } else {
     // Display a pop-up message as a prompt to ask for user's name (for the first time they arrive on the page on a browser)
@@ -99,12 +96,8 @@ function generateSpyProfile() {
 
   // Generate a mission for user
   generateMission();
-
-  // Display stamps only when the spy profile is generated/loaded
-  document.getElementById('top-secret').style.display = 'block';
-  console.log(document.getElementById('top-secret'));
-  document.getElementById('approved').style.display = 'block';
-  console.log(document.getElementById('approved'));
+  // Display stamps
+  displayStamps()
 
   // Save and load the generated profile as strings (even after reloading page)
   localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile))
@@ -126,54 +119,64 @@ function generateMission() {
   spyProfile.location = `${location}`;
 }
 
+// Function to display stamps only when the spy profile is generated/loaded
+function displayStamps() {
+  // Get HTML id element and set display style as "block"
+  document.getElementById('top-secret').style.display = 'block';
+  document.getElementById('approved').style.display = 'block';
+  // Debug "Get HTML id element" on console making sure it works
+  console.log(document.getElementById('top-secret'));
+  console.log(document.getElementById('approved'));
+}
+
 // Function to run the program by drawing the background and by displaying user's spy profile
 function draw() {
   // Create a neutral background colour
   background(175);
 
   // Set a profile template AND Display the mission profile
-  let profile = `** SPY PROFILE | DO NOT DISTRIBUTE **
-  Name: ${spyProfile.name}
-  Alias: ${spyProfile.alias}
-  Secret Weapon: ${spyProfile.secretWeapon}
-  Password: ${spyProfile.password}
+  let profile = `  ** SPY PROFILE | DO NOT DISTRIBUTE **
+     Name: ${spyProfile.name}
+     Alias: ${spyProfile.alias}
+     Secret Weapon: ${spyProfile.secretWeapon}
+     Password: ${spyProfile.password}
 
   ** TOP SECRET MISSION | DO NOT DISTRIBUTE **
-    Target: ${spyProfile.target}
-    Occupation: ${spyProfile.occupation}
-    Age: ${spyProfile.age}
-    Location: ${spyProfile.location}
+     Target: ${spyProfile.target}
+     Occupation: ${spyProfile.occupation}
+     Age: ${spyProfile.age}
+     Location: ${spyProfile.location}
 
-  YOU KNOW WHAT TO DO.
-  THANK YOU FOR YOUR SERVICE.
-  MAY LUCK BE BY YOUR SIDE.
+     YOU KNOW WHAT TO DO.
+     THANK YOU FOR YOUR SERVICE.
+     MAY LUCK BE BY YOUR SIDE.
 
-  PROCEED WITH YOUR SUITCASE.`;
+     PROCEED WITH CAUTION.`;
 
   // Display instructions for user to customize their profile in case of dissatisfaction
-  let instructions = `** NO POP-UP MESSAGE? **
+  let instructions = `  ** NO POP-UP MESSAGE? **
   ** REFRESH THE PAGE TO ACCESS YOUR PROFILE **
 
   ** NOT SATISFIED WITH PROFILE? **
   ** CHOOSE YOUR OWN IDENTITY **
-  KEYPRESSED "S" TO RENEW YOUR ENTIRE PROFILE;
-  KEYPRESSED "A" TO GET A NEW ALIAS;
-  KEYPRESSED "W" TO IMPROVE SECRET WEAPON;
-  KEYPRESSED "P" TO RESET THE PASSWORD.
+     KEYPRESSED "S" TO RENEW YOUR ENTIRE PROFILE;
+     KEYPRESSED "A" TO GET A NEW ALIAS;
+     KEYPRESSED "W" TO IMPROVE SECRET WEAPON;
+     KEYPRESSED "P" TO RESET THE PASSWORD.
 
   ** DONE WITH YOUR PREVIOUS MISSION? **
   ** WELCOME BACK **
-  KEYPRESSED "M" TO OBTAIN A NEW MISSION.`;
+     KEYPRESSED "M" TO OBTAIN A NEW MISSION.`;
 
   // Display text in a formal setting (government document)
   push();
   textFont(`Courier,monospace`);
   textSize(22);
   textAlign(LEFT, TOP);
-  text(profile, 100, 70);
+  text(profile, 75, 100);
   // textSize(16);
   // textAlign(RIGHT, TOP);
-  text(instructions, 750, 317);
+  text(instructions, 790, 265);
   // text(instructions, 1200, 300);
   pop();
 }
@@ -183,42 +186,43 @@ function mousePressed() {
 
 }
 
-// Function allowing user to clear data if they forgot their password
+// Function allowing user to clear data if they forgot their password by generating a new spy profile and its components
 function keyPressed() {
-  if (key === `c`) {
+  // This if statement is not needed if user is using the others
+  /*if (key === `c` || key === `C`) {
     // Delete the saved data
     localStorage.removeItem(`spy-profile-data`);
     // Delete all data stored (NOT RECOMMENDED UNLESS RLY NEED IT)
     // localStorage.clear(`game-data`);
-  }
-  if (key === `s`) {
+  }*/
+  if (key === `s` || key === `S`) {
     // Re-generate spy profile by removing saved data
     // localStorage.removeItem(`spy-profile-data`);
     // and generate a new spy profile
     generateSpyProfile();
   }
-  if (key === `a`) {
+  if (key === `a` || key === `A`) {
     // Generate a new alias by keypressing a
     let instrument = random(instrumentData.instruments);
     spyProfile.alias = `The ${instrument}`;
     // Save and load the generated profile as strings (even after reloading page)
     localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile))
   }
-  if (key === `w`) {
+  if (key === `w` || key === `W`) {
     // Generate a new secret weapon by keypressing w
     let object = random(objectData.objects);
     spyProfile.secretWeapon = `A ${object}`;
     // Save and load the generated profile as strings (even after reloading page)
     localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile))
   }
-  if (key === `p`) {
+  if (key === `p` || key === `P`) {
     // Generate a new password by keypressing p
     let card = random(tarotData.tarot_interpretations);
     spyProfile.password = random(card.keywords);
     // Save and load the generated profile as strings (even after reloading page)
     localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile))
   }
-  if (key === `m`) {
+  if (key === `m` || key === `M`) {
     // Generate a new mission by keypressing m
     generateMission()
     // Save and load the generated profile as strings (even after reloading page)
