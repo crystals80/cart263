@@ -141,12 +141,26 @@ function draw() {
 
   PROCEED WITH YOUR SUITCASE.`;
 
+  // Display instructions for user to customize their profile in case of dissatisfaction
+  let instructions = `** NOT SATISFIED WITH PROFILE? CHOOSE YOUR OWN IDENTITY **
+  KEYPRESSED "S" TO RENEW YOUR ENTIRE PROFILE;
+  KEYPRESSED "A" TO GET A NEW ALIAS;
+  KEYPRESSED "W" TO IMPROVE SECRET WEAPON;
+  KEYPRESSED "P" TO RESET THE PASSWORD.
+
+  ** DONE WITH YOUR PREVIOUS MISSION? WELCOME BACK **
+  KEYPRESSED "M" TO OBTAIN A NEW MISSION.`;
+
   // Display text in a formal setting (government document)
   push();
   textFont(`Courier,monospace`);
   textSize(20);
   textAlign(LEFT, TOP);
-  text(profile, 100, 90);
+  text(profile, 75, 75);
+  // textSize(16);
+  // textAlign(RIGHT, TOP);
+  text(instructions, 530, 300);
+  // text(instructions, 1200, 300);
   pop();
 }
 
