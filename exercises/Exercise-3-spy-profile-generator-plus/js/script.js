@@ -115,7 +115,7 @@ function generateSpyProfile() {
 // Function to run the program by drawing the background and by displaying user's spy profile
 function draw() {
   // Create a neutral background colour
-  background(100, 100, 100);
+  background(175);
 
   // Set a profile template AND Display the mission profile
   let profile = `** SPY PROFILE | DO NOT DISTRIBUTE **
@@ -134,7 +134,7 @@ function draw() {
   THANK YOU FOR YOUR SERVICE.
   MAY LUCK BE BY YOUR SIDE.
 
-  PRESSED ENTER TO PROCEED.`;
+  PROCEED WITH YOUR SUITCASE.`;
 
   // Display text in a formal setting (government document)
   push();
@@ -158,10 +158,30 @@ function keyPressed() {
     // Delete all data stored (NOT RECOMMENDED UNLESS RLY NEED IT)
     // localStorage.clear(`game-data`);
   }
-  if (key === `a`) {
+  if (key === `s`) {
     // Re-generate spy profile by removing saved data
     // localStorage.removeItem(`spy-profile-data`);
     // and generate a new spy profile
     // generateSpyProfile();
   }
+  /*if (key === `a`) {
+    // Generate a new alias by keypressing a
+    let instrument = random(instrumentData.instruments);
+    spyProfile.alias = `The ${instrument}`;
+  }
+  if (key === `w`) {
+    // Generate a new secret weapon by keypressing w
+    let object = random(objectData.objects);
+    spyProfile.secretWeapon = `A ${object}`;
+  }
+  if (key === `p`) {
+    // Generate a new password by keypressing p
+    let card = random(tarotData.tarot_interpretations);
+    spyProfile.password = random(card.keywords);
+  }
+  if (key === `m`) {
+    // Generate a new mission by keypressing m
+    let instrument = random(instrumentData.instruments);
+    spyProfile.alias = `The ${instrument}`;
+  }*/
 }
