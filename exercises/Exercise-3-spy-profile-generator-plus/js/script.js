@@ -7,6 +7,7 @@ Generate a randomized spy profile for the user and password protecting it
 
 "use strict";
 
+// Declare a global variable for a spy profile where all properties has a hidden value (**REDACTED**)
 let spyProfile = {
   name: `**REDACTED**`,
   alias: `**REDACTED**`,
@@ -14,33 +15,39 @@ let spyProfile = {
   password: `**REDACTED**`,
 };
 
+// Declare a global variable for preloading specific JSON files
 let instrumentData, objectData, tarotData;
 
+// Function to load JSON files before the program runs
 function preload() {
   instrumentData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/music/instruments.json`);
   objectData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/objects/objects.json`);
   tarotData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json`);
 }
 
+// Function for setting up the canvas, for setting up user's spy profile and for accessing user's spy profile via their password after setting up their spy profile
 function setup() {
+  // Create canvas
   createCanvas(windowWidth, windowHeight);
 
-  // Pop-up msg as prompt to ask for name
-  // generateSpyProfile();
-  // Have generateSpyProfile() only doesn't save the data BUT adding localStorage will
+  // Get user's spy profile from generateSpyProfile() that was saved
   let data = JSON.parse(localStorage.getItem(`spy-profile-data`));
-  // Save and load the generated profile (even after reloading page)
+  // Add a password check
   if (data !== null) {
+    // Type in user's password (after user's profile is generated) + message for user to reset profile if they forget the password
     let password = prompt(`Agent! What is your password? (Pressed C if you forgot your password)`);
+    // If user's password matches the one from their profile, they can access their profile
     if (password === data.password) {
-      setSpyData();
+      displaySpyData();
     }
   } else {
+    // Display a pop-up message as a prompt to ask for user's name (for the first time they arrive on the page on a browser)
     generateSpyProfile();
   }
 }
 
-function setSpyData() {
+// Function to display user's profile
+function displaySpyData() {
   spyProfile.name = data.name;
   spyProfile.alias = data.alias;
   spyProfile.secretWeapon = data.secretWeapon;
@@ -49,41 +56,42 @@ function setSpyData() {
 
 // Generate a profile using JSON data
 function generateSpyProfile() {
-  // Type in your name
+  // Type in user's name
   spyProfile.name = prompt(`Agent! What is your name?`);
-  // Generate alias
-  let instrument = random(instrumentData.instruments)
+  // (IN 2 STEPS)
+  // Generate a random alias for user using the file instruments.json
+  let instrument = random(instrumentData.instruments);
+  // Display chosen generated alias
   spyProfile.alias = `The ${instrument}`;
-  // Generate secret weapon
-  let object = random(objectData.objects)
+  // (IN 1 STEP)
+  // Display a randomly generated secret weapon for user
+  let object = random(objectData.objects);
   spyProfile.secretWeapon = random(objectData.objects);
-  // Generate password
+  // Display a randomly generated password for user
   let card = random(tarotData.tarot_interpretations);
   spyProfile.password = random(card.keywords);
 
+  // Save and load the generated profile as strings (even after reloading page)
   localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile))
 }
 
+// Function to run the program by drawing the background and by displaying user's spy profile
 function draw() {
+  // Create a neutral background colour
   background(100, 100, 100);
 
-  // Get the user’s name and display a default profile
+  // Set a profile template THEN Get the user’s name AND Display the profile
   let profile = `** SPY PROFILE! DO NOT DISTRIBUTE! **
-
   Name: ${spyProfile.name}
   Alias: ${spyProfile.alias}
   Secret Weapon: ${spyProfile.secretWeapon}
   Password: ${spyProfile.password}`;
 
+  // Display text in a formal setting (government document)
   push();
   textFont(`Courier,monospace`);
   textSize(24);
   textAlign(LEFT, TOP);
-  // Instead of having text aligned on after another, set a profile template (see above)
-  // text(spyProfile.name, 100, 100);
-  // text(spyProfile.alias, 100, 200);
-  // text(spyProfile.secretWeapon, 100, 300);
-  // text(spyProfile.password, 100, 400);
   text(profile, 100, 100);
   pop();
 }
