@@ -105,7 +105,7 @@ function mousePressed() {
 function keyPressed() {
   if (key === `c`) {
     // Delete the saved data
-    localStorage.removeItem(`game-data`);
+    localStorage.removeItem(`spy-profile-data`);
     // Delete all data stored (NOT RECOMMENDED UNLESS RLY NEED IT)
     // localStorage.clear(`game-data`);
   }
