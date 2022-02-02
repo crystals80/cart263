@@ -1,5 +1,5 @@
 /**
-Spy Profile & Mission Generator
+A Spy on a Secret Mission
 Lam Ky Anh Do
 
 Generate a randomized spy profile for the user and password protecting it. Let's not forget that the user will then get a secret mission.
