@@ -80,7 +80,7 @@ function displaySpyData() {
 // Generate a profile using JSON data
 function generateSpyProfile() {
 
-  // SPY PROFILE FOR USER
+  // Generate a spy profile for user
   // Type in user's name
   spyProfile.name = prompt(`Agent! What is your name?`);
   // Generate a random alias for user using the file instruments.json
@@ -94,6 +94,14 @@ function generateSpyProfile() {
   let card = random(tarotData.tarot_interpretations);
   spyProfile.password = random(card.keywords);
 
+  // Generate a mission for user
+  generateMission();
+
+  // Save and load the generated profile as strings (even after reloading page)
+  localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile))
+}
+
+function generateMission() {
   // TARGET'S PROFILE
   // Display a randomly generated target's name
   let target = random(targetData.lastNames);
@@ -107,9 +115,6 @@ function generateSpyProfile() {
   // Display a randomly generated target's location
   let location = random(locationData.countries);
   spyProfile.location = `${location}`;
-
-  // Save and load the generated profile as strings (even after reloading page)
-  localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile))
 }
 
 // Function to run the program by drawing the background and by displaying user's spy profile
