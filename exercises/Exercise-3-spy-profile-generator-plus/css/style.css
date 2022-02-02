@@ -8,13 +8,59 @@ using the CSS Grid.
 Also hides overflow.
 
 **********************************************/
-
 body {
   padding: 0;
   margin: 0;
-  display: grid; /* Set up the grid and justify/align to center */
+  display: grid;
+  /* Set up the grid and justify/align to center */
   justify-content: center;
   align-content: center;
-  height: 100vh; /* Body is the height of the viewport */
-  overflow: hidden; /* Hide anything that goes off the window size */
+  height: 100vh;
+  /* Body is the height of the viewport */
+  overflow: hidden;
+  /* Hide anything that goes off the window size */
+}
+
+/* body, html{
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/mf.jpeg') scroll no-repeat center/cover;
+} */
+.stamp {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  font-family: 'Courier';
+  font-weight: 700;
+  color: #D23;
+  font-size: 5rem;
+  /* border-radius: 1rem; */
+  border: .75rem solid #D23;
+  display: inline-block;
+  padding: 0.25rem 1rem;
+  -webkit-mask-position: 13rem 6rem;
+  transform: rotate(14deg);
+  -webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
+  -webkit-mask-size: 944px 604px;
+  mix-blend-mode: multiply;
+}
+
+.is-approved {
+  left: 30%;
+  top: 73%;
+  color: #0A9928;
+  font-size: 2.25rem;
+  border: 1rem double #0A9928;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-mask-position: 13rem 6rem;
+  border-radius: 20%;
+  transform: rotate(-14deg);
 }
