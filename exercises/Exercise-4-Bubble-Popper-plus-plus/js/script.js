@@ -46,14 +46,14 @@ function setup() {
   });
 
   // Create pins and store them in an array
-  // pin = new Pin(fingerName);
-  let thumbPin = new Pin(`thumb`)
+  // Create a pin for the thumb
+  let thumbPin = new ThumbPin(`thumb`)
   pins.push(thumbPin);
-
-  let indexPin = new Pin(`indexFinger`)
+  // Create a pin for the index
+  let indexPin = new IndexPin(`indexFinger`)
   pins.push(indexPin);
-
-  let pinkyPin = new Pin(`pinky`)
+  // Create a pin for the pinky
+  let pinkyPin = new PinkyPin(`pinky`)
   pins.push(pinkyPin);
 
   // Create bubbles floating up and store them in an array
