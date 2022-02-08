@@ -50,6 +50,12 @@ function setup() {
   let thumbPin = new Pin(`thumb`)
   pins.push(thumbPin);
 
+  let indexPin = new Pin(`indexFinger`)
+  pins.push(indexPin);
+
+  let pinkyPin = new Pin(`pinky`)
+  pins.push(pinkyPin);
+
   // Create bubbles floating up and store them in an array
   bubble = new Bubble();
   for (let i = 0; i < NUM_BUBBLE; i++) {
