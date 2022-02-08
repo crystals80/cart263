@@ -10,9 +10,7 @@ ml5.js is a machine learning library designed with a similar spirit and philosop
 ObjectDetector Framework
 Pippin Barr
 
-A skeleton framework for using ml5.js's ObjectDetector feature. Includes a
-loading screen followed by a live webcam feed with all recognized objects
-outlined and labelled with a name and confidence rating.
+A skeleton framework for using ml5.js's ObjectDetector feature. Includes a loading screen followed by a live webcam feed with all recognized objects outlined and labelled with a name and confidence rating.
 ********************************
 */
 
@@ -106,6 +104,7 @@ function running() {
     for (let i = 0; i < predictions.length; i++) {
       // Get the object predicted
       let object = predictions[i];
+      // Censoring the scissors
       if (object.label === `scissors`) {
         push();
         fill(0);
