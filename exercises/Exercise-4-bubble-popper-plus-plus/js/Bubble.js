@@ -1,6 +1,13 @@
+/********************************
+Bubble Classes
+Lam Ky Anh Do
+
+This js file contains the parent Pin class along with its specific children Pin classes ( classes). It shows its constructor and how it is displayed
+********************************/
+
+// Set up parent bubble class
 class Bubble {
-  // Function to set up bubble
-  constructor(x, y) {
+  constructor() {
     this.x = random(width);
     this.y = height;
     this.size = 100;
@@ -17,6 +24,7 @@ class Bubble {
 
   // Function to set up bubble movement
   move() {
+
     // Move bubble
     this.x += this.vx;
     this.y += this.vy;
@@ -34,7 +42,7 @@ class Bubble {
     push();
     fill(0, 100, 200); // Blue
     noStroke();
-    ellipse();
+    ellipse(this.x, this.y, 50);
     pop();
   }
 }

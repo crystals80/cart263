@@ -1,11 +1,11 @@
 /********************************
-Pin Classes
+Pin Classes with ml5.js Handpose
 Lam Ky Anh Do
 
 This js file contains the parent Pin class along with its specific children Pin classes ( classes). It shows its constructor and how it is displayed
 ********************************/
 
-// Set up parent fish class for minigame1
+// Set up parent pin class with ml5.js handpose
 class ThumbPin {
   // Function to set up finger
   constructor(fingerName) {
