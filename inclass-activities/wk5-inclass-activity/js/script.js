@@ -8,8 +8,9 @@ Reviewing lecture 4
  - Hand gesture?
 2- ObjectDetector
  - Working with confidence
-3- Blinking
-4- Machine Learning outside the webcam?
+ - Can you get the data about extremely low-confidence detection?
+3- Blinking (detect dist between top and bottom eyelid)
+4- Machine Learning outside the webcam? (Tensorflow)
 */
 
 "use strict";
@@ -17,7 +18,7 @@ Reviewing lecture 4
 // HANDPOSE - HAND GESTURE (see function highlightHand())
 
 // Current state of program
-let state = `loading`; // loading, running
+/*let state = `loading`; // loading, running
 // User's webcam
 let video;
 // The name of our model
@@ -27,9 +28,8 @@ let handpose;
 // The current set of predictions made by Handpose once it's running
 let predictions = [];
 
-/**
-Starts the webcam and the Handpose
-*/
+
+// Starts the webcam and the Handpose
 function setup() {
   createCanvas(640, 480);
 
@@ -52,9 +52,7 @@ function setup() {
   });
 }
 
-/**
-Handles the two states of the program: loading, running
-*/
+// Handles the two states of the program: loading, running
 function draw() {
   if (state === `loading`) {
     loading();
@@ -63,9 +61,7 @@ function draw() {
   }
 }
 
-/**
-Displays a simple loading screen with the loading model's name
-*/
+// Displays a simple loading screen with the loading model's name
 function loading() {
   background(255);
 
@@ -77,10 +73,8 @@ function loading() {
   pop();
 }
 
-/**
-Displays the webcam.
-If there is a hand it outlines it and highlights the tip of the index finger
-*/
+// Displays the webcam.
+// If there is a hand it outlines it and highlights the tip of the index finger
 function running() {
   // Display the webcam with reveresd image so it's a mirror
   let flippedVideo = ml5.flipImage(video);
@@ -96,9 +90,7 @@ function running() {
   }
 }
 
-/**
-Provided with a detected hand it highlights the tip of the index finger
-*/
+// Provided with a detected hand it highlights the tip of the index finger
 function highlightHand(hand) {
   // Change circle colour depending on the distance of the circles
   let d = dist(indexX, indexY, thumbX, thumbY);
@@ -130,7 +122,14 @@ function highlightHand(hand) {
 
 }*/
 
-// OBJECTDETECTOR
+
+
+
+
+
+
+
+// OBJECTDETECTOR - WORKING WITH CONFIDENCE (see function running())
 
 // Current state of program
 let state = `loading`; // loading, running
@@ -222,6 +221,11 @@ function running() {
       let object = predictions[i];
       // Highlight it on the canvas
       highlightObject(object);
+
+      // Control confidence level
+      if (object.confidence < 0.5) {
+        console.log(object);
+      }
     }
   }
 }
