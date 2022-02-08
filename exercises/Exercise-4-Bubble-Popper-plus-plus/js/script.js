@@ -58,8 +58,7 @@ function draw() {
   setIndexFinger();
   displayPin();
   resetBubble();
-}
-displayBubble();
+  displayBubble();
 }
 
 // Function to set up index finger
@@ -75,51 +74,52 @@ function setIndexFinger() {
     let baseX = base[0];
     let baseY = base[1];
   }
+}
 
-  // Function to display index finger as a pin
-  function displayPin() {
-    // Draw a line connecting the tip of index finger to its base (Pin body)
-    push();
-    noFill();
-    stroke(255);
-    strokeWeight(2);
-    line(baseX, baseY, tipX, tipY);
-    pop();
+// Function to display index finger as a pin
+function displayPin() {
+  // Draw a line connecting the tip of index finger to its base (Pin body)
+  push();
+  noFill();
+  stroke(255);
+  strokeWeight(2);
+  line(baseX, baseY, tipX, tipY);
+  pop();
 
-    // Draw a circle at the base of the index finger (Pin head)
-    push();
-    nostroke();
-    fill(255, 255, 0);
-    ellipse(baseX, baseY, 20, 20);
-    pop();
+  // Draw a circle at the base of the index finger (Pin head)
+  push();
+  nostroke();
+  fill(255, 255, 0);
+  ellipse(baseX, baseY, 20, 20);
+  pop();
+}
+
+// Function to reset bubble position once the previous bubble is popped
+function resetBubble() {
+  // Check if bubble pops
+  let d = dist(tipX, tipY, bubble.x, bubble.y);
+  if (d < bubble.size / 2) {
+    bubble.x = random(width);
+    bubble.y = height;
+  }
+}
+
+// Function to display bubbles to pop
+function displayBubble() {
+  // Move bubble
+  bubble.x += bubble.vx;
+  bubble.y += bubble.vy;
+
+  // Set bubble position (move it into canvas)
+  if (bubble.y < 0) {
+    bubble.x = random(width);
+    bubble.y = height;
   }
 
-  // Function to reset bubble position once the previous bubble is popped
-  function resetBubble() {
-    // Check if bubble pops
-    let d = dist(tipX, tipY, bubble.x, bubble.y);
-    if (d < bubble.size / 2) {
-      bubble.x = random(width);
-      bubble.y = height;
-    }
-  }
-
-  // Function to display bubbles to pop
-  function displayBubble() {
-    // Move bubble
-    bubble.x += bubble.vx;
-    bubble.y += bubble.vy;
-
-    // Set bubble position (move it into canvas)
-    if (bubble.y < 0) {
-      bubble.x = random(width);
-      bubble.y = height;
-    }
-
-    // Display bubble
-    push();
-    fill(0, 100, 200);
-    noStroke();
-    ellipse();
-    pop();
-  }
+  // Display bubble
+  push();
+  fill(0, 100, 200);
+  noStroke();
+  ellipse();
+  pop();
+}
