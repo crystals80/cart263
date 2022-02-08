@@ -11,10 +11,14 @@ Pop bubbles with your index finger as a pin
 let handpose;
 let video; // User's webcam
 let predictions = []; // The current set of predictions
-let bubble;
 
-// const video = document.getElementById('video');
 
+// Declare OOP pin & bubble variables
+let pins = [];
+let bubbles = [];
+const NUM_PIN = 1;
+const NUM_BUBBLE = 5;
+let pin, bubble;
 
 // Function setting up canvas and webcam
 function setup() {
@@ -41,13 +45,16 @@ function setup() {
     predictions = results;
   });
 
-  // Set up bubble
-  bubble = {
-    x: random(width),
-    y: height,
-    size: 100,
-    vx: 0,
-    vy: -2
+  // Create pins and store them in an array
+  // pin = new Pin(fingerName);
+  let thumbPin = new Pin(`thumb`)
+  pins.push(thumbPin);
+
+  // Create bubbles floating up and store them in an array
+  bubble = new Bubble();
+  for (let i = 0; i < NUM_BUBBLE; i++) {
+    let bubble = new Bubble()
+    bubbles.push(bubble);
   }
 }
 
@@ -55,71 +62,25 @@ function setup() {
 function draw() {
   background(0);
 
-  setIndexFinger();
-  displayPin();
-  resetBubble();
-  displayBubble();
-}
-
-// Function to set up index finger
-function setIndexFinger() {
-  // Set coordinates of index finger
-  if (predictions.length > 0) {
-    let hand = predictions[0];
-    let index = hand.annotations.indexFinger;
-    let tip = index[3];
-    let base = index[0];
-    let tipX = tip[0];
-    let tipY = tip[1];
-    let baseX = base[0];
-    let baseY = base[1];
+  // For every bubble object in the bubbles array, call the display and move functions
+  for (let i = 0; i < pins.length; i++) {
+    let pin = pins[i];
+    pin.update(predictions)
   }
-}
 
-// Function to display index finger as a pin
-function displayPin() {
-  // Draw a line connecting the tip of index finger to its base (Pin body)
-  push();
-  noFill();
-  stroke(255);
-  strokeWeight(2);
-  line(baseX, baseY, tipX, tipY);
-  pop();
-
-  // Draw a circle at the base of the index finger (Pin head)
-  push();
-  nostroke();
-  fill(255, 255, 0);
-  ellipse(baseX, baseY, 20, 20);
-  pop();
+  // For every bubble object in the bubbles array, call the display and move functions
+  for (let i = 0; i < bubbles.length; i++) {
+    let bubble = bubbles[i];
+    bubble.update()
+  }
 }
 
 // Function to reset bubble position once the previous bubble is popped
-function resetBubble() {
-  // Check if bubble pops
-  let d = dist(tipX, tipY, bubble.x, bubble.y);
-  if (d < bubble.size / 2) {
-    bubble.x = random(width);
-    bubble.y = height;
-  }
-}
-
-// Function to display bubbles to pop
-function displayBubble() {
-  // Move bubble
-  bubble.x += bubble.vx;
-  bubble.y += bubble.vy;
-
-  // Set bubble position (move it into canvas)
-  if (bubble.y < 0) {
-    bubble.x = random(width);
-    bubble.y = height;
-  }
-
-  // Display bubble
-  push();
-  fill(0, 100, 200);
-  noStroke();
-  ellipse();
-  pop();
-}
+// function resetBubble() {
+// Check if bubble pops
+//   let d = dist(tipX, tipY, bubble.x, bubble.y);
+//   if (d < bubble.size / 2) {
+//     bubble.x = random(width);
+//     bubble.y = height;
+//   }
+// }
