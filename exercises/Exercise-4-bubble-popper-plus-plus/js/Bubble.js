@@ -10,7 +10,7 @@ class Bubble {
   constructor() {
     this.x = random(width);
     this.y = height;
-    this.size = 75;
+    this.size = 50;
     this.vx = 0;
     this.vy = random(-3, 0);
     this.fill = {
