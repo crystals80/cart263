@@ -30,20 +30,21 @@ class Bubble {
 
   // Function to reset bubble position once the previous bubble is popped
   resetBubble() {
-    // Check if bubble pops
+    // Check if bubble pops by using the distance between user's finger tip and circle
     let d1 = dist(thumbPin.tipX, thumbPin.tipY, this.x, this.y);
     let d2 = dist(indexPin.tipX, indexPin.tipY, this.x, this.y);
     let d3 = dist(pinkyPin.tipX, pinkyPin.tipY, this.x, this.y);
+    // If user's finger tip is within a bubble, it pops
     if (d1 < this.size / 2 || d2 < this.size / 2 || d3 < this.size / 2) {
+      // And re-position at a new place at the bottom
       this.x = random(width);
       this.y = height;
-      score += 1;
+      score += 1; // Gain a score every time a bubble is popped
     }
   }
 
   // Function to set up bubble movement
   move() {
-
     // Move bubble
     this.x += this.vx;
     this.y += this.vy;
