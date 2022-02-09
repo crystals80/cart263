@@ -40,6 +40,9 @@ class Bubble {
       this.x = random(width);
       this.y = height;
       score += 1; // Gain a score every time a bubble is popped
+      let note = random(notes);
+      synth.play(note, 1, 0, 0.4); // Play a note for every bubble popped
+      console.log(note);
     }
   }
 

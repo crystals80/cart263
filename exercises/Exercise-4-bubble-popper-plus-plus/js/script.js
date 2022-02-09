@@ -15,6 +15,10 @@ let predictions = []; // The current set of predictions
 let score = 0; // Point counter
 let musicImg; // Image variable
 
+// PolySynth notes variables
+let synth;
+let notes = [`C1`, `Db1`, `Eb1`, `F1`, `G1`, `C2`, `Db2`, `Eb2`, `F2`, `G2`, , `C3`, `Db3`, `Eb3`, `F3`, `G3`, ];
+
 // Declare OOP pin & bubble variables
 let pins = [];
 let bubbles = [];
@@ -34,6 +38,9 @@ function setup() {
 
   handposeSetup();
   createPinsAndBubbles();
+
+  userStartAudio();
+  synth = new p5.PolySynth();
 }
 
 // Function to set up ml5.js handpose and classes
