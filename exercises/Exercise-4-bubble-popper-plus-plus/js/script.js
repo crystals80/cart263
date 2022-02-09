@@ -89,13 +89,3 @@ function draw() {
   text(score, width - 100, 25);
   pop();
 }
-
-// // Function to reset bubble position once the previous bubble is popped
-// function resetBubble() {
-//   // Check if bubble pops
-//   let d = dist(thumbPin.tipX, thumbPin.tipY, bubble.x, bubble.y);
-//   if (d < bubble.size / 2) {
-//     bubble.x = random(width);
-//     bubble.y = height;
-//   }
-// }

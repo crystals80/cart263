@@ -13,6 +13,11 @@ class Bubble {
     this.size = 100;
     this.vx = 0;
     this.vy = -2;
+    this.fill = {
+      r: random(255),
+      g: random(255),
+      b: random(255),
+    }
   }
 
   // Function wrapping up all functions below together so it won't be lengthy in the main script
@@ -51,9 +56,9 @@ class Bubble {
 
   // Function to display bubbles to pop
   display() {
-    // Display bubble with blue gradient
+    // Display bubble in random colors
     push();
-    fill(0, 100, 200); // Blue
+    fill(this.fill.r, this.fill.g, this.fill.b);
     noStroke();
     ellipse(this.x, this.y, this.size, this.size);
     pop();
