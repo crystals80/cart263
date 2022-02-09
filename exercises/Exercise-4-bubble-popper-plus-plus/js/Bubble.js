@@ -2,7 +2,7 @@
 Bubble Classes
 Lam Ky Anh Do
 
-This js file contains the parent Pin class along with its specific children Pin classes ( classes). It shows its constructor and how it is displayed
+This js file contains the parent Pin class. It shows its constructor, what happens when it get popped, how it moves and how it is displayed
 ********************************/
 
 // Set up parent bubble class
