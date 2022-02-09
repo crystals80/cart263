@@ -26,7 +26,18 @@ class ThumbPin {
       this.baseX = this.base[0];
       this.baseY = this.base[1];
     }
+    this.resetBubble();
     this.display();
+  }
+
+  // Function to reset bubble position once the previous bubble is popped
+  resetBubble() {
+    //Check if bubble pops
+    let d = dist(this.tipX, this.tipY, bubble.x, bubble.y);
+    if (d < bubble.size / 2) {
+      bubble.x = random(width);
+      bubble.y = height;
+    }
   }
 
   // Function to display index finger as a pin

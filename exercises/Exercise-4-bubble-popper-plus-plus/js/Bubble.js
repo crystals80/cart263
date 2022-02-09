@@ -18,8 +18,21 @@ class Bubble {
   // Function wrapping up all functions below together so it won't be lengthy in the main script
   // Function allowing new parameters in children classes
   update() {
+    this.resetBubble();
     this.move();
     this.display();
+  }
+
+  // Function to reset bubble position once the previous bubble is popped
+  resetBubble() {
+    // Check if bubble pops
+    let d1 = dist(thumbPin.tipX, thumbPin.tipY, this.x, this.y);
+    let d2 = dist(indexPin.tipX, indexPin.tipY, this.x, this.y);
+    let d3 = dist(pinkyPin.tipX, pinkyPin.tipY, this.x, this.y);
+    if (d1 < this.size / 2 || d2 < this.size / 2 || d3 < this.size / 2) {
+      this.x = random(width);
+      this.y = height;
+    }
   }
 
   // Function to set up bubble movement
@@ -42,7 +55,7 @@ class Bubble {
     push();
     fill(0, 100, 200); // Blue
     noStroke();
-    ellipse(this.x, this.y, 50);
+    ellipse(this.x, this.y, this.size, this.size);
     pop();
   }
 }

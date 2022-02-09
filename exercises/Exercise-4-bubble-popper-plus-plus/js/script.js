@@ -11,14 +11,14 @@ Pop bubbles with your index finger as a pin
 let handpose;
 let video; // User's webcam
 let predictions = []; // The current set of predictions
-
+let score = 0; // Point counter
 
 // Declare OOP pin & bubble variables
 let pins = [];
 let bubbles = [];
 const NUM_PIN = 1;
 const NUM_BUBBLE = 5;
-let pin, bubble;
+let thumbPin, indexPin, pinkyPin, bubble;
 
 // Function setting up canvas and webcam
 function setup() {
@@ -47,13 +47,13 @@ function setup() {
 
   // Create pins and store them in an array
   // Create a pin for the thumb
-  let thumbPin = new ThumbPin(`thumb`)
+  thumbPin = new ThumbPin(`thumb`)
   pins.push(thumbPin);
   // Create a pin for the index
-  let indexPin = new IndexPin(`indexFinger`)
+  indexPin = new IndexPin(`indexFinger`)
   pins.push(indexPin);
   // Create a pin for the pinky
-  let pinkyPin = new PinkyPin(`pinky`)
+  pinkyPin = new PinkyPin(`pinky`)
   pins.push(pinkyPin);
 
   // Create bubbles floating up and store them in an array
@@ -79,12 +79,21 @@ function draw() {
     let bubble = bubbles[i];
     bubble.update()
   }
+
+  score++;
+
+  push();
+  fill(255);
+  textAlign(LEFT, TOP);
+  textSize(16);
+  text(score, width - 100, 25);
+  pop();
 }
 
-// Function to reset bubble position once the previous bubble is popped
+// // Function to reset bubble position once the previous bubble is popped
 // function resetBubble() {
-// Check if bubble pops
-//   let d = dist(tipX, tipY, bubble.x, bubble.y);
+//   // Check if bubble pops
+//   let d = dist(thumbPin.tipX, thumbPin.tipY, bubble.x, bubble.y);
 //   if (d < bubble.size / 2) {
 //     bubble.x = random(width);
 //     bubble.y = height;
