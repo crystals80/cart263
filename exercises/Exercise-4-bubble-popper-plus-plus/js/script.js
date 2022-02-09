@@ -1,5 +1,5 @@
 /**
-Bubble Popper
+Musical Bubble Popper 
 Lam Ky Anh Do
 
 Pop bubbles with your index finger as a pin
@@ -17,7 +17,7 @@ let musicImg; // Image variable
 
 // PolySynth notes variables
 let synth;
-let notes = [`C1`, `Db1`, `Eb1`, `F1`, `G1`, `C2`, `Db2`, `Eb2`, `F2`, `G2`, , `C3`, `Db3`, `Eb3`, `F3`, `G3`, ];
+let notes = [`C2`, `Db2`, `Eb2`, `F2`, `G2`, `Ab2`, `Bb2`, `C3`, `Db3`, `Eb3`, `F3`, `G3`, `Ab3`, `Bb3`, `C4`, `Db4`, `Eb4`, `F4`, `G4`, `Ab4`, `Bb4`, `C5`, `Db5`, `Eb5`, `F5`, `G5`, `Ab5`, `Bb5`];
 
 // Declare OOP pin & bubble variables
 let pins = [];
@@ -88,6 +88,8 @@ function createPinsAndBubbles() {
 
 // Function to control status of program
 function draw() {
+  background(0) // Set background black every state
+
   if (state === `title`) {
     title();
   } else if (state === `simulation`) {
@@ -99,8 +101,6 @@ function draw() {
 
 // Function to set up the title screen
 function title() {
-  background(0)
-
   // Display message + instruction
   push();
   fill(255);
@@ -162,18 +162,18 @@ function displayGradientHand() {
   ellipse(width / 3, height / 3, 10, 40);
 }
 
+// Function to create radial gradient
 function radialGradient(sX, sY, sR, eX, eY, eR, colorS, colorE) {
   let gradient = drawingContext.createRadialGradient(sX, sY, sR, eX, eY, eR);
   gradient.addColorStop(0, colorS);
   gradient.addColorStop(1, colorE);
 
-  // drawingContext.strokeStyle = gradient;
-  drawingContext.fillStyle = gradient;
+  // drawingContext.strokeStyle = gradient; // Turn shape into stroke
+  drawingContext.fillStyle = gradient; // Colour shape
 }
 
 // Function to run ml5.js handpose and classes, and to display text and score
 function simulation() {
-  background(0);
 
   // For every bubble object in the bubbles array, call the display and move functions
   for (let i = 0; i < pins.length; i++) {
@@ -187,6 +187,16 @@ function simulation() {
     bubble.update()
   }
 
+  // If user reaches a score of 25, ending() state is triggered
+  if (state === `simulation` && score == 25) {
+    state = `ending`;
+  } else {
+    setTimeout(function() {
+      // Trigger ending state after 30 sec
+      state = `ending`;
+    }, 30000)
+  }
+
   // Display point counter
   push();
   fill(255);
@@ -195,11 +205,30 @@ function simulation() {
   text(score, width - 100, 25);
   pop();
 
-  noCursor();
+  noCursor(); // No cursor displayed
 }
 
+// Function to display the end of the simulation with suggestion to restart simulation
+function ending() {
+  // Dispay message + instruction
+  push();
+  fill(255);
+  textAlign(CENTER, TOP);
+  textSize(24);
+  text(`Would you like to restart?`, width / 2, 2.5 * height / 4)
+  text(12);
+  text(`Pressed CTRL + R or COMMAND + R`, width / 2, 9 * height / 10);
+  textSize(35);
+  textStyle(BOLD);
+  text(`Did you enjoy your time?`, width / 2, height / 3);
+  pop();
+
+  cursor('pointer');
+}
+
+// Function to trigger states with user's mouse
 function mousePressed() {
   if (state === `title` && mouseIsPressed) {
-    state = `simulation`
+    state = `simulation`;
   }
 }
