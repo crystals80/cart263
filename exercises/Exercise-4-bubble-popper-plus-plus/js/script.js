@@ -17,7 +17,7 @@ let score = 0; // Point counter
 let pins = [];
 let bubbles = [];
 const NUM_PIN = 1;
-const NUM_BUBBLE = 5;
+const NUM_BUBBLE = 20;
 let thumbPin, indexPin, pinkyPin, bubble;
 
 // Function setting up canvas and webcam
@@ -79,8 +79,6 @@ function draw() {
     let bubble = bubbles[i];
     bubble.update()
   }
-
-  score++;
 
   push();
   fill(255);
