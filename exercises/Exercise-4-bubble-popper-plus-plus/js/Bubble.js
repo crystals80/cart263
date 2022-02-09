@@ -10,9 +10,9 @@ class Bubble {
   constructor() {
     this.x = random(width);
     this.y = height;
-    this.size = 100;
+    this.size = 75;
     this.vx = 0;
-    this.vy = -2;
+    this.vy = random(-3, 0);
     this.fill = {
       r: random(255),
       g: random(255),
@@ -37,6 +37,7 @@ class Bubble {
     if (d1 < this.size / 2 || d2 < this.size / 2 || d3 < this.size / 2) {
       this.x = random(width);
       this.y = height;
+      score += 1;
     }
   }
 
