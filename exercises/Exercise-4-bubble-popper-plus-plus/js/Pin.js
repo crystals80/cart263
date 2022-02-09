@@ -26,6 +26,7 @@ class ThumbPin {
       this.baseX = this.base[0];
       this.baseY = this.base[1];
     }
+    colorMode(RGB, 220);
     this.display();
   }
 
