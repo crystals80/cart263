@@ -94,12 +94,33 @@ function draw() {
 function title() {
   background(0)
 
+  // Display message + instruction
+  push();
+  fill(255);
+  textAlign(RIGHT, TOP);
+  textSize(20);
+  text(`Pop as many bubbles
+    as possible!`, 7.25 * width / 8, height / 4);
+  textSize(14);
+  text(`Click to start!`, 7.25 * width / 8, 9 * height / 10);
+  textStyle(BOLD);
+  textSize(35);
+  text(`Hello there!`, 7.25 * width / 8, height / 8);
+  pop();
+
+  displayMusicNotes();
+  displayGradientHand();
+  // Set cursor as a pointer to guide user in clicking the canvas to move to the next step
+  cursor('pointer');
+}
+
+// Function to display visuals relating to simulation
+function displayMusicNotes() {
   image(musicImg, width / 15, height / 3.5, 64, 64);
   rotate(15);
   image(musicImg, width / 2.5, height / 12, 64, 64);
   rotate(-10);
   image(musicImg, width / 2.25, height / 2.5, 64, 64);
-  displayGradientHand();
 }
 
 // Function to display visuals relating to simulation
@@ -166,6 +187,8 @@ function simulation() {
   textSize(16);
   text(score, width - 100, 25);
   pop();
+
+  noCursor();
 }
 
 function mousePressed() {
