@@ -12,7 +12,7 @@ class Bubble {
     this.y = height;
     this.size = 50;
     this.vx = 0;
-    this.vy = random(-3, 0);
+    this.vy = random(-5, -2);
     this.fill = {
       r: random(255),
       g: random(255),
