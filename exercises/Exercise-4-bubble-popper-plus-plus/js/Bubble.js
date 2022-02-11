@@ -12,7 +12,8 @@ class Bubble {
     this.y = height;
     this.size = 50;
     this.vx = 0;
-    this.vy = random(-10,-5);
+    this.vy = random(-10, -2); >>>
+    >>> > Stashed changes
     this.fill = {
       r: random(255),
       g: random(255),
@@ -50,7 +51,7 @@ class Bubble {
   move() {
     // Move bubble
     this.x += this.vx;
-    this.y += this.vy;
+    this.y += this.vy + random(-10, -2);
 
     // Set bubble position (move it into canvas)
     if (this.y < 0) {

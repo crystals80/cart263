@@ -1,5 +1,5 @@
 /**
-Musical Bubble Popper 
+Musical Bubble Popper
 Lam Ky Anh Do
 
 Pop bubbles with your index finger as a pin
@@ -190,11 +190,6 @@ function simulation() {
   // If user reaches a score of 25, ending() state is triggered
   if (state === `simulation` && score == 25) {
     state = `ending`;
-  } else {
-    setTimeout(function() {
-      // Trigger ending state after 30 sec
-      state = `ending`;
-    }, 30000)
   }
 
   // Display point counter
