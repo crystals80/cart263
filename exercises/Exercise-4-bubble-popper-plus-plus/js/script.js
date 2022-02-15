@@ -61,7 +61,7 @@ function handposeSetup() {
 
   // Listen for predictions
   handpose.on('hand', function(results) {
-    console.log(results);
+    // console.log(results);
     predictions = results;
   });
 }
