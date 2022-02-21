@@ -68,15 +68,16 @@ function title() {
 
 // Function to display the 1st scene of the animation
 function openingScene() {
-  // Set background for digital clock
-  background(181, 230, 235);
+  // Set background for digital clock's frame
+  background(121, 123, 130); // Grey
 
   // Create the frames of digital clock
   push();
+  rectMode(CENTER);
   stroke(0);
-  fill(121, 123, 130);
-  rect(0, 0, 175, height);
-  rect(width - 175, 0, 175, height);
+  // Display digital's clock background
+  fill(181, 230, 235); // Pastel teal
+  rect(width / 2, height / 2, 1200, height);
   pop();
 
   // Display date on the top-left corner
@@ -85,7 +86,7 @@ function openingScene() {
   fill(0);
   textSize(80);
   textAlign(RIGHT, CENTER);
-  text(`2022/11/06 sun`, 50 + width / 2, 125);
+  text(`2022/11/06 sun`, 10 + width / 2, 100);
   countUp()
   pop();
 }
@@ -114,9 +115,9 @@ function countUp() {
   push();
   textFont(industryLight);
   fill(0);
-  textSize(180);
-  textAlign(CENTER);
-  text(`12:5${minutes+5}:${numberString}`, width / 2, 2.5 * height / 4);
+  textSize(210);
+  textAlign(CENTER, CENTER);
+  text(`12:5${minutes+5}:${numberString}`, width / 2, 2.3 * height / 4);
   pop();
 }
 
