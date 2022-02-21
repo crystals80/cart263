@@ -51,7 +51,19 @@ function draw() {
 function title() {
   background(0);
 
-
+  push();
+  textFont(philosopher);
+  fill(237);
+  textSize(90);
+  textAlign(CENTER, CENTER);
+  text(`Hello there!`, width / 2, height / 3);
+  textSize(50);
+  text(`Thank you for purchasing our game!`, width / 2, 1.75 * height / 3);
+  textSize(36);
+  text(`Are you ready to deep dive into a fantasy?`, width / 2, 2 * height / 3);
+  textSize(16);
+  text(`Click anywhere to start!`, width / 2, height - 55);
+  pop();
 }
 
 // Function to display the 1st scene of the animation
@@ -106,4 +118,11 @@ function countUp() {
   textAlign(CENTER);
   text(`12:5${minutes+5}:${numberString}`, width / 2, 2.5 * height / 4);
   pop();
+}
+
+// Function to set up mouse clicks
+function mousePressed() {
+  if (state === `title`) {
+    state = `openingScene`;
+  }
 }
