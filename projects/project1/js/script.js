@@ -9,7 +9,7 @@ Note: whether I say program, simulation or animation, it refers to the (re)anima
 
 "use strict";
 
-let state = `title`; // Set up state variable for the simulation
+let state = `gearUpScene`; // Set up state variable for the simulation
 
 let angle = 0; // Set angle in degrees at 0
 let industryLight, philosopher; // Font vars
@@ -39,17 +39,18 @@ function draw() {
     title();
   } else if (state === `openingScene`) {
     openingScene();
+  } else if (state === `gearUpScene`) {
+    gearUpScene();
   }
-  // else if (state === `gearUpScene`) {
-  //   gearUpScene();
-  // } else if (state === `waitingScene`) {
+
+  //else if (state === `waitingScene`) {
   //   waitingScene();
   // }
 }
 
 // Function to set up the title screen before running the simulation
 function title() {
-  background(0);
+  background(20);
 
   push();
   textFont(philosopher);
@@ -71,11 +72,10 @@ function openingScene() {
   // Set background for digital clock's frame
   background(121, 123, 130); // Grey
 
-  // Create the frames of digital clock
+  // Display digital's clock background
   push();
   rectMode(CENTER);
   stroke(0);
-  // Display digital's clock background
   fill(181, 230, 235); // Pastel teal
   rect(width / 2, height / 2, 1200, height);
   pop();
@@ -101,7 +101,10 @@ function countUp() {
   if (counter < 55) {
     // 1 counter = 1 second
     counter++;
+  } else if (counter === 60) {
+    state = `gearUpScene`;
   }
+
   // Convert count-up timer into a hour-minute-second format
   minutes = floor(counter / 60);
   seconds = counter % 60;
@@ -120,6 +123,34 @@ function countUp() {
   text(`12:5${minutes+5}:${numberString}`, width / 2, 2.3 * height / 4);
   pop();
 }
+
+// Function to display the 2nd scene of the animation
+function gearUpScene() {
+  // Set up background as a wall
+  background(20); // Dark-Grey
+
+  // Display a telephone wall outlet
+  push();
+  rectMode(CENTER);
+  stroke(20);
+  // Display digital's clock background
+  fill(121, 123, 130); // Grey
+  rect(width / 2, height / 2, 400, 600); // Display a telephone wall plate
+  rect(width / 2, 250, 150); // Display a modular jack frame 1
+  rect(width / 2, height - 250, 150); // Display a Modular jack frame 2
+  noStroke();
+  fill(40); // Dark grey
+  // Display a modular jack 1
+  rect(width / 2, 245, 30, 40);
+  rect(width / 2, 255, 65, 40);
+  rect(width / 2, 275, 80, 60);
+  // Display a modular jack 2
+  rect(width / 2, height - 255, 30, 40);
+  rect(width / 2, height - 245, 65, 40);
+  rect(width / 2, height - 225, 80, 60);
+  pop();
+}
+
 
 // Function to set up mouse clicks
 function mousePressed() {
