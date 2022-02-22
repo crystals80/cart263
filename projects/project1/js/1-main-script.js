@@ -23,9 +23,14 @@ let startTime = 0; // Countdown timer var
 let timer, counter;
 let seconds, minutes;
 
-// Set up time-delay variables for SCENE 2 (gearUpScene)
+// Set up time-delay vars for SCENE 2 (gearUpScene)
 let isPluggedIn = 0; // Sub-state var for parts 2-3-4 of SCENE 2
 let nextScene = 0; // Transition var for chnaging state with time delay
+
+// Set up time-delay vars for SCENE 3 (waitingScene) specifically for blinking effect
+let blinkingStartTime = 0;
+let blinkingCurrentTime = 0;
+let blinkingSemiColon = `:`;
 
 // Funtion to preload fonts, images and sounds
 function preload() {
@@ -54,13 +59,13 @@ function draw() {
   if (state === `title`) {
     title();
   } else if (state === `openingScene`) {
-    openingScene();
+    openingScene(); // SCENE 1
   } else if (state === `gearUpScene`) {
-    gearUpScene();
+    gearUpScene(); // SCENE 2
   } else if (state === `waitingScene`) {
-    waitingScene();
+    waitingScene(); // SCENE 3
   } else if (state === `linkStartScene`) {
-    linkStartScene();
+    linkStartScene(); // SCENE 4
   }
 }
 
@@ -145,27 +150,28 @@ function gearUpScene() {
   substatesScene2(); // Parts 2-3-4
 } // gearUpScene() as Part 1
 
-let blinkingStartTime = 0;
-let blinkingCurrentTime = 0;
-let blinkingSemiColon = `:`;
 
 // Function to display the 3rd scene of the animation
 function waitingScene() {
+  // Start count-down timer
   currentTime = millis() - startTime;
+  // Set a delay of 5 seconds...
   if (currentTime <= 5000) {
-
+    // ...while making the semicolon blink...
     blinkingCurrentTime = Math.floor((millis() - blinkingStartTime) / 500);
     if (blinkingCurrentTime % 2 == 0) {
       blinkingSemiColon = `:`;
     } else {
-      blinkingSemiColon = ` `
+      blinkingSemiColon = ` `;
     }
-    console.log(blinkingCurrentTime);
+    // console.log(blinkingCurrentTime);
 
+    // ...so that the time remains at 12:59 for a bit before turning into 13:00...
     push();
     // Create background with image
     imageMode(CENTER);
     image(innerNerveGearImg, width / 2, height / 2, width, height);
+    // Display timer at 12:59
     textFont(industryBold);
     fill(210);
     strokeWeight(2.5);
@@ -174,63 +180,24 @@ function waitingScene() {
     textAlign(LEFT, CENTER);
     text(`12${blinkingSemiColon}59`, 90, 80);
     pop();
+    // Trigger timeOnHeadGear() after 5 seconds and...
   } else if (currentTime <= 6000) {
     timeOnHeadGear();
+    // ...have the state remain at 13:00 for 1 second before triggering new state
   } else {
-    state = `linkStartScene`;
+    state = `linkStartScene`; // SCENE 4
   }
-
-
-  // Trigger a count-up time (timeOnHeadGear()) with a customized timer (using Ready,Set,Go Method)
-  // SCENE 3 is onscreen and ready to trigger timeOnHeadGear() (READY)
-  if (nextScene === 3) {
-    nextScene = 4;
-    startTime = millis(); // Convert time to seconds
-  }
-  // Once SCENE 3 is onscreen, start countdown timer to trigger timeOnHeadGear() (SET)
-  else if (nextScene === 4) {
-    currentTime = millis() - startTime;
-    // In 5 seconds, trigger timeOnHeadGear() (GO)
-    if (currentTime >= 5000) {
-      // Sub-state is shifting to timeOnHeadGear()
-      nextScene = 5;
-    }
-  } else {
-    // timeOnHeadGear() is triggered and displayed
-    // timeOnHeadGear();
-  } // Transition to next state aka linkStartScene()
 }
 
 // Function to set up a count-up timer to display the time of a clock
 function timeOnHeadGear() {
   push();
-  // Create background with image
+  // Re-draw background with image to hide previous text
   imageMode(CENTER);
   image(innerNerveGearImg, width / 2, height / 2, width, height);
   pop();
-  // Convert time to seconds as an integer
-  // timer = int((millis() - 18000) / 1000);
-  // // Set timer at 55 seconds
-  // counter = timer + 59;
-  //
-  // if (counter < 59) {
-  //   // 1 counter = 1 second
-  //   counter += 1;
-  //   // After a timed delay and the time becomes 13:00, trigger next state (linkStartScene() aka SCENE 4)
-  // } else if (counter === 60) {
-  //   // state = `linkStartScene`;
-  // }
-  //
-  // // Convert count-up timer into a hour-minute-second format
-  // minutes = floor(counter / 60);
-  // seconds = counter % 60;
-  //
-  // // Convert the number to a string
-  // let numberString = `${seconds}`;
-  // // Use padStart to add the number 0 to the front making sure there are always two digits long when the clock indicates time under 10 seconds
-  // numberString = numberString.padStart(2, `0`);
 
-  // Display count-up timer
+  // Display new timer as 13:00
   push();
   textFont(industryBold);
   fill(210);
