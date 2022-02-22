@@ -5,7 +5,7 @@ Lam Ky Anh Do
 JS file for the 2nd scene of the animation (gearUpScene)
 */
 
-// Function to display the beginning of scene 2
+// Function to display part 1 of SCENE 2
 function wallSocket() {
   // Set up background as a wall
   background(20); // Dark-Grey
@@ -35,7 +35,7 @@ function wallSocket() {
 
 setTimeout(pluggedIn, 1000);
 
-// Function to draw a cable for the 2nd scene
+// Function to display part 2 of SCENE 2 by drawing a cable for the 2nd scene
 function pluggedIn() {
   // Display the modular jack 1 plugged in
   push();
@@ -73,5 +73,30 @@ function pluggedIn() {
   curveVertex(885, height + 10);
   curveVertex(865, height + 50);
   endShape();
+  pop();
+}
+
+// Function to display part 3 of SCENE 2
+function powerOn() {
+  fill(5);
+
+  push();
+  imageMode(CENTER);
+  image(nerveGearImg, width / 2, height / 2, width, height);
+  translate(width - 175, 350);
+  rotate(60);
+  rect(0, 0, 20, 30, 2);
+  pop();
+
+  push();
+  translate(width - 150, 400);
+  rotate(60);
+  rect(0, 0, 20, 30, 2);
+  pop();
+
+  push();
+  translate(width - 125, 450);
+  rotate(60);
+  rect(0, 0, 20, 30, 2);
   pop();
 }

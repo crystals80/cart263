@@ -9,28 +9,34 @@ Note: whether I say program, simulation or animation, it refers to the (re)anima
 
 "use strict";
 
-let state = `title`; // Set up state variable for the simulation
+let state = `gearUpScene`; // Set up state variable for the simulation
+let nerveGearImg; // Images vars
+let industryLight, philosopher, latoReg; // Font vars
 
-let angle = 0; // Set angle in degrees at 0
-let industryLight, philosopher; // Font vars
-// Vars for time shown on clock
+// Vars for time shown on clock (openingScene)
 let timer, counter;
 let seconds, minutes;
 
+let angle = 0; // Set angle in degrees at 0 ()
+
 // Funtion to preload fonts, images and sounds
 function preload() {
+  // LOAD FONTS
   industryLight = loadFont('assets/fonts/Industry-Light.ttf');
   // playfairDisplay = loadFont('assets/fonts/Playfair-Display-Regular.ttf');
+  latoReg = loadFont('assets/fonts/Lato-Regular.ttf');
   philosopher = loadFont('assets/fonts/Philosopher-Regular.ttf');
+  // LOAD IMAGES
+  nerveGearImg = loadImage('assets/images/nerve-gear.jpg')
+  // LOAD SOUNDS
 }
 
 // Function to set up program
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  // rectMode(CENTER); // Set rect(s) location to its center
+  rectMode(CENTER); // Set rect(s) location to its center
   angleMode(DEGREES); // Set rotation angle to degrees instead of radians
-  setTimeout(pluggedIn, 1000);
 }
 
 // Function to run the program
@@ -75,7 +81,6 @@ function openingScene() {
 
   // Display digital's clock background
   push();
-  rectMode(CENTER);
   stroke(0);
   fill(181, 230, 235); // Pastel teal
   rect(width / 2, height / 2, 1200, height);
@@ -127,6 +132,8 @@ function countUp() {
 
 // Set up time-delay variables for SCENE 2
 let isPluggedIn = 0; // Sub-state var for part 2 of SCENE 2
+let poweredOn = 0; // Sub-state var for part 3 of SCENE 2
+let isPoweredOn = 0; // Sub-state var for part 4 of SCENE 2
 let currentTime = 0; // Timer var at 0 second
 let startTime = 0; // Countdown timer var
 
@@ -150,9 +157,35 @@ function gearUpScene() {
   } else {
     // Part 2 is triggered and remains visible with Part 1
     pluggedIn(); // Part 2
-  }
 
-  // powerOn();
+
+    // Trigger Part 3 with a customized timer (same method as Part 1)
+    if (poweredOn === 0) {
+      poweredOn = 1;
+      startTime = millis();
+    } else if (poweredOn === 1) {
+      currentTime = millis() - startTime;
+      if (currentTime >= 2000) {
+        poweredOn = 2;
+      }
+    } else {
+      powerOn(); // Part 3
+
+
+      // Trigger Part 4 with a customized timer (same method as Part 1)
+      if (isPoweredOn === 0) {
+        isPoweredOn = 1;
+        startTime = millis();
+      } else if (isPoweredOn === 1) {
+        currentTime = millis() - startTime;
+        if (currentTime >= 2000) {
+          isPoweredOn = 2;
+        }
+      } else {
+        poweredOn(); // Part 4
+      }
+    }
+  }
 }
 
 // Function to set up mouse clicks
