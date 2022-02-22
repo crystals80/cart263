@@ -125,10 +125,34 @@ function countUp() {
   pop();
 }
 
+// Set up time-delay variables for SCENE 2
+let isPluggedIn = 0; // Sub-state var for part 2 of SCENE 2
+let currentTime = 0; // Timer var at 0 second
+let startTime = 0; // Countdown timer var
+
 // Function to display the 2nd scene of the animation
 function gearUpScene() {
-  wallSocket();
-  setTimeout(pluggedIn, 2000);
+  wallSocket(); // Part 1
+  // Trigger Part 2 with a customized timer (using Ready,Set,Go Method)
+  // Part 1 is onscreen and ready to trigger Part 2 (READY)
+  if (isPluggedIn === 0) {
+    isPluggedIn = 1;
+    startTime = millis(); // Convert time to seconds
+  }
+  // Once Part 1 is onscreen, start countdown timer to trigger Part 2 (SET)
+  else if (isPluggedIn === 1) {
+    currentTime = millis() - startTime;
+    // In 2 seconds, trigger Part 2 (GO)
+    if (currentTime >= 2000) {
+      // Sub-state now includes Parts 1 & 2
+      isPluggedIn = 2;
+    }
+  } else {
+    // Part 2 is triggered and remains visible with Part 1
+    pluggedIn(); // Part 2
+  }
+
+  // powerOn();
 }
 
 // Function to set up mouse clicks
