@@ -116,7 +116,9 @@ function substatesScene2() {
             }
           } else {
             // SCENE 3 is triggered and displayed
-            waitingScene(); // SCENE 3
+            state = `waitingScene`; // SCENE 3
+            startTime = millis();
+            currentTime = 0;
           } // Transition to next state aka waitingScene()
         } // Trigger Part 4 (Light WAN)
       } // Trigger Part 4 (Light POW)
