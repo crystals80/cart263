@@ -140,66 +140,7 @@ let startTime = 0; // Countdown timer var
 // Function to display the 2nd scene of the animation
 function gearUpScene() {
   wallSocket(); // Part 1
-  // Trigger Part 2 with a customized timer (using Ready,Set,Go Method)
-  // Part 1 is onscreen and ready to trigger Part 2 (READY)
-  if (isPluggedIn === 0) {
-    isPluggedIn = 1;
-    startTime = millis(); // Convert time to seconds
-  }
-  // Once Part 1 is onscreen, start countdown timer to trigger Part 2 (SET)
-  else if (isPluggedIn === 1) {
-    currentTime = millis() - startTime;
-    // In 2 seconds, trigger Part 2 (GO)
-    if (currentTime >= 2000) {
-      // Sub-state now includes Parts 1 & 2
-      isPluggedIn = 2;
-    }
-  } else {
-    // Part 2 is triggered and remains visible with Part 1
-    pluggedIn(); // Part 2
-
-
-    // Trigger Part 3 with a customized timer (same method as Part 1)
-    if (poweredOn === 0) {
-      poweredOn = 1;
-      startTime = millis();
-    } else if (poweredOn === 1) {
-      currentTime = millis() - startTime;
-      if (currentTime >= 2000) {
-        poweredOn = 2;
-      }
-    } else {
-      powerOn(); // Part 3
-
-
-      // Trigger Part 4 (Light POW) with a customized timer (same method as Part 1)
-      if (isPoweredOn === 0) {
-        isPoweredOn = 1;
-        startTime = millis();
-      } else if (isPoweredOn === 1) {
-        currentTime = millis() - startTime;
-        if (currentTime >= 2000) {
-          isPoweredOn = 2;
-        }
-      } else {
-        powerOnPOW(); // Part 4
-
-
-        // Trigger Part 4 (Light WAN) with a customized timer (same method as Part 1)
-        if (isPoweredOn === 2) {
-          isPoweredOn = 3;
-          startTime = millis();
-        } else if (isPoweredOn === 3) {
-          currentTime = millis() - startTime;
-          if (currentTime >= 2000) {
-            isPoweredOn = 4;
-          }
-        } else {
-          powerOnWAN(); // Part 4
-        } // Trigger Part 4 (Light WAN)
-      } // Trigger Part 4 (Light POW)
-    } // Trigger Part 3
-  } // Trigger Part 2
+  substatesScene2();
 } // gearUpScene() as Part 1
 
 // Function to set up mouse clicks
