@@ -131,16 +131,16 @@ function countUp() {
 }
 
 // Set up time-delay variables for SCENE 2
-let isPluggedIn = 0; // Sub-state var for part 2 of SCENE 2
-let poweredOn = 0; // Sub-state var for part 3 of SCENE 2
-let isPoweredOn = 0; // Sub-state var for part 4 of SCENE 2
+let isPluggedIn = 0; // Sub-state var for parts 2-3-4 of SCENE 2
+let nextScene = 0; // Transition var for chnaging state with time delay
 let currentTime = 0; // Timer var at 0 second
 let startTime = 0; // Countdown timer var
 
 // Function to display the 2nd scene of the animation
 function gearUpScene() {
   wallSocket(); // Part 1
-  substatesScene2();
+  substatesScene2(); // Parts 2-3-4
+
 } // gearUpScene() as Part 1
 
 // Function to set up mouse clicks

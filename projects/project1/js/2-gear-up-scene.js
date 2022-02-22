@@ -58,40 +58,43 @@ function substatesScene2() {
     pluggedIn(); // Part 2
 
 
-    // Trigger Part 3 with a customized timer (same method as Part 1)
-    if (poweredOn === 0) {
-      poweredOn = 1;
+    // Trigger Part 3 with a customized timer (same method as triggering Part 2)
+    if (isPluggedIn === 2) {
+      isPluggedIn = 3;
       startTime = millis();
-    } else if (poweredOn === 1) {
+    } else if (isPluggedIn === 3) {
       currentTime = millis() - startTime;
       if (currentTime >= 2000) {
-        poweredOn = 2;
+        // Sub-state now displays a headgear (Nerve Gear)
+        isPluggedIn = 4;
       }
     } else {
       powerOn(); // Part 3
 
 
-      // Trigger Part 4 (Light POW) with a customized timer (same method as Part 1)
-      if (isPoweredOn === 0) {
-        isPoweredOn = 1;
+      // Trigger Part 4 (Light POW) with a customized timer (same method as triggering Part 2)
+      if (isPluggedIn === 4) {
+        isPluggedIn = 5;
         startTime = millis();
-      } else if (isPoweredOn === 1) {
+      } else if (isPluggedIn === 5) {
         currentTime = millis() - startTime;
         if (currentTime >= 2000) {
-          isPoweredOn = 2;
+          // Sub-state includes Part 3 with Part 4a
+          isPluggedIn = 6;
         }
       } else {
         powerOnPOW(); // Part 4
 
 
-        // Trigger Part 4 (Light WAN) with a customized timer (same method as Part 1)
-        if (isPoweredOn === 2) {
-          isPoweredOn = 3;
+        // Trigger Part 4 (Light WAN) with a customized timer (same method as triggering Part 2)
+        if (isPluggedIn === 6) {
+          isPluggedIn = 7;
           startTime = millis();
-        } else if (isPoweredOn === 3) {
+        } else if (isPluggedIn === 7) {
           currentTime = millis() - startTime;
           if (currentTime >= 2000) {
-            isPoweredOn = 4;
+            // Sub-state includes Part 4b with Parts 3-4a
+            isPluggedIn = 8;
           }
         } else {
           powerOnWAN(); // Part 4
