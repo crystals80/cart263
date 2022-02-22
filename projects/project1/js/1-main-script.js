@@ -172,7 +172,7 @@ function gearUpScene() {
       powerOn(); // Part 3
 
 
-      // Trigger Part 4 with a customized timer (same method as Part 1)
+      // Trigger Part 4 (Light POW) with a customized timer (same method as Part 1)
       if (isPoweredOn === 0) {
         isPoweredOn = 1;
         startTime = millis();
@@ -182,11 +182,25 @@ function gearUpScene() {
           isPoweredOn = 2;
         }
       } else {
-        poweredOn(); // Part 4
-      }
-    }
-  }
-}
+        powerOnPOW(); // Part 4
+
+
+        // Trigger Part 4 (Light WAN) with a customized timer (same method as Part 1)
+        if (isPoweredOn === 2) {
+          isPoweredOn = 3;
+          startTime = millis();
+        } else if (isPoweredOn === 3) {
+          currentTime = millis() - startTime;
+          if (currentTime >= 2000) {
+            isPoweredOn = 4;
+          }
+        } else {
+          powerOnWAN(); // Part 4
+        } // Trigger Part 4 (Light WAN)
+      } // Trigger Part 4 (Light POW)
+    } // Trigger Part 3
+  } // Trigger Part 2
+} // gearUpScene() as Part 1
 
 // Function to set up mouse clicks
 function mousePressed() {

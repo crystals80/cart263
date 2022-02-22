@@ -30,12 +30,9 @@ function wallSocket() {
   rect(width / 2, height - 245, 65, 40);
   rect(width / 2, height - 225, 80, 60);
   pop();
-  // setTimeout(pluggedIn, 1000);
 }
 
-setTimeout(pluggedIn, 1000);
-
-// Function to display part 2 of SCENE 2 by drawing a cable for the 2nd scene
+// Function to display part 2 of SCENE 2 by drawing a plugged in cable
 function pluggedIn() {
   // Display the modular jack 1 plugged in
   push();
@@ -78,24 +75,54 @@ function pluggedIn() {
 
 // Function to display part 3 of SCENE 2
 function powerOn() {
-  fill(5);
+  fill(5); // Colour rect(s) in black
 
   push();
+  // Create background with image
   imageMode(CENTER);
   image(nerveGearImg, width / 2, height / 2, width, height);
+  // Create light source (rectangle) for `POW`
   translate(width - 175, 350);
   rotate(60);
   rect(0, 0, 20, 30, 2);
   pop();
 
   push();
+  // Create light source (rectangle) for `WAN`
   translate(width - 150, 400);
   rotate(60);
   rect(0, 0, 20, 30, 2);
   pop();
 
   push();
+  // Create light source (rectangle) for `BLK`
   translate(width - 125, 450);
+  rotate(60);
+  rect(0, 0, 20, 30, 2);
+  pop();
+}
+
+// Function to display part 4 of SCENE 2 by turning on the POW light source
+function powerOnPOW() {
+  push();
+  // Create light source (rectangle) for `POW` by adding glowing effect
+  drawingContext.shadowBlur = 32; // See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowBlur
+  drawingContext.shadowColor = color(89, 185, 79); // See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowColor
+  fill(89, 185, 79);
+  translate(width - 175, 350);
+  rotate(60);
+  rect(0, 0, 20, 30, 2);
+  pop();
+}
+
+// Function to display part 4 of SCENE 2 by turning on the WAN light source
+function powerOnWAN() {
+  push();
+  // Create light source (rectangle) for `WAN` by adding glowing effect
+  drawingContext.shadowBlur = 32; // See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowBlur
+  drawingContext.shadowColor = color(89, 185, 79); // See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowColor
+  fill(89, 185, 79);
+  translate(width - 150, 400);
   rotate(60);
   rect(0, 0, 20, 30, 2);
   pop();
