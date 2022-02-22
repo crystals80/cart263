@@ -9,15 +9,23 @@ Note: whether I say program, simulation or animation, it refers to the (re)anima
 
 "use strict";
 
-let state = `gearUpScene`; // Set up state variable for the simulation
-let nerveGearImg; // Images vars
+// Global vars for any function
+let state = `waitingScene`; // Set up state variable for the simulation
+let nerveGearImg, innerNerveGearImg; // Images vars
 let industryLight, philosopher, latoReg; // Font vars
+let angle = 0; // Set angle in degrees at 0 ()
+
+// Vars for customizable time-delay timers
+let currentTime = 0; // Timer var at 0 second
+let startTime = 0; // Countdown timer var
 
 // Vars for time shown on clock (openingScene)
 let timer, counter;
 let seconds, minutes;
 
-let angle = 0; // Set angle in degrees at 0 ()
+// Set up time-delay variables for SCENE 2 (gearUpScene)
+let isPluggedIn = 0; // Sub-state var for parts 2-3-4 of SCENE 2
+let nextScene = 0; // Transition var for chnaging state with time delay
 
 // Funtion to preload fonts, images and sounds
 function preload() {
@@ -28,6 +36,7 @@ function preload() {
   philosopher = loadFont('assets/fonts/Philosopher-Regular.ttf');
   // LOAD IMAGES
   nerveGearImg = loadImage('assets/images/nerve-gear.jpg')
+  innerNerveGearImg = loadImage('assets/images/inner-nerve-gear.jpg')
   // LOAD SOUNDS
 }
 
@@ -48,11 +57,9 @@ function draw() {
     openingScene();
   } else if (state === `gearUpScene`) {
     gearUpScene();
+  } else if (state === `waitingScene`) {
+    waitingScene();
   }
-
-  //else if (state === `waitingScene`) {
-  //   waitingScene();
-  // }
 }
 
 // Function to set up the title screen before running the simulation
@@ -130,18 +137,20 @@ function countUp() {
   pop();
 }
 
-// Set up time-delay variables for SCENE 2
-let isPluggedIn = 0; // Sub-state var for parts 2-3-4 of SCENE 2
-let nextScene = 0; // Transition var for chnaging state with time delay
-let currentTime = 0; // Timer var at 0 second
-let startTime = 0; // Countdown timer var
-
 // Function to display the 2nd scene of the animation
 function gearUpScene() {
   wallSocket(); // Part 1
   substatesScene2(); // Parts 2-3-4
-
 } // gearUpScene() as Part 1
+
+// Function to display the 3rd scene of the animation
+function waitingScene() {
+  push();
+  // Create background with image
+  imageMode(CENTER);
+  image(innerNerveGearImg, width / 2, height / 2, width, height);
+  pop();
+}
 
 // Function to set up mouse clicks
 function mousePressed() {

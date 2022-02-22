@@ -98,6 +98,26 @@ function substatesScene2() {
           }
         } else {
           powerOnWAN(); // Part 4
+
+
+          // Trigger next state (waitingScene() aka SCENE 3) with a customized timer (using Ready,Set,Go Method)
+          // Part 4 of SCENE 2 is onscreen and ready to trigger SCENE 3 (READY)
+          if (nextScene === 0) {
+            nextScene = 1;
+            startTime = millis(); // Convert time to seconds
+          }
+          // Once Part 4 is onscreen, start countdown timer to trigger SCENE 3 (SET)
+          else if (nextScene === 1) {
+            currentTime = millis() - startTime;
+            // In 2 seconds, trigger SCENE 3 (GO)
+            if (currentTime >= 2000) {
+              // Sub-state is shifting to SCENE 3
+              nextScene = 2;
+            }
+          } else {
+            // SCENE 3 is triggered and displayed
+            waitingScene(); // SCENE 3
+          } // Transition to next state aka waitingScene()
         } // Trigger Part 4 (Light WAN)
       } // Trigger Part 4 (Light POW)
     } // Trigger Part 3
