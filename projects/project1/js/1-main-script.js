@@ -37,7 +37,7 @@ function preload() {
   // LOAD FONTS
   industryLight = loadFont('assets/fonts/Industry-Light.ttf');
   industryBold = loadFont('assets/fonts/Industry-Bold.ttf');
-  latoReg = loadFont('assets/fonts/Lato-Regular.ttf');
+  // latoReg = loadFont('assets/fonts/Lato-Regular.ttf');
   philosopher = loadFont('assets/fonts/Philosopher-Regular.ttf');
   // LOAD IMAGES
   nerveGearImg = loadImage('assets/images/nerve-gear.jpg')
