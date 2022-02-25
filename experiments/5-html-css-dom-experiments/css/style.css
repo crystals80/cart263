@@ -1,0 +1,62 @@
+/*********************************************
+
+Here is a description of any special CSS used.
+In this case it's just padding and margin to 0
+and then centring the canvas (and anything else)
+using the CSS Grid.
+
+Also hides overflow.
+
+**********************************************/
+body {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  /* Set up the grid and justify/align to center */
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+  /* Body is the height of the viewport */
+  overflow: hidden;
+  /* Hide anything that goes off the window size */
+  /* CSS Overview */
+  font-family: Helvetica, sans-serif;
+}
+
+h1 {
+  font-size: 3rem; // x3 size of the std font size
+}
+
+h1:hover {
+  color: red;
+  font-size: 3.5rem;
+}
+
+h2 {
+  color: #ff8888;
+}
+
+p {
+  color: #666666;
+}
+
+/* Style 2 tags together */
+strong, em {
+  color: #4488aa;
+}
+
+.first-section {
+  background-color: rbg(200, 200, 200);
+}
+
+.second-section {
+  background-color: rgb(100, 200, 100);
+}
+
+.second-section-para {
+  font-size: 1.5rem;
+}
+
+.para-of-text {
+  font-size: 0.5rem;
+}
