@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Intro to DOM</title>
+
+    <!-- CSS stylesheet(s) -->
+    <link rel="stylesheet" type="text/css" href="css/dom-style.css" />
+
+  </head>
+
+  <body>
+
+    <section>
+      <!-- A button with a label -->
+      <input type="button" value="This is a button">
+      <!-- A button using the button tag -->
+      <button>This is also button</button>
+      <!-- A button with a label and ID -->
+      <input id="example-button" type="button" value="This is another button">
+    </section>
+
+    <section>
+      <h1>Input Examples</h1>
+
+      <!-- A text entry field -->
+      <input type="text">
+      <!-- A button -->
+      <input id="submit-button" type="button" value="Submit">
+    </section>
+
+    <section>
+      <!-- maxlength in <input text> is to limit the # of characters -->
+      <input id="example-text-input" type="text" maxlength="20">
+      <input id="click-me-button" type="button" value="Click me">
+    </section>
+
+    <section>
+      <!-- A slider from 0-100 with a default of 0 -->
+      <input id="range-slider" type="range" value="0" min="0" max="100">
+      <!-- Our button -->
+      <input id="print-button" type="button" value="Click me">
+      <!-- step in <input slider> is to reduce the # range and smoother transition when sliding-->
+      <input id="range-sliderr" type="range" value="0" min="0" max="100" step="0.01">
+    </section>
+
+    <section>
+      <!-- A color picker -->
+      <input id="color-picker" type="color">
+    </section>
+
+    <section>
+      <!-- Password input field -->
+      <input id="password-input" type="password" maxlength="8">
+      <!-- Login button -->
+      <input id="login-button" type="button" value="Login">
+      <p id="hint">
+        Hint: the password is "password".
+      </p>
+    </section>
+
+    <section>
+      <!-- A date picker -->
+      <input id="date-picker" type="date">
+    </section>
+
+    <!-- My script(s) -->
+    <script src="js/dom-form-input-script.js"></script>
+  </body>
+
+</html>
