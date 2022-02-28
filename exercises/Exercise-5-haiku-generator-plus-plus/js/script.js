@@ -71,7 +71,7 @@ let line2 = document.getElementById(`line-2`);
 let line3 = document.getElementById(`line-3`);
 // Get the two elements on the page containing the title and author of poem
 let title = document.getElementById(`title`);
-// let author = document.getElementById(`title`);
+let author = document.getElementById(`author`);
 
 // Set up the starting lines
 setupLines();
@@ -80,20 +80,22 @@ addListeners();
 
 // Put a randomly chosen haiku line in each line of the poem in HTML
 function setupLines() {
+  title.innerText = random(haikuTitles);
+  author.innerText = random(haikuAuthors);
   line1.innerText = random(haikuLines.firstFiveSyllables);
   line2.innerText = random(haikuLines.sevenSyllables);
   line3.innerText = random(haikuLines.secondFiveSyllables);
-  title.innerText = random(haikuTitles);
 }
 
 console.log(setupLines);
 
 // Adds event listeners for changing each line of the poem
 function addListeners() {
+  title.addEventListener(`click`, changeLine);
+  author.addEventListener(`click`, changeLine);
   line1.addEventListener(`click`, changeLine);
   line2.addEventListener(`click`, changeLine);
   line3.addEventListener(`click`, changeLine);
-  title.addEventListener(`click`, changeLine);
 }
 
 // Trigger a fade out when a line is clicked...
@@ -115,20 +117,23 @@ const setColour = () => {
 
 // Make haiku lines black when mouse is visible on webpage
 document.addEventListener('mouseenter', function() {
-  document.getElementById('title').style.color = `#f7f7f7`;
-  document.getElementById('line-1').style.color = `#000000`;
-  document.getElementById('line-2').style.color = `#000000`;
-  document.getElementById('line-3').style.color = `#000000`;
+  document.getElementById('title').style.color = `#000000`;
+  document.getElementById('author').style.color = `#000000`;
+  document.getElementById('line-1').style.color = `#f7f7f7`;
+  document.getElementById('line-2').style.color = `#f7f7f7`;
+  document.getElementById('line-3').style.color = `#f7f7f7`;
 });
 
 // Change haiku lines to light grey when mouse is not on the webpage
 document.addEventListener('mouseleave', function() {
-  document.getElementById('title').style.color = `#000000`;
-  document.getElementById('line-1').style.color = `#f7f7f7`;
-  document.getElementById('line-2').style.color = `#f7f7f7`;
-  document.getElementById('line-3').style.color = `#f7f7f7`;
+  document.getElementById('title').style.color = `#f7f7f7`;
+  document.getElementById('author').style.color = `#f7f7f7`;
+  document.getElementById('line-1').style.color = `#000000`;
+  document.getElementById('line-2').style.color = `#000000`;
+  document.getElementById('line-3').style.color = `#000000`;
   // When mouse is not on webpage, allow responsivevoice to recite the poem
-  responsiveVoice.speak(document.getElementById("title").textContent, "Japanese Female");
+  responsiveVoice.speak(document.getElementById("title").textContent, "French Female");
+  responsiveVoice.speak(document.getElementById("author").textContent, "French Female");
   responsiveVoice.speak(document.getElementById("haiku").textContent, "Japanese Female");
 });
 
@@ -174,6 +179,7 @@ function fadeIn(element, opacity) {
 // Set the text of the element to a randomly chosen haiku line, accounting for syllables
 function setNewLine(element) {
   element.innerText = random(haikuTitles);
+  element.innerText = random(haikuAuthors);
   if (element === line1) {
     // If the element is line1 or line3, use five syllables
     element.innerText = random(haikuLines.firstFiveSyllables);
