@@ -191,6 +191,14 @@ function setNewLine(element) {
   }
 }
 
+// Allow user to print or save poem
+let savePoem = document.querySelector("button");
+// Print content of current window
+function printOrSave() {
+  window.print();
+};
+savePoem.addEventListener("click", printOrSave);
+
 // A helper function that returns a random element from the provided array
 function random(array) {
   return array[Math.floor(Math.random() * array.length)];
