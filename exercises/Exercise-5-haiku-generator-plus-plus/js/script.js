@@ -133,11 +133,13 @@ function fadeIn(element, opacity) {
 
 // Set the text of the element to a randomly chosen haiku line, accounting for syllables
 function setNewLine(element) {
-  if (element === line1 || element === line3) {
+  if (element === line1) {
     // If the element is line1 or line3, use five syllables
-    element.innerText = random(haikuLines.fiveSyllables);
+    element.innerText = random(haikuLines.firstFiveSyllables);
+  } else if (element === line3) {
+    element.innerText = random(haikuLines.secondFiveSyllables)
   } else {
-    // If the element is line2 use seven
+    // If the element is line2 use seven syllables
     element.innerText = random(haikuLines.sevenSyllables);
   }
 }
