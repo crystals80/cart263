@@ -2,7 +2,7 @@
 Haiku Generator
 Lam Ky Anh Do
 
-Generate customizable haikus
+Generate a random haiku
 */
 
 "use strict";
@@ -35,35 +35,27 @@ setupLines();
 // Listen for clicks on each element and respond by changing them
 addListeners();
 
-/**
-Puts a randomly chosen haiku line in each line of the poem in HTML
-*/
+
+// Put a randomly chosen haiku line in each line of the poem in HTML
 function setupLines() {
   line1.innerText = random(haikuLines.fiveSyllables);
   line2.innerText = random(haikuLines.sevenSyllables);
   line3.innerText = random(haikuLines.fiveSyllables);
 }
 
-/**
-Adds event listeners for changing each line of the poem
-*/
+// Adds event listeners for changing each line of the poem
 function addListeners() {
   line1.addEventListener(`click`, changeLine);
   line2.addEventListener(`click`, changeLine);
   line3.addEventListener(`click`, changeLine);
 }
 
-/**
-Triggers a fade out when a line is clicked
-*/
+// Trigger a fade out when a line is clicked
 function changeLine(event) {
   fadeOut(event.target, 1);
 }
 
-/**
-Reduces the opacity of the provided element until it reaches zero
-then changes its line and triggers a fade in
-*/
+// Reduce the opacity of the provided element until it reaches zero then changes its line and triggers a fade in
 function fadeOut(element, opacity) {
   // Change the opacity of the line
   opacity -= 0.01;
@@ -85,10 +77,7 @@ function fadeOut(element, opacity) {
   }
 }
 
-/**
-Increases the opacity of the provided element until it reaches
-1 and then stops.
-*/
+// Increase the opacity of the provided element until it reaches 1 and then stops.
 function fadeIn(element, opacity) {
   // Increase the opacity
   opacity += 0.01;
@@ -105,10 +94,7 @@ function fadeIn(element, opacity) {
   }
 }
 
-/**
-Sets the text of the element to a randomly chosen haiku line, accounting for
-syllables
-*/
+// Set the text of the element to a randomly chosen haiku line, accounting for syllables
 function setNewLine(element) {
   if (element === line1 || element === line3) {
     // If the element is line1 or line3, use five syllables
@@ -119,9 +105,7 @@ function setNewLine(element) {
   }
 }
 
-/**
-A helper function that returns a random element from the provided array
-*/
+// A helper function that returns a random element from the provided array
 function random(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
