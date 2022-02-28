@@ -1,3 +1,7 @@
-# Activity 4: Bubble Popper
+# Activity 5: Haiku Generator++
 
-This is the README file for the entire project. For more official projects you should write information here about the nature of the project, your name, any special explanations of how the project works, etc.
+This fifth exercise is inspired from its tutorial "Haiku Generator," which is about generating a haiku in whichusers can customize the haiku, its title and author. That said, to spice things up, I decided to add sound, more specifically have an automated voice recite the poem. For that, I chose a French and Japanese Female voice because they have a more interesting accent when pronouncing/reciting the poem.
+
+While coding this exercise, I discovered that the male voices from ResponsiveVoice does not work well as manny (probably 90%) of them are not available and are replaced by female voice which has a more robotic feel. That said, the existing mal voices does not fit well with the female voices if one wants to have a male voice recite a poem line first and then have the female voice do so for the second line, and vice versa. What I mean by this is that they talk over one another. I think ResponsiveVoice should fix this issue if it is not supposed to happen. Nonetheless, it is quite fun coding this exercise as it is challenging to switch from p5 to pure JavaScript coding, and in spite of that I was able to learn more about randomizing, to customize colours for backgrounds and texts and to know which code works and which does not fit. About this last statement, sometimes the error does not even show on the console so it is difficult to pin point my error. So debugging took a little bit long but I getting better at this.
+
+[See more about hexadecimal conversion (using either 16777215 (closer to white) or 16777216 (closer to black))](https://dev.to/akhil_001/generating-random-color-with-single-line-of-js-code-fhj)
