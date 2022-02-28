@@ -3,6 +3,8 @@ Haiku Generator
 Lam Ky Anh Do
 
 Generate a customizable haiku from existent haikus
+
+Existent haikus taken from https://www.readpoetry.com/10-vivid-haikus-to-leave-you-breathless/
 */
 
 "use strict";
@@ -87,10 +89,38 @@ function addListeners() {
   line3.addEventListener(`click`, changeLine);
 }
 
-// Trigger a fade out when a line is clicked
+// Trigger a fade out when a line is clicked...
 function changeLine(event) {
   fadeOut(event.target, 1);
+  // ...and change background colour on every click
+  document.addEventListener('click', function() {
+    setColour();
+  });
 }
+
+// Create random colours for background
+const setColour = () => {
+  // 16777215 is the highest number for hexadecimal conversion (to white)
+  // See more: https://dev.to/akhil_001/generating-random-color-with-single-line-of-js-code-fhj
+  const randomColor = Math.floor(Math.random() * 16777216);
+  document.body.style['background-color'] = "#" + randomColor;
+}
+
+// Make haiku lines black when mouse is visible on webpage
+document.addEventListener('mouseenter', function() {
+  document.getElementById('line-1').style.color = `#000000`;
+  document.getElementById('line-2').style.color = `#000000`;
+  document.getElementById('line-3').style.color = `#000000`;
+});
+
+// Change haiku lines to light grey when mouse is not on the webpage
+document.addEventListener('mouseleave', function() {
+  document.getElementById('line-1').style.color = `#f7f7f7`;
+  document.getElementById('line-2').style.color = `#f7f7f7`;
+  document.getElementById('line-3').style.color = `#f7f7f7`;
+  // When mouse is not on webpage, allow responsivevoice to recite the poem
+  responsiveVoice.speak(document.getElementById("haiku").textContent, "Japanese Female");
+});
 
 // Reduce the opacity of the provided element until it reaches zero then changes its line and triggers a fade in
 function fadeOut(element, opacity) {
