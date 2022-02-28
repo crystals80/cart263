@@ -63,14 +63,12 @@ function fadeOut(element, opacity) {
   // Check if the opacity is greater than 0...
   if (opacity > 0) {
     // If so, keep fading on the next frame
-    // Note the use of an anonymous function here so we can pass
-    // arguments to fadeOut()
+    // Note the use of an anonymous function here so we can pass arguments to fadeOut()
     requestAnimationFrame(function() {
       fadeOut(element, opacity);
     });
   } else {
-    // If not, we can switch lines and fade in...
-    // Set a new line of poem for the element
+    // If not, we can switch lines and fade in, then set a new line of poem for the element
     setNewLine(element);
     // Trigger a fade in
     fadeIn(element, 0);
@@ -84,8 +82,7 @@ function fadeIn(element, opacity) {
   element.style[`opacity`] = opacity;
   // Check if opacity is still less than 1
   if (opacity < 1) {
-    // Keep fading. Note the use of an anonymous function here so we
-    // can pass arguments to fadeIn()
+    // Keep fading. Note the use of an anonymous function here so we can pass arguments to fadeIn()
     requestAnimationFrame(function() {
       fadeIn(element, opacity);
     });
