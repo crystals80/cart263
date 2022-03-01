@@ -10,8 +10,8 @@ Note: whether I say program, simulation or animation, it refers to the (re)anima
 "use strict";
 
 // Global vars for any function
-let state = `gearUpScene`; // Set up state variable for the simulation
-let nerveGearImg, innerNerveGearImg; // Images vars
+let state = `waitingScene`; // Set up state variable for the simulation
+let nerveGearImg, innerNerveGearImg, deepDiveImg, imgWidth, imgHeight; // Images vars
 let industryLight, industryBold, philosopher, latoReg; // Font vars
 let angle = 0; // Set angle in degrees at 0 ()
 
@@ -32,6 +32,13 @@ let blinkingStartTime = 0;
 let blinkingCurrentTime = 0;
 let blinkingSemiColon = `:`;
 
+// Set up pointillism dots for Part 2 of SCENE 4 (deepDiveScene) specifically an alternative effect for deep diving into a game
+let smallPoint = 10;
+let largePoint = 80;
+
+// Set up zoom effect for Part 3 of SCENE 4 (verifyScene)
+let rectScale = 0;
+
 // Funtion to preload fonts, images and sounds
 function preload() {
   // LOAD FONTS
@@ -40,14 +47,30 @@ function preload() {
   // latoReg = loadFont('assets/fonts/Lato-Regular.ttf');
   philosopher = loadFont('assets/fonts/Philosopher-Regular.ttf');
   // LOAD IMAGES
-  nerveGearImg = loadImage('assets/images/nerve-gear.jpg')
-  innerNerveGearImg = loadImage('assets/images/inner-nerve-gear.jpg')
+  nerveGearImg = loadImage('assets/images/nerve-gear.jpg');
+  innerNerveGearImg = loadImage('assets/images/inner-nerve-gear.jpg');
+  deepDiveImg = loadImage('assets/images/deepdiving.png');
   // LOAD SOUNDS
 }
 
 // Function to set up program
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  // Set up pointillism background image for title screen
+  // NOTE: To set up pointillism background in different states, every image is required to be set up separately for it to work
+  push();
+  // Declare width and height for title screen background image
+  imgWidth = deepDiveImg.width;
+  imgHeight = deepDiveImg.height;
+  // Center the background image
+  imageMode(CENTER);
+  // Resize the background image to window size
+  deepDiveImg.resize(windowWidth, windowHeight);
+  // Delete border of the background image
+  noStroke();
+  deepDiveImg.loadPixels();
+  pop();
 
   rectMode(CENTER); // Set rect(s) location to its center
   angleMode(DEGREES); // Set rotation angle to degrees instead of radians
@@ -177,8 +200,8 @@ function waitingScene() {
     strokeWeight(2.5);
     stroke(20);
     textSize(75);
-    textAlign(LEFT, CENTER);
-    text(`12${blinkingSemiColon}59`, 90, 80);
+    textAlign(CENTER, CENTER);
+    text(`12${blinkingSemiColon}59`, 160, 80);
     pop();
     // Trigger timeOnHeadGear() after 5 seconds and...
   } else if (currentTime <= 6000) {
@@ -204,12 +227,50 @@ function timeOnHeadGear() {
   strokeWeight(2.5);
   stroke(20);
   textSize(75);
-  textAlign(LEFT, CENTER);
-  text(`13:00`, 90, 80);
+  textAlign(CENTER, CENTER);
+  text(`13:00`, 160, 80);
   pop();
 }
 
 function linkStartScene() {
+  background(20);
+
+  // Trigger Part 2 with a customized timer (using Ready,Set,Go Method)
+  if (isPluggedIn === 0) {
+    isPluggedIn = 1;
+    startTime = millis();
+  } else if (isPluggedIn === 1) {
+    currentTime = millis() - startTime;
+    if (currentTime >= 1500) {
+      // Sub-state animate deep-diving effect
+      isPluggedIn = 2;
+    }
+  } else {
+    deepDiveScene(deepDiveImg); // Part 3
+  }
+}
+
+// Function to display a pointillism effect to illustrate the "deep-diving-in-game" scene
+function deepDiveScene(sourceImage) {
+  background(255);
+  // Have the pointillized dots grow small and large depending on the mouseX position
+  let pointillize = map(mouseX, 0, width, smallPoint, largePoint);
+  // Display pointillism effect
+  for (let i = 0; i < 10; i++) {
+    // Create new x and y pos according to image
+    // floor allows random to give decimal
+    imgWidth = floor(random(sourceImage.width));
+    imgHeight = floor(random(sourceImage.height));
+    // Get image to pointillize
+    let pix = sourceImage.get(imgWidth, imgHeight);
+    fill(pix, 128);
+    noStroke();
+    ellipse(imgWidth, imgHeight, pointillize, pointillize);
+  }
+}
+
+// Function to
+function verifyScene() {
   background(255);
 }
 
