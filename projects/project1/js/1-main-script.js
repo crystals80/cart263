@@ -37,7 +37,7 @@ let smallPoint = 10;
 let largePoint = 80;
 
 // Set up zoom effect for Part 3 of SCENE 4 (verifyScene)
-let rectScale = 0;
+let circleScale = 0;
 
 // Funtion to preload fonts, images and sounds
 function preload() {
@@ -232,25 +232,43 @@ function timeOnHeadGear() {
   pop();
 }
 
+let linkStarted = 0;
+
+// Function to display the 4th scene of the animation
 function linkStartScene() {
   background(20);
 
   // Trigger Part 2 with a customized timer (using Ready,Set,Go Method)
-  if (isPluggedIn === 0) {
-    isPluggedIn = 1;
+  if (linkStarted === 0) {
+    linkStarted = 1;
     startTime = millis();
-  } else if (isPluggedIn === 1) {
+  } else if (linkStarted === 1) {
     currentTime = millis() - startTime;
     if (currentTime >= 1500) {
       // Sub-state animate deep-diving effect
-      isPluggedIn = 2;
+      linkStarted = 2;
     }
   } else {
-    deepDiveScene(deepDiveImg); // Part 3
+    deepDiveScene(deepDiveImg); // Part 2
+
+
+    // Trigger Part 3 with a customized timer (same method as triggering Part 2)
+    if (linkStarted === 2) {
+      linkStarted = 3;
+      startTime = millis();
+    } else if (linkStarted === 3) {
+      currentTime = millis() - startTime;
+      if (currentTime >= 2000) {
+        // Sub-state animate deep-diving effect
+        linkStarted = 4;
+      }
+    } else {
+      verifyScene(deepDiveImg); // Part 3
+    }
   }
 }
 
-// Function to display a pointillism effect to illustrate the "deep-diving-in-game" scene
+// Function to display part 2 of SCENE 4 by illustrating a pointillism effect to illustrate the "deep-diving-in-game" scene
 function deepDiveScene(sourceImage) {
   background(255);
   // Have the pointillized dots grow small and large depending on the mouseX position
@@ -269,9 +287,20 @@ function deepDiveScene(sourceImage) {
   }
 }
 
-// Function to
+// Function to display part 3 of SCENE 4 by illustrating a zoom effect to check user's 5 senses
 function verifyScene() {
   background(255);
+
+  circleScale = circleScale + 0.01;
+
+  push();
+  fill(255, 0, 0);
+  ellipseMode(CENTER);
+  translate(width / 2, height / 2);
+  scale(1);
+  scale(circleScale);
+  ellipse(0, 0, 100, 100);
+  pop();
 }
 
 // Function to set up mouse clicks
