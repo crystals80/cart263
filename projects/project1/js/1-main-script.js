@@ -256,7 +256,7 @@ function waitingScene() {
   // Start count-down timer
   currentTime = millis() - startTime;
   // Set a delay of 5 seconds...
-  if (currentTime <= 5000) {
+  if (currentTime <= 8000) {
     // ...while making the semicolon blink...
     blinkingCurrentTime = Math.floor((millis() - blinkingStartTime) / 500);
     if (blinkingCurrentTime % 2 == 0) {
@@ -343,7 +343,8 @@ function finalScene() {
       startTime = millis();
     } else if (inGame === 3) {
       currentTime = millis() - startTime;
-      if (currentTime >= 500) {
+      // In about 1.25 second, trigger welcome message
+      if (currentTime >= 1250) {
         // Text ready to appear
         inGame = 4;
       }

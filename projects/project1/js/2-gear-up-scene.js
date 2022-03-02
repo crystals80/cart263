@@ -93,8 +93,8 @@ function substatesScene2() {
           startTime = millis();
         } else if (isPluggedIn === 7) {
           currentTime = millis() - startTime;
-          // In around 5 milliseconds, trigger Part 4b
-          if (currentTime >= 70) {
+          // In 0.5 second, trigger Part 4b
+          if (currentTime >= 500) {
             // Sub-state includes Part 4b with Parts 3-4a
             isPluggedIn = 8;
           }
@@ -111,8 +111,8 @@ function substatesScene2() {
           // Once Part 4 is onscreen, start countdown timer to trigger SCENE 3 (SET)
           else if (nextScene === 1) {
             currentTime = millis() - startTime;
-            // In 4.5 seconds, trigger SCENE 3 (GO)
-            if (currentTime >= 4500) {
+            // In 2 seconds, trigger SCENE 3 (GO)
+            if (currentTime >= 3500) {
               // Sub-state is shifting to SCENE 3
               nextScene = 2;
             }
@@ -180,21 +180,21 @@ function powerOn() {
   // Create background with image
   image(nerveGearImg, width / 2, height / 2, width, height);
   // Create light source (rectangle) for `POW`
-  translate(width - 175, 350);
+  translate(width - 180, 340);
   rotate(60);
   rect(0, 0, 20, 30, 2);
   pop();
 
   push();
   // Create light source (rectangle) for `WAN`
-  translate(width - 150, 400);
+  translate(width - 155, 390);
   rotate(60);
   rect(0, 0, 20, 30, 2);
   pop();
 
   push();
   // Create light source (rectangle) for `BLK`
-  translate(width - 125, 450);
+  translate(width - 130, 440);
   rotate(60);
   rect(0, 0, 20, 30, 2);
   pop();
@@ -207,7 +207,7 @@ function powerOnPOW() {
   drawingContext.shadowBlur = 32; // See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowBlur
   drawingContext.shadowColor = color(89, 185, 79); // See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowColor
   fill(89, 185, 79);
-  translate(width - 175, 350);
+  translate(width - 180, 340);
   rotate(60);
   rect(0, 0, 20, 30, 2);
   pop();
@@ -220,7 +220,7 @@ function powerOnWAN() {
   drawingContext.shadowBlur = 32; // See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowBlur
   drawingContext.shadowColor = color(89, 185, 79); // See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowColor
   fill(89, 185, 79);
-  translate(width - 150, 400);
+  translate(width - 155, 390);
   rotate(60);
   rect(0, 0, 20, 30, 2);
   pop();

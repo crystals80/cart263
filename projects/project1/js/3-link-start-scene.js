@@ -12,7 +12,8 @@ function substatesScene4() {
     startTime = millis();
   } else if (linkStarted === 1) {
     currentTime = millis() - startTime;
-    if (currentTime >= 1500) {
+    // In 2 seconds, trigger Part 2
+    if (currentTime >= 2000) {
       // Sub-state animate deep-diving effect
       linkStarted = 2;
     }
@@ -26,7 +27,8 @@ function substatesScene4() {
       startTime = millis();
     } else if (linkStarted === 3) {
       currentTime = millis() - startTime;
-      if (currentTime >= 2000) {
+      // In 3.75 second, trigger Part 3
+      if (currentTime >= 3750) {
         // Sub-state animate user's sense being verified
         linkStarted = 4;
       }
@@ -40,7 +42,8 @@ function substatesScene4() {
         startTime = millis();
       } else if (linkStarted === 5) {
         currentTime = millis() - startTime;
-        if (currentTime >= 2000) {
+        // In 1.5 second, trigger Part 4
+        if (currentTime >= 1500) {
           // Sub-state animate chosen language
           linkStarted = 6;
         }
@@ -54,6 +57,7 @@ function substatesScene4() {
           startTime = millis();
         } else if (linkStarted === 7) {
           currentTime = millis() - startTime;
+          // In 1.5 second, trigger Part 5
           if (currentTime >= 1500) {
             // Sub-state animate user loggin in game
             linkStarted = 8;
@@ -68,7 +72,8 @@ function substatesScene4() {
             startTime = millis();
           } else if (linkStarted === 9) {
             currentTime = millis() - startTime;
-            if (currentTime >= 1500) {
+            // In 1.75 second, trigger Part 4
+            if (currentTime >= 1750) {
               // Sub-state animate user confirming his character creation
               linkStarted = 10;
             }
@@ -128,6 +133,7 @@ function verifyScene() {
     startTime = millis();
   } else if (verified === 1) {
     currentTime = millis() - startTime;
+    // In about 0.2 second...
     if (currentTime >= 500) {
       // "Touch" circle is checked
       verified = 2;
@@ -152,6 +158,7 @@ function verifyScene() {
       startTime = millis();
     } else if (verified === 3) {
       currentTime = millis() - startTime;
+      // In about 0.5 second...
       if (currentTime >= 500) {
         // "Sight" circle is checked
         verified = 4;
@@ -176,6 +183,7 @@ function verifyScene() {
         startTime = millis();
       } else if (verified === 5) {
         currentTime = millis() - startTime;
+        // In about 0.5 second...
         if (currentTime >= 500) {
           // "Hearing" circle is checked
           verified = 6;
@@ -200,6 +208,7 @@ function verifyScene() {
           startTime = millis();
         } else if (verified === 7) {
           currentTime = millis() - startTime;
+          // In about 0.5 second...
           if (currentTime >= 500) {
             // "Taste" circle is checked
             verified = 8;
@@ -224,6 +233,7 @@ function verifyScene() {
             startTime = millis();
           } else if (verified === 9) {
             currentTime = millis() - startTime;
+            // In about 0.5 second...
             if (currentTime >= 500) {
               // "Smell" circle is checked
               verified = 10;
@@ -242,7 +252,8 @@ function verifyScene() {
               startTime = millis();
             } else if (verified === 11) {
               currentTime = millis() - startTime;
-              if (currentTime >= 1000) {
+              // In about 0.5 second...
+              if (currentTime >= 500) {
                 // All circles is checked
                 verified = 12;
               }
@@ -341,8 +352,9 @@ function inputUserDataScene() {
     startTime = millis();
   } else if (inputData === 1) {
     currentTime = millis() - startTime;
-    if (currentTime >= 500) {
-      // Input user's password
+    // In about 0.3 second,...
+    if (currentTime >= 300) {
+      // Display user's password
       inputData = 2;
     }
   } else {
@@ -375,7 +387,8 @@ function characterConfirmationScene() {
     startTime = millis();
   } else if (confirmed === 1) {
     currentTime = millis() - startTime;
-    if (currentTime >= 250) {
+    // In about 0.05 second, trigger Part 4
+    if (currentTime >= 50) {
       // Make text box "YES" blink
       confirmed = 2;
     }
@@ -399,8 +412,8 @@ function characterConfirmationScene() {
     // Once Part 6 is onscreen, start countdown timer to trigger SCENE 5 (SET)
     else if (nextScene === 1) {
       currentTime = millis() - startTime;
-      // In 1.5 seconds, trigger SCENE 5 (GO)
-      if (currentTime >= 1500) {
+      // In 3.5 seconds, trigger SCENE 5 (GO)
+      if (currentTime >= 3500) {
         // Sub-state is shifting to SCENE 5
         nextScene = 2;
       }
