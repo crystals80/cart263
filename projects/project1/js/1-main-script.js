@@ -38,23 +38,23 @@ let blinkingStartTime = 0;
 let blinkingCurrentTime = 0;
 let blinkingSemiColon = `:`;
 
-// Set up pointillism dots for Part 2 of SCENE 4 (deepDiveScene) specifically an alternative effect for deep diving into a game
-let smallPoint = 10;
-let largePoint = 80;
-
 // Set up time-delay vars for SCENE 4 (linkStartScene)
 let linkStarted = 0; // Sub-state var for parts 2-3-4 of SCENE 4
-let verified = 0; // Set up time-delay var to animate visuals
+let verified = 0; // Set up time-delay var to animate visuals (Part 3)
+let inputData = 0; // Set up time-delay var to animate text (Part 5)
 
-// Set up visuals for Part 3 of SCENE 4 (verifyScene)
+// Set up visuals var for Part 3 of SCENE 4 (verifyScene)
 let circle = {
   size: 325,
 };
-
 let rectangle = {
   width: 125,
   height: 50
 };
+
+// Vars for easing animation to make text appear
+let fadeIn;
+let fadeAmount = 1;
 
 // Funtion to preload fonts, images and sounds
 function preload() {
@@ -102,6 +102,8 @@ function setup() {
   noStroke();
   deepDiveImg.loadPixels();
   pop();
+
+  fadeIn = 0; // Set up var for an easing animation for text to appear
 
   rectMode(CENTER); // Center rect(s)
   imageMode(CENTER); // Center image(s)

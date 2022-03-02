@@ -69,8 +69,6 @@ function substatesScene4() {
 // Function to display part 2 of SCENE 4 by illustrating a pointillism effect to illustrate the "deep-diving-in-game" scene
 function deepDiveScene(sourceImage) {
   background(255);
-  // Have the pointillized dots grow small and large depending on the mouseX position
-  let pointillize = map(mouseX, 0, width, smallPoint, largePoint);
   // Display pointillism effect
   for (let i = 0; i < 10; i++) {
     // Create new x and y pos according to image
@@ -81,7 +79,7 @@ function deepDiveScene(sourceImage) {
     let pix = sourceImage.get(imgWidth, imgHeight);
     fill(pix, 128);
     noStroke();
-    ellipse(imgWidth, imgHeight, pointillize, pointillize);
+    ellipse(imgWidth, imgHeight, 150, 150);
   }
 }
 
@@ -296,6 +294,12 @@ function languageCheckScene() {
 // Function to display Part 5 of SCENE 4
 function inputUserDataScene() {
   background(255);
+
+  if (fadeIn < 0) {
+    fadeAmount;
+  }
+  fadeIn += 5;
+
   // Display login area
   push();
   strokeWeight(2);
@@ -314,9 +318,22 @@ function inputUserDataScene() {
   textAlign(LEFT, CENTER);
   text(`:account`, 60 + width / 2, -50 + height / 2);
   text(`:password`, 60 + width / 2, 50 + height / 2);
-  fill(20);
-  // textSize(34);
+  fill(20, 20, 20, fadeIn);
+  // Display user's name first, then user's password
   text(`${userData.name}`, 60 + width / 2, height / 2);
-  text(`${userData.password}`, 60 + width / 2, 100 + height / 2);
+  // Animate an automated login process with a customized timer (using Ready,Set,Go Method)
+  if (inputData === 0) {
+    inputData = 1;
+    startTime = millis();
+  } else if (inputData === 1) {
+    currentTime = millis() - startTime;
+    if (currentTime >= 500) {
+      // Input user's password
+      inputData = 2;
+    }
+  } else {
+    // Display user's password
+    text(`${userData.password}`, 60 + width / 2, 100 + height / 2);
+  }
   pop();
 }
