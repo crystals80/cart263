@@ -10,7 +10,7 @@ Note: whether I say program, simulation or animation, it refers to the (re)anima
 "use strict";
 
 // Global vars for any function
-let state = `linkStartScene`; // Set up state variable for the simulation
+let state = `characterConfirmationScene`; // Set up state variable for the simulation
 let nerveGearImg, innerNerveGearImg, deepDiveImg, imgWidth, imgHeight, senseCheckImg; // Images vars
 let industryLight, industryBold, philosopher, latoReg; // Font vars
 let angle = 0; // Set angle in degrees at 0 ()
@@ -22,7 +22,9 @@ let startTime = 0; // Countdown timer var
 // Vars for pop-up messages in the beginning of title screen
 let userData = {
   name: `user`,
-  password: `secret pass`
+  password: `secret pass`,
+  character: `Kirito`,
+  gender: `X`
 };
 
 // Vars for time shown on clock (openingScene & waitingScene)
@@ -80,11 +82,13 @@ function setup() {
   // Replaced undetermined username and password by user's data
   if (data != null) {
     userData.name = data.name;
-    userData.password = data.password
+    userData.password = data.password;
+    userData.gender = data.gender;
   } else {
     // Ask user their username and password
     userData.name = prompt(`What is your username? (1-10 characters)`);
-    userData.password = prompt(`What is your password? (1-10 characters)`)
+    userData.password = prompt(`What is your password? (1-10 characters)`);
+    userData.gender = prompt(`What is your gender? (M, F, X)`);
     localStorage.setItem(`web-storage-sao-reanimation`, JSON.stringify(userData));
   }
 
@@ -124,6 +128,8 @@ function draw() {
     waitingScene(); // SCENE 3
   } else if (state === `linkStartScene`) {
     linkStartScene(); // SCENE 4
+  } else if (state === `characterConfirmationScene`) {
+    characterConfirmationScene(); // Part 6 of SCENE 4
   }
 }
 

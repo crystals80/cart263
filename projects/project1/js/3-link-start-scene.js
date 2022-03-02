@@ -27,7 +27,7 @@ function substatesScene4() {
     } else if (linkStarted === 3) {
       currentTime = millis() - startTime;
       if (currentTime >= 2000) {
-        // Sub-state animate deep-diving effect
+        // Sub-state animate user's sense being verified
         linkStarted = 4;
       }
     } else {
@@ -41,7 +41,7 @@ function substatesScene4() {
       } else if (linkStarted === 5) {
         currentTime = millis() - startTime;
         if (currentTime >= 2000) {
-          // Sub-state animate deep-diving effect
+          // Sub-state animate chosen language
           linkStarted = 6;
         }
       } else {
@@ -55,11 +55,26 @@ function substatesScene4() {
         } else if (linkStarted === 7) {
           currentTime = millis() - startTime;
           if (currentTime >= 1500) {
-            // Sub-state animate deep-diving effect
+            // Sub-state animate user loggin in game
             linkStarted = 8;
           }
         } else {
           inputUserDataScene(); // Part 5
+
+
+          // Trigger Part 6 with a customized timer (same method as triggering Part 2)
+          if (linkStarted === 8) {
+            linkStarted = 9;
+            startTime = millis();
+          } else if (linkStarted === 9) {
+            currentTime = millis() - startTime;
+            if (currentTime >= 1500) {
+              // Sub-state animate user confirming his character creation
+              linkStarted = 10;
+            }
+          } else {
+            characterConfirmationScene(); // Part 6
+          } // Trigger Part 6
         } // Trigger Part 5
       } // Trigger Part 4
     } // Trigger Part 3
@@ -307,7 +322,7 @@ function inputUserDataScene() {
   fill(5, 131, 250)
   rect(width / 2, height / 2, 700, 350, 20);
   noStroke();
-  fill(255)
+  fill(255);
   rect(3 * width / 5, +height / 2, 200, 50);
   rect(3 * width / 5, 100 + height / 2, 200, 50);
   // Display login text input
@@ -335,5 +350,34 @@ function inputUserDataScene() {
     // Display user's password
     text(`${userData.password}`, 60 + width / 2, 100 + height / 2);
   }
+  pop();
+}
+
+function characterConfirmationScene() {
+  background(255);
+
+  // Display login area
+  push();
+  strokeWeight(2);
+  stroke(150);
+  fill(5, 131, 250)
+  rect(width / 2, height / 4, 450, 75, 20);
+  rect(width / 2, 3 * height / 5, 800, 350, 20);
+  // fill('#04ddeb');
+  fill(28, 168, 226);
+  noStroke();
+  rect(width / 2, 3 * height / 5, 300, 50);
+  rect(-200 + width / 2, 3.7 * height / 5, 100, 50, 20);
+  rect(200 + width / 2, 3.7 * height / 5, 100, 50, 20);
+  fill(255);
+  textFont(latoReg);
+  textSize(40);
+  text(`Character Creation`, width / 2, height / 4);
+  textSize(28);
+  text(`Beta test data still available.`, width / 2, height / 2.35);
+  text(`Would you like to use it?`, width / 2, height / 2.05);
+  text(`${userData.name} ${userData.gender}`, width / 2, 3 * height / 5);
+  text(`YES`, -200 + width / 2, 3.7 * height / 5);
+  text(`NO`, 200 + width / 2, 3.7 * height / 5);
   pop();
 }
