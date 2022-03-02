@@ -92,7 +92,7 @@ function substatesScene4() {
     image(senseCheckImg, 200, height / 4, circle.size, circle.size);
     fill(255);
     rect(200, height / 4, rectangle.width, rectangle.height);
-    verifyingTextStyle()
+    verifyingTextStyle();
     // Display text
     text(`Touch`, 200, height / 4);
     // Animate an automated verfication process with a customized timer (using Ready,Set,Go Method)
@@ -118,10 +118,8 @@ function substatesScene4() {
       image(senseCheckImg, 500, 3.5 * height / 5, circle.size, circle.size);
       fill(255);
       rect(500, 3.5 * height / 5, rectangle.width, rectangle.height);
-      verifyingTextStyle()
-      // Display text
+      verifyingTextStyle();
       text(`Sight`, 500, 3.5 * height / 5);
-      // Animate an automated verfication process with a customized timer (using Ready,Set,Go Method)
       if (verified === 2) {
         verified = 3;
         startTime = millis();
@@ -144,16 +142,15 @@ function substatesScene4() {
         image(senseCheckImg, width / 2, height / 4, circle.size, circle.size);
         fill(255);
         rect(width / 2, height / 4, rectangle.width, rectangle.height);
-        verifyingTextStyle()
+        verifyingTextStyle();
         text(`Hearing`, width / 2, height / 4);
-        // Animate an automated verfication process with a customized timer (using Ready,Set,Go Method)
         if (verified === 4) {
           verified = 5;
           startTime = millis();
         } else if (verified === 5) {
           currentTime = millis() - startTime;
           if (currentTime >= 1000) {
-            // "Touch" circle is checked
+            // "Hearing" circle is checked
             verified = 6;
           }
         } else {
@@ -169,16 +166,15 @@ function substatesScene4() {
           image(senseCheckImg, width - 500, 3.5 * height / 5, circle.size, circle.size);
           fill(255);
           rect(width - 500, 3.5 * height / 5, rectangle.width, rectangle.height);
-          verifyingTextStyle()
+          verifyingTextStyle();
           text(`Taste`, width - 500, 3.5 * height / 5);
-          // Animate an automated verfication process with a customized timer (using Ready,Set,Go Method)
           if (verified === 6) {
             verified = 7;
             startTime = millis();
           } else if (verified === 7) {
             currentTime = millis() - startTime;
             if (currentTime >= 1000) {
-              // "Touch" circle is checked
+              // "Taste" circle is checked
               verified = 8;
             }
           } else {
@@ -194,16 +190,15 @@ function substatesScene4() {
             image(senseCheckImg, width - 200, height / 4, circle.size, circle.size);
             fill(255);
             rect(width - 200, height / 4, rectangle.width, rectangle.height);
-            verifyingTextStyle()
+            verifyingTextStyle();
             text(`Smell`, width - 200, height / 4);
-            // Animate an automated verfication process with a customized timer (using Ready,Set,Go Method)
             if (verified === 8) {
               verified = 9;
               startTime = millis();
             } else if (verified === 9) {
               currentTime = millis() - startTime;
               if (currentTime >= 1000) {
-                // "Touch" circle is checked
+                // "Smell" circle is checked
                 verified = 10;
               }
             } else {
@@ -213,6 +208,38 @@ function substatesScene4() {
               rect(width - 200, height / 4, rectangle.width, rectangle.height);
               verifiedTextStyle()
               text(`OK`, width - 200, height / 4);
+
+              // Display a confirmed verification of 5 senses (using the same Ready,Set,Go Method)
+              if (verified === 10) {
+                verified = 11;
+                startTime = millis();
+              } else if (verified === 11) {
+                currentTime = millis() - startTime;
+                if (currentTime >= 1000) {
+                  // All circles is checked
+                  verified = 12;
+                }
+              } else {
+                // Display all circles confirmed in green
+                tint(48, 240, 53);
+                image(senseCheckImg, 200, height / 4, circle.size, circle.size);
+                image(senseCheckImg, 500, 3.5 * height / 5, circle.size, circle.size);
+                image(senseCheckImg, width / 2, height / 4, circle.size, circle.size);
+                image(senseCheckImg, width - 500, 3.5 * height / 5, circle.size, circle.size);
+                image(senseCheckImg, width - 200, height / 4, circle.size, circle.size);
+                fill(70, 245, 92);
+                rect(200, height / 4, rectangle.width, rectangle.height);
+                rect(500, 3.5 * height / 5, rectangle.width, rectangle.height);
+                rect(width / 2, height / 4, rectangle.width, rectangle.height);
+                rect(width - 500, 3.5 * height / 5, rectangle.width, rectangle.height);
+                rect(width - 200, height / 4, rectangle.width, rectangle.height);
+                verifiedTextStyle();
+                text(`OK`, 200, height / 4);
+                text(`OK`, 500, 3.5 * height / 5);
+                text(`OK`, width / 2, height / 4);
+                text(`OK`, width - 500, 3.5 * height / 5);
+                text(`OK`, width - 200, height / 4);
+              } // Check all 5 senses is verified
             } // Check "Smell" sense
           } // Check "Taste" sense
         } // Check "Hearing" sense
@@ -229,13 +256,13 @@ function languageCheckScene() {
   background(255);
 
   blink += 1;
-
-
+  // Display language visuals
   push();
   strokeWeight(2);
   stroke(150);
   fill(5, 131, 250);
   rect(width / 2.5, height / 4, 400, 90, 20);
+  // Make chosen language blink
   if (blink % 10 === 0) {
     fill('#04ddeb');
     rect(3 * width / 5, height / 3, 400, 90, 20);
