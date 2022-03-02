@@ -10,7 +10,7 @@ Note: whether I say program, simulation or animation, it refers to the (re)anima
 "use strict";
 
 // Global vars for any function
-let state = `title`; // Set up state variable for the simulation
+let state = `linkStartScene`; // Set up state variable for the simulation
 let nerveGearImg, innerNerveGearImg, deepDiveImg, imgWidth, imgHeight, senseCheckImg; // Images vars
 let industryLight, industryBold, philosopher, latoReg; // Font vars
 let angle = 0; // Set angle in degrees at 0 ()
@@ -61,7 +61,7 @@ function preload() {
   // LOAD FONTS
   industryLight = loadFont('assets/fonts/Industry-Light.ttf');
   industryBold = loadFont('assets/fonts/Industry-Bold.ttf');
-  // latoReg = loadFont('assets/fonts/Lato-Regular.ttf');
+  latoReg = loadFont('assets/fonts/Lato-Regular.ttf');
   philosopher = loadFont('assets/fonts/Philosopher-Regular.ttf');
   // LOAD IMAGES
   nerveGearImg = loadImage('assets/images/nerve-gear.jpg');
