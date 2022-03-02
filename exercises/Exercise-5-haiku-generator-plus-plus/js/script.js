@@ -41,29 +41,27 @@ let haikuLines = {
     `a long river running.`,
     `this chance. Be of use.`
   ],
+  haikuTitles: [
+    `Upsetting the Sky`,
+    `The Old Pond`,
+    `A World of Dew`,
+    `Lighting One Candle`,
+    `A Poppy Blooms`,
+    `Over the Wintry`,
+    `Haiku [for you]`,
+    `Lines on a Skull`
+  ],
+  haikuAuthors: [
+    `DLKA`,
+    `Matsuo Bashou`,
+    `Kobayashi Issa`,
+    `Yosa Buson`,
+    `Katsushika Hokusai`,
+    `Natsume Souseki`,
+    `Sonia Sanchez`,
+    `Ravi Shankar`
+  ]
 };
-
-let haikuTitles = [
-  `Upsetting the Sky`,
-  `The Old Pond`,
-  `A World of Dew`,
-  `Lighting One Candle`,
-  `A Poppy Blooms`,
-  `Over the Wintry`,
-  `Haiku [for you]`,
-  `Lines on a Skull`
-];
-
-let haikuAuthors = [
-  `DLKA`,
-  `Matsuo Bashou`,
-  `Kobayashi Issa`,
-  `Yosa Buson`,
-  `Katsushika Hokusai`,
-  `Natsume Souseki`,
-  `Sonia Sanchez`,
-  `Ravi Shankar`
-];
 
 // Get three elements on the page that contain each line of the poem
 let line1 = document.getElementById(`line-1`);
@@ -80,8 +78,8 @@ addListeners();
 
 // Put a randomly chosen haiku line in each line of the poem in HTML
 function setupLines() {
-  title.innerText = random(haikuTitles);
-  author.innerText = random(haikuAuthors);
+  title.innerText = random(haikuLines.haikuTitles);
+  author.innerText = random(haikuLines.haikuAuthors);
   line1.innerText = random(haikuLines.firstFiveSyllables);
   line2.innerText = random(haikuLines.sevenSyllables);
   line3.innerText = random(haikuLines.secondFiveSyllables);
@@ -178,9 +176,13 @@ function fadeIn(element, opacity) {
 
 // Set the text of the element to a randomly chosen haiku line, accounting for syllables
 function setNewLine(element) {
-  element.innerText = random(haikuTitles);
-  element.innerText = random(haikuAuthors);
-  if (element === line1) {
+  if (element === title) {
+    // If the element is title, use haikuTitles
+    element.innerText = random(haikuLines.haikuTitles);
+  } // If the element is title, use haikuAuthors
+  else if (element === author) {
+    element.innerText = random(haikuLines.haikuAuthors);
+  } else if (element === line1) {
     // If the element is line1 or line3, use five syllables
     element.innerText = random(haikuLines.firstFiveSyllables);
   } else if (element === line3) {
