@@ -44,6 +44,7 @@ let blinkingSemiColon = `:`;
 let linkStarted = 0; // Sub-state var for parts 2-3-4 of SCENE 4
 let verified = 0; // Set up time-delay var to animate visuals (Part 3)
 let inputData = 0; // Set up time-delay var to animate text (Part 5)
+let confirmed = 0; // Set up time-delay var to animate textbox (Part 6)
 
 // Set up visuals var for Part 3 of SCENE 4 (verifyScene)
 let circle = {

@@ -356,6 +356,8 @@ function inputUserDataScene() {
 function characterConfirmationScene() {
   background(255);
 
+  blink += 1;
+
   // Display login area
   push();
   strokeWeight(2);
@@ -363,12 +365,31 @@ function characterConfirmationScene() {
   fill(5, 131, 250)
   rect(width / 2, height / 4, 450, 75, 20);
   rect(width / 2, 3 * height / 5, 800, 350, 20);
-  // fill('#04ddeb');
   fill(28, 168, 226);
   noStroke();
   rect(width / 2, 3 * height / 5, 300, 50);
   rect(-200 + width / 2, 3.7 * height / 5, 100, 50, 20);
   rect(200 + width / 2, 3.7 * height / 5, 100, 50, 20);
+  // Animate an automated login process with a customized timer (using Ready,Set,Go Method)
+  if (confirmed === 0) {
+    confirmed = 1;
+    startTime = millis();
+  } else if (confirmed === 1) {
+    currentTime = millis() - startTime;
+    if (currentTime >= 250) {
+      // Input user's password
+      confirmed = 2;
+    }
+  } else {
+    // Display user's password
+    if (blink % 10 === 0) {
+      fill('#04ddeb');
+      rect(-200 + width / 2, 3.7 * height / 5, 100, 50, 20);
+    } else {
+      fill(28, 168, 226);
+      rect(-200 + width / 2, 3.7 * height / 5, 100, 50, 20);
+    }
+  }
   fill(255);
   textFont(latoReg);
   textSize(40);
