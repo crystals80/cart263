@@ -10,7 +10,7 @@ Note: whether I say program, simulation or animation, it refers to the (re)anima
 "use strict";
 
 // Global vars for any function
-let state = `linkStartScene`; // Set up state variable for the simulation
+let state = `title`; // Set up state variable for the simulation
 let nerveGearImg, innerNerveGearImg, deepDiveImg, imgWidth, imgHeight, senseCheckImg; // Images vars
 let industryLight, industryBold, philosopher, latoReg; // Font vars
 let angle = 0; // Set angle in degrees at 0 ()
@@ -18,6 +18,12 @@ let angle = 0; // Set angle in degrees at 0 ()
 // Vars for customizable time-delay timers
 let currentTime = 0; // Timer var at 0 second
 let startTime = 0; // Countdown timer var
+
+// Vars for pop-up messages in the beginning of title screen
+let userData = {
+  name: `user`,
+  password: `secret pass`
+};
 
 // Vars for time shown on clock (openingScene & waitingScene)
 let timer, counter;
@@ -69,6 +75,19 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
+  // Set up pop up message allowing user to type in their username and password
+  let data = JSON.parse(sessionStorage.getItem(`web-storage-sao-reanimation`));
+  // Replaced undetermined username and password by user's data
+  if (data != null) {
+    userData.name = data.name;
+    userData.password = data.password
+  } else {
+    // Ask user their username and password
+    userData.name = prompt(`What is your username? (1-10 characters)`);
+    userData.password = prompt(`What is your password? (1-10 characters)`)
+    localStorage.setItem(`web-storage-sao-reanimation`, JSON.stringify(userData));
+  }
+
   // Set up pointillism background image for Part 2 of SCENE 4
   // NOTE: To set up pointillism background in different states, every image is required to be set up separately for it to work
   push();
@@ -114,7 +133,7 @@ function title() {
   fill(255);
   textSize(90);
   textAlign(CENTER, CENTER);
-  text(`Hello there!`, width / 2, height / 3);
+  text(`Hello ${userData.name}!`, width / 2, height / 3);
   textSize(50);
   text(`Thank you for purchasing our game!`, width / 2, 1.75 * height / 3);
   textSize(36);
