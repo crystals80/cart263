@@ -12,7 +12,6 @@ function wallSocket() {
 
   // Display a telephone wall outlet
   push();
-  rectMode(CENTER);
   stroke(20);
   // Display digital's clock background
   fill(121, 123, 130); // Grey
@@ -134,7 +133,6 @@ function substatesScene2() {
 function pluggedIn() {
   // Display the modular jack 1 plugged in
   push();
-  rectMode(CENTER);
   stroke(40);
   fill(200); // Light grey
   // Display a modular connector
@@ -177,7 +175,6 @@ function powerOn() {
 
   push();
   // Create background with image
-  imageMode(CENTER);
   image(nerveGearImg, width / 2, height / 2, width, height);
   // Create light source (rectangle) for `POW`
   translate(width - 175, 350);

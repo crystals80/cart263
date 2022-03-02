@@ -103,8 +103,9 @@ function setup() {
   deepDiveImg.loadPixels();
   pop();
 
-  rectMode(CENTER); // Set rect(s) location to its center
-  imageMode(CENTER); // Set image(s) location to its center
+  rectMode(CENTER); // Center rect(s)
+  imageMode(CENTER); // Center image(s)
+  textAlign(CENTER, CENTER); // Align text to the center horizontally and vertically
   angleMode(DEGREES); // Set rotation angle to degrees instead of radians
 }
 
@@ -132,7 +133,6 @@ function title() {
   textFont(philosopher);
   fill(255);
   textSize(90);
-  textAlign(CENTER, CENTER);
   text(`Hello ${userData.name}!`, width / 2, height / 3);
   textSize(50);
   text(`Thank you for purchasing our game!`, width / 2, 1.75 * height / 3);
@@ -194,7 +194,6 @@ function digitalClockCountUp() {
   textFont(industryLight);
   fill(0);
   textSize(210);
-  textAlign(CENTER, CENTER);
   text(`12:5${minutes+5}:${numberString}`, width / 2, 2.3 * height / 4);
   pop();
 }
@@ -232,7 +231,6 @@ function waitingScene() {
     strokeWeight(2.5);
     stroke(20);
     textSize(75);
-    textAlign(CENTER, CENTER);
     text(`12${blinkingSemiColon}59`, 160, 80);
     pop();
     // Trigger timeOnHeadGear() after 5 seconds and...
@@ -259,7 +257,6 @@ function timeOnHeadGear() {
   strokeWeight(2.5);
   stroke(20);
   textSize(75);
-  textAlign(CENTER, CENTER);
   text(`13:00`, 160, 80);
   pop();
 }

@@ -88,13 +88,11 @@ function deepDiveScene(sourceImage) {
 // Function to modify text during initial state of checking the 5 senses
 function verifyingTextStyle() {
   fill(128, 222, 216);
-  textAlign(CENTER, CENTER);
   textSize(34);
 }
 // Function to modify text after checking 5 senses
 function verifiedTextStyle() {
   fill(255);
-  textAlign(CENTER, CENTER);
   textSize(34);
 }
 
@@ -289,7 +287,6 @@ function languageCheckScene() {
 
   push();
   fill(255);
-  textAlign(CENTER, CENTER);
   textSize(50);
   text(`Language`, width / 2.5, height / 4);
   text(`▶ English`, 3 * width / 5, height / 3);
@@ -312,7 +309,6 @@ function inputUserDataScene() {
   // Display login text input
   textFont(latoReg);
   textSize(50);
-  textAlign(CENTER, CENTER);
   text(`Log in_::`, width / 2.5, height / 3);
   textSize(28);
   textAlign(LEFT, CENTER);
