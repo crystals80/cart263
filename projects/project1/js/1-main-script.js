@@ -38,6 +38,17 @@ let largePoint = 80;
 
 // Set up time-delay vars for SCENE 4 (linkStartScene)
 let linkStarted = 0; // Sub-state var for parts 2-3-4 of SCENE 4
+let verified = 0; // Set up time-delay var to animate visuals
+
+// Set up visuals for Part 3 of SCENE 4 (verifyScene)
+let circle = {
+  size: 325,
+};
+
+let rectangle = {
+  width: 125,
+  height: 50
+};
 
 // Funtion to preload fonts, images and sounds
 function preload() {
@@ -237,217 +248,7 @@ function timeOnHeadGear() {
 // Function to display the 4th scene of the animation
 function linkStartScene() {
   background(20);
-
-  // Trigger Part 2 with a customized timer (using Ready,Set,Go Method)
-  if (linkStarted === 0) {
-    linkStarted = 1;
-    startTime = millis();
-  } else if (linkStarted === 1) {
-    currentTime = millis() - startTime;
-    if (currentTime >= 1500) {
-      // Sub-state animate deep-diving effect
-      linkStarted = 2;
-    }
-  } else {
-    deepDiveScene(deepDiveImg); // Part 2
-
-
-    // Trigger Part 3 with a customized timer (same method as triggering Part 2)
-    if (linkStarted === 2) {
-      linkStarted = 3;
-      startTime = millis();
-    } else if (linkStarted === 3) {
-      currentTime = millis() - startTime;
-      if (currentTime >= 2000) {
-        // Sub-state animate deep-diving effect
-        linkStarted = 4;
-      }
-    } else {
-      verifyScene(); // Part 3
-    }
-  }
-}
-
-// Function to display part 2 of SCENE 4 by illustrating a pointillism effect to illustrate the "deep-diving-in-game" scene
-function deepDiveScene(sourceImage) {
-  background(255);
-  // Have the pointillized dots grow small and large depending on the mouseX position
-  let pointillize = map(mouseX, 0, width, smallPoint, largePoint);
-  // Display pointillism effect
-  for (let i = 0; i < 10; i++) {
-    // Create new x and y pos according to image
-    // floor allows random to give decimal
-    imgWidth = floor(random(sourceImage.width));
-    imgHeight = floor(random(sourceImage.height));
-    // Get image to pointillize
-    let pix = sourceImage.get(imgWidth, imgHeight);
-    fill(pix, 128);
-    noStroke();
-    ellipse(imgWidth, imgHeight, pointillize, pointillize);
-  }
-}
-
-// Set up zoom effect for Part 3 of SCENE 4 (verifyScene)
-
-let circle = {
-  size: 325,
-};
-
-let rectangle = {
-  width: 125,
-  height: 50
-};
-let verified = 0;
-
-// Function to display part 3 of SCENE 4 by illustrating a zoom effect to check user's 5 senses
-function verifyScene() {
-  background(255);
-
-  // Display the animation of verification process using a customized timer
-  push();
-  // Display initial state of circle aka one of 5 senses (TOUCH)
-  image(senseCheckImg, 200, height / 4, circle.size, circle.size);
-  fill(255);
-  rect(200, height / 4, rectangle.width, rectangle.height);
-  verifyingTextStyle()
-  // Display text
-  text(`Touch`, 200, height / 4);
-  // Animate an automated verfication process with a customized timer (using Ready,Set,Go Method)
-  if (verified === 0) {
-    verified = 1;
-    startTime = millis();
-  } else if (verified === 1) {
-    currentTime = millis() - startTime;
-    if (currentTime >= 1000) {
-      // "Touch" circle is checked
-      verified = 2;
-    }
-  } else {
-    // Display verified sign "OK"
-    fill(128, 222, 216);
-    stroke(255);
-    rect(200, height / 4, rectangle.width, rectangle.height);
-    verifiedTextStyle()
-    text(`OK`, 200, height / 4);
-
-
-    // Display initial state of circle aka one of 5 senses (SIGHT)
-    image(senseCheckImg, 500, 3.5 * height / 5, circle.size, circle.size);
-    fill(255);
-    rect(500, 3.5 * height / 5, rectangle.width, rectangle.height);
-    verifyingTextStyle()
-    // Display text
-    text(`Sight`, 500, 3.5 * height / 5);
-    // Animate an automated verfication process with a customized timer (using Ready,Set,Go Method)
-    if (verified === 2) {
-      verified = 3;
-      startTime = millis();
-    } else if (verified === 3) {
-      currentTime = millis() - startTime;
-      if (currentTime >= 1000) {
-        // "Sight" circle is checked
-        verified = 4;
-      }
-    } else {
-      // Display verified sign "OK"
-      fill(128, 222, 216);
-      stroke(255);
-      rect(500, 3.5 * height / 5, rectangle.width, rectangle.height);
-      verifiedTextStyle()
-      text(`OK`, 500, 3.5 * height / 5);
-
-
-      // Display initial state of circle aka one of 5 senses (HEARING)
-      image(senseCheckImg, width / 2, height / 4, circle.size, circle.size);
-      fill(255);
-      rect(width / 2, height / 4, rectangle.width, rectangle.height);
-      verifyingTextStyle()
-      text(`Hearing`, width / 2, height / 4);
-      // Animate an automated verfication process with a customized timer (using Ready,Set,Go Method)
-      if (verified === 4) {
-        verified = 5;
-        startTime = millis();
-      } else if (verified === 5) {
-        currentTime = millis() - startTime;
-        if (currentTime >= 1000) {
-          // "Touch" circle is checked
-          verified = 6;
-        }
-      } else {
-        // Display verified sign "OK"
-        fill(128, 222, 216);
-        stroke(255);
-        rect(width / 2, height / 4, rectangle.width, rectangle.height);
-        verifiedTextStyle()
-        text(`OK`, width / 2, height / 4);
-
-
-        // Display initial state of circle aka one of 5 senses (TASTE)
-        image(senseCheckImg, width - 500, 3.5 * height / 5, circle.size, circle.size);
-        fill(255);
-        rect(width - 500, 3.5 * height / 5, rectangle.width, rectangle.height);
-        verifyingTextStyle()
-        text(`Taste`, width - 500, 3.5 * height / 5);
-        // Animate an automated verfication process with a customized timer (using Ready,Set,Go Method)
-        if (verified === 6) {
-          verified = 7;
-          startTime = millis();
-        } else if (verified === 7) {
-          currentTime = millis() - startTime;
-          if (currentTime >= 1000) {
-            // "Touch" circle is checked
-            verified = 8;
-          }
-        } else {
-          // Display verified sign "OK"
-          fill(128, 222, 216);
-          stroke(255);
-          rect(width - 500, 3.5 * height / 5, rectangle.width, rectangle.height);
-          verifiedTextStyle()
-          text(`OK`, width - 500, 3.5 * height / 5);
-
-
-          // Display initial state of circle aka one of 5 senses (SMELL)
-          image(senseCheckImg, width - 200, height / 4, circle.size, circle.size);
-          fill(255);
-          rect(width - 200, height / 4, rectangle.width, rectangle.height);
-          verifyingTextStyle()
-          text(`Smell`, width - 200, height / 4);
-          // Animate an automated verfication process with a customized timer (using Ready,Set,Go Method)
-          if (verified === 8) {
-            verified = 9;
-            startTime = millis();
-          } else if (verified === 9) {
-            currentTime = millis() - startTime;
-            if (currentTime >= 1000) {
-              // "Touch" circle is checked
-              verified = 10;
-            }
-          } else {
-            // Display verified sign "OK"
-            fill(128, 222, 216);
-            stroke(255);
-            rect(width - 200, height / 4, rectangle.width, rectangle.height);
-            verifiedTextStyle()
-            text(`OK`, width - 200, height / 4);
-          } // Check "Smell" sense
-        } // Check "Taste" sense
-      } // Check "Hearing" sense
-    } // Check "Sight" sense
-  } // Check "Touch" sense
-  pop();
-}
-
-function verifyingTextStyle() {
-  fill(128, 222, 216);
-  textAlign(CENTER, CENTER);
-  textSize(34);
-}
-
-function verifiedTextStyle() {
-  fill(255);
-  textAlign(CENTER, CENTER);
-  textSize(34);
+  substatesScene4();
 }
 
 // Function to set up mouse clicks
