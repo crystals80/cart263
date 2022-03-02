@@ -41,8 +41,9 @@ let blinkingCurrentTime = 0;
 let blinkingSemiColon = `:`;
 
 // Set up time-delay vars for SCENE 4 (linkStartScene)
-let linkStarted = 0; // Sub-state var for parts 2-3-4 of SCENE 4
+let linkStarted = 0; // Sub-state var for parts 2-3-4-5-6 of SCENE 4
 let verified = 0; // Set up time-delay var to animate visuals (Part 3)
+let blink = 0; // Var for textbox blinking effect (Part 4)
 let inputData = 0; // Set up time-delay var to animate text (Part 5)
 let confirmed = 0; // Set up time-delay var to animate textbox (Part 6)
 
@@ -58,6 +59,9 @@ let rectangle = {
 // Vars for easing animation to make text appear
 let fadeIn;
 let fadeAmount = 1;
+
+// Set up time-delay var for SCENE 5 (linkStartScene)
+let inGame = 0; // Sub-state var the final SCENE 5
 
 // Funtion to preload fonts, images and sounds
 function preload() {
@@ -131,6 +135,8 @@ function draw() {
     linkStartScene(); // SCENE 4
   } else if (state === `characterConfirmationScene`) {
     characterConfirmationScene(); // Part 6 of SCENE 4
+  } else if (state === `finalScene`) {
+    finalScene(); // SCENE 5
   }
 }
 
@@ -275,6 +281,53 @@ function linkStartScene() {
   background(20);
   substatesScene4();
 }
+
+// Function to display the 5th (and last) scene of the animation
+function finalScene() {
+
+  // Set up fade-in effect
+  if (fadeIn < 0) {
+    fadeAmount;
+  }
+  fadeIn += 2;
+
+  // Tranisition to SCENE 5 smoothly with a customized timer (using Ready,Set,Go Method)
+  if (inGame === 0) {
+    inGame = 1;
+    startTime = millis();
+  } else if (inGame === 1) {
+    currentTime = millis() - startTime;
+    if (currentTime >= 500) {
+      // SCENE 5 is ready to appear
+      inGame = 2;
+    }
+  } else {
+    // Display a fade-in background
+    background(150, 150, 150, fadeIn);
+
+
+    // MAke text appear smoothly with a customized timer (using Ready,Set,Go Method)
+    if (inGame === 2) {
+      inGame = 3;
+      startTime = millis();
+    } else if (inGame === 3) {
+      currentTime = millis() - startTime;
+      if (currentTime >= 500) {
+        // Text ready to appear
+        inGame = 4;
+      }
+    } else {
+      // Display text
+      push();
+      fill(20, 20, 20, fadeIn);
+      textFont(industryBold);
+      textSize(115);
+      text(`Welcome to`, width / 2, height / 2.75);
+      text(`Sword Art Online!`, width / 2, 2.75 * height / 5);
+      pop();
+    } // Display text for finalScene()
+  } // Display fade-in background
+} // finalScene()
 
 // Function to set up mouse clicks
 function mousePressed() {

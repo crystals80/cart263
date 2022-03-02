@@ -275,8 +275,6 @@ function verifyScene() {
   pop();
 } // Display verifyScene()
 
-let blink = 0;
-
 // Function to display Part 4 of SCENE 4
 function languageCheckScene() {
   background(255);
@@ -310,6 +308,7 @@ function languageCheckScene() {
 function inputUserDataScene() {
   background(255);
 
+  // Set up fade-in effect
   if (fadeIn < 0) {
     fadeAmount;
   }
@@ -370,18 +369,18 @@ function characterConfirmationScene() {
   rect(width / 2, 3 * height / 5, 300, 50);
   rect(-200 + width / 2, 3.7 * height / 5, 100, 50, 20);
   rect(200 + width / 2, 3.7 * height / 5, 100, 50, 20);
-  // Animate an automated login process with a customized timer (using Ready,Set,Go Method)
+  // Animate a blinking effect of a textbox with a customized timer (using Ready,Set,Go Method)
   if (confirmed === 0) {
     confirmed = 1;
     startTime = millis();
   } else if (confirmed === 1) {
     currentTime = millis() - startTime;
     if (currentTime >= 250) {
-      // Input user's password
+      // Make text box "YES" blink
       confirmed = 2;
     }
   } else {
-    // Display user's password
+    // Textbox "YES" is blinking
     if (blink % 10 === 0) {
       fill('#04ddeb');
       rect(-200 + width / 2, 3.7 * height / 5, 100, 50, 20);
@@ -389,7 +388,31 @@ function characterConfirmationScene() {
       fill(28, 168, 226);
       rect(-200 + width / 2, 3.7 * height / 5, 100, 50, 20);
     }
-  }
+
+
+    // Trigger next state (finalScene() aka SCENE 5) with a customized timer (using Ready,Set,Go Method)
+    // Part 6 of SCENE 4 is onscreen and ready to trigger SCENE 5 (READY)
+    if (nextScene === 0) {
+      nextScene = 1;
+      startTime = millis(); // Convert time to seconds
+    }
+    // Once Part 6 is onscreen, start countdown timer to trigger SCENE 5 (SET)
+    else if (nextScene === 1) {
+      currentTime = millis() - startTime;
+      // In 1.5 seconds, trigger SCENE 5 (GO)
+      if (currentTime >= 1500) {
+        // Sub-state is shifting to SCENE 5
+        nextScene = 2;
+      }
+    } else {
+      // SCENE 5 is triggered and displayed
+      state = `finalScene`; // finalScene()
+      startTime = millis();
+      currentTime = 0;
+    } // Transition to next state aka finalScene()
+  } // Display login area
+
+  // Display text
   fill(255);
   textFont(latoReg);
   textSize(40);
