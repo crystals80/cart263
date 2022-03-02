@@ -47,8 +47,8 @@ function substatesScene2() {
   // Once Part 1 is onscreen, start countdown timer to trigger Part 2 (SET)
   else if (isPluggedIn === 1) {
     currentTime = millis() - startTime;
-    // In 2 seconds, trigger Part 2 (GO)
-    if (currentTime >= 2000) {
+    // In 1 second, trigger Part 2 (GO)
+    if (currentTime >= 1000) {
       // Sub-state now includes Parts 1 & 2
       isPluggedIn = 2;
     }
@@ -63,7 +63,8 @@ function substatesScene2() {
       startTime = millis();
     } else if (isPluggedIn === 3) {
       currentTime = millis() - startTime;
-      if (currentTime >= 2000) {
+      // In 0.5 second, trigger Part 3
+      if (currentTime >= 500) {
         // Sub-state now displays a headgear (Nerve Gear)
         isPluggedIn = 4;
       }
@@ -77,7 +78,8 @@ function substatesScene2() {
         startTime = millis();
       } else if (isPluggedIn === 5) {
         currentTime = millis() - startTime;
-        if (currentTime >= 2000) {
+        // In 0.5 second, trigger Part 4a
+        if (currentTime >= 500) {
           // Sub-state includes Part 3 with Part 4a
           isPluggedIn = 6;
         }
@@ -91,7 +93,8 @@ function substatesScene2() {
           startTime = millis();
         } else if (isPluggedIn === 7) {
           currentTime = millis() - startTime;
-          if (currentTime >= 2000) {
+          // In around 5 milliseconds, trigger Part 4b
+          if (currentTime >= 70) {
             // Sub-state includes Part 4b with Parts 3-4a
             isPluggedIn = 8;
           }
@@ -108,8 +111,8 @@ function substatesScene2() {
           // Once Part 4 is onscreen, start countdown timer to trigger SCENE 3 (SET)
           else if (nextScene === 1) {
             currentTime = millis() - startTime;
-            // In 2 seconds, trigger SCENE 3 (GO)
-            if (currentTime >= 2000) {
+            // In 4.5 seconds, trigger SCENE 3 (GO)
+            if (currentTime >= 4500) {
               // Sub-state is shifting to SCENE 3
               nextScene = 2;
             }

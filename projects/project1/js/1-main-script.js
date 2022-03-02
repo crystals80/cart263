@@ -10,9 +10,10 @@ Note: whether I say program, simulation or animation, it refers to the (re)anima
 "use strict";
 
 // Global vars for any function
-let state = `characterConfirmationScene`; // Set up state variable for the simulation
-let nerveGearImg, innerNerveGearImg, deepDiveImg, imgWidth, imgHeight, senseCheckImg; // Images vars
+let state = `title`; // Set up state variable for the simulation
 let industryLight, industryBold, philosopher, latoReg; // Font vars
+let nerveGearImg, innerNerveGearImg, deepDiveImg, imgWidth, imgHeight, senseCheckImg; // Images vars
+let sceneAudio; // Audio var
 let angle = 0; // Set angle in degrees at 0 ()
 
 // Vars for customizable time-delay timers
@@ -30,6 +31,7 @@ let userData = {
 // Vars for time shown on clock (openingScene & waitingScene)
 let timer, counter;
 let seconds, minutes;
+let timerStarted = 0; // Transition var to display count-up timer
 
 // Set up time-delay vars for SCENE 2 (gearUpScene)
 let isPluggedIn = 0; // Sub-state var for parts 2-3-4 of SCENE 2
@@ -76,6 +78,7 @@ function preload() {
   deepDiveImg = loadImage('assets/images/deepdiving.png');
   senseCheckImg = loadImage('assets/images/sense-check-circle.png');
   // LOAD SOUNDS
+  sceneAudio = loadSound('assets/sounds/sao-scene-edit.mp3');
 }
 
 // Function to set up program
@@ -91,7 +94,7 @@ function setup() {
     userData.gender = data.gender;
   } else {
     // Ask user their username and password
-    userData.name = prompt(`What is your username? (1-10 characters)`);
+    userData.name = prompt(`[You have 30 seconds] What is your username? (1-10 characters)`);
     userData.password = prompt(`What is your password? (1-10 characters)`);
     userData.gender = prompt(`What is your gender? (M, F, X)`);
     localStorage.setItem(`web-storage-sao-reanimation`, JSON.stringify(userData));
@@ -115,8 +118,8 @@ function setup() {
   fadeIn = 0; // Set up var for an easing animation for text to appear
 
   rectMode(CENTER); // Center rect(s)
-  imageMode(CENTER); // Center image(s)
   textAlign(CENTER, CENTER); // Align text to the center horizontally and vertically
+  imageMode(CENTER); // Center image(s)
   angleMode(DEGREES); // Set rotation angle to degrees instead of radians
 }
 
@@ -133,8 +136,6 @@ function draw() {
     waitingScene(); // SCENE 3
   } else if (state === `linkStartScene`) {
     linkStartScene(); // SCENE 4
-  } else if (state === `characterConfirmationScene`) {
-    characterConfirmationScene(); // Part 6 of SCENE 4
   } else if (state === `finalScene`) {
     finalScene(); // SCENE 5
   }
@@ -163,6 +164,39 @@ function openingScene() {
   // Set background for digital clock's frame
   background(121, 123, 130); // Grey
 
+  // Trigger count-up timer with a customized timer (using Ready,Set,Go Method)
+  // SCENE 1 is onscreen and ready to trigger count-up timer (READY)
+  if (timerStarted === 0) {
+    timerStarted = 1;
+    startTime = millis(); // Convert time to seconds
+  }
+  // Once SCENE 1 is onscreen, start countdown timer to trigger count-up timer (SET)
+  else if (timerStarted === 1) {
+    currentTime = millis() - startTime;
+    // Trigger count-up timer immediately (GO)
+    if (currentTime >= 10) {
+      // Display count-up timer
+      timerStarted = 2;
+    }
+  } else {
+    // Count-up timer is triggered and displayed
+    digitalClockCountUp()
+  }
+
+  playAudio(); // Play audio
+}
+
+// Play audio for animation
+function playAudio() {
+  // If bubblySFX isn't playing then play and loop it over and over, and play/loop bgAudio1 on the same time
+  if (!sceneAudio.isPlaying() && state === `gearUpScene`) {
+    sceneAudio.play(); // Replay background music after it ends
+  }
+}
+
+// Function to set up a count-up timer to display the time of a clock
+function digitalClockCountUp() {
+
   // Display digital's clock background
   push();
   stroke(0);
@@ -177,18 +211,14 @@ function openingScene() {
   textSize(80);
   textAlign(RIGHT, CENTER);
   text(`2022/11/06 sun`, 10 + width / 2, 100);
-  digitalClockCountUp()
   pop();
-}
 
-// Function to set up a count-up timer to display the time of a clock
-function digitalClockCountUp() {
   // Convert time to seconds as an integer
   timer = int(millis() / 1000);
   // Set timer at 55 seconds
-  counter = timer + 55;
+  counter = timer + 30;
 
-  if (counter < 55) {
+  if (counter < 30) {
     // 1 counter = 1 second
     counter++;
   } else if (counter === 60) {
@@ -209,6 +239,7 @@ function digitalClockCountUp() {
   textFont(industryLight);
   fill(0);
   textSize(210);
+  textAlign(CENTER, CENTER);
   text(`12:5${minutes+5}:${numberString}`, width / 2, 2.3 * height / 4);
   pop();
 }
@@ -248,8 +279,8 @@ function waitingScene() {
     textSize(75);
     text(`12${blinkingSemiColon}59`, 160, 80);
     pop();
-    // Trigger timeOnHeadGear() after 5 seconds and...
-  } else if (currentTime <= 6000) {
+    // Trigger timeOnHeadGear() after 6.5 seconds and...
+  } else if (currentTime <= 6500) {
     timeOnHeadGear();
     // ...have the state remain at 13:00 for 1 second before triggering new state
   } else {
