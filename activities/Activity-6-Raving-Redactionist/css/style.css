@@ -10,20 +10,30 @@ Also hides overflow.
 **********************************************/
 body {
   margin: auto;
-  padding-top: 2rem;
+  padding: 2rem;
   display: grid;
   /* Set up the grid and justify/align to center */
-  justify-content: center;
-  align-content: center;
-  width: 50vw;
+  /* justify-content: center;
+  align-content: center; */
   /* Body is the height of the viewport */
   height: 100vh;
   /* Hide anything that goes off the window size */
   overflow: hidden;
-  /* Styling for activity */
-  font-family: Helvetica, sans-serif;
-  font-size: 2rem;
-  font-weight: bold;
+}
+
+#secret-doc {
+  font-family: monospace;
+  font-size: 1.25rem;
+  width: 75vw;
+  margin: auto;
+}
+
+.redacted {
+  background-color: black;
   user-select: none;
-  /* background-color: #ffff66; */
+}
+
+.revealed {
+  color: red;
+  text-decoration: underline;
 }
