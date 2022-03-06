@@ -77,13 +77,13 @@ setInterval(function() {
 // });
 
 // (13) Slide up text then Slide slideDown text
-// $(`#button`).on(`click`, function(event) {
-//   // Slide up the main heading over two seconds...
-//   $(`#main-heading`).slideUp(2000, function() {
-//     // .. then slide it back down over two seconds
-//     $(this).slideDown(2000);
-//   });
-// });
+$(`#button`).on(`click`, function(event) {
+  // Slide up the main heading over two seconds...
+  $(`#main-heading`).slideUp(2000, function() {
+    // .. then slide it back down over two seconds
+    $(this).slideDown(2000);
+  });
+});
 
 // (14) Slide text up/down using toggle (onclick)
 // $(`#button`).on(`click`, function(event) {
@@ -118,17 +118,17 @@ setInterval(function() {
 // });
 
 // (18) Add a notice "Animated!" after animation was done
-// $(`#button`).on(`click`, function(event) {
-//   $(`#main-heading`).animate({
-//     "opacity": 0.1,
-//     "height": `200px`,
-//   }, {
-//     duration: 2000,
-//     complete: function() {
-//       $(this).css(`ANIMATED!`);
-//     }
-//   });
-// });
+$(`#button`).on(`click`, function(event) {
+  $(`#main-heading`).animate({
+    "opacity": 0.1,
+    "height": `200px`,
+  }, {
+    duration: 2000,
+    complete: function() {
+      $(this).css(`ANIMATED!`);
+    }
+  });
+});
 
 // (19) Add an easing (and other features) transition to the animation
 // $(`#button`).on(`click`, function(event) {
@@ -144,11 +144,11 @@ setInterval(function() {
 // });
 
 // (20) Reverse each sentence of headers
-$(`.header`).each(function() {
-  // Get the reversed text of the current heading's text
-  let reverseText = $(this).text().split(``).reverse().join(``);
-  // Set the new reverse text
-  $(this).text(reverseText);
-});
+// $(`.header`).each(function() {
+//   // Get the reversed text of the current heading's text
+//   let reverseText = $(this).text().split(``).reverse().join(``);
+//   // Set the new reverse text
+//   $(this).text(reverseText);
+// });
 
 // (21) See more of jquery selectors on: https://api.jquery.com/category/selectors/
