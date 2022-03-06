@@ -1,0 +1,39 @@
+/*********************************************
+
+Here is a description of any special CSS used.
+In this case it's just padding and margin to 0
+and then centring the canvas (and anything else)
+using the CSS Grid.
+
+Also hides overflow.
+
+**********************************************/
+body {
+  margin: auto;
+  padding: 2rem;
+  display: grid;
+  /* Set up the grid and justify/align to center */
+  /* justify-content: center;
+  align-content: center; */
+  /* Body is the height of the viewport */
+  height: 100vh;
+  /* Hide anything that goes off the window size */
+  overflow: hidden;
+}
+
+#secret-doc {
+  font-family: monospace;
+  font-size: 1.25rem;
+  width: 75vw;
+  margin: auto;
+}
+
+.redacted {
+  background-color: black;
+  user-select: none;
+}
+
+.revealed {
+  color: red;
+  text-decoration: underline;
+}
