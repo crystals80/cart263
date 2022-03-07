@@ -1,6 +1,6 @@
 # Activity 3: A Spy on a Secret Mission
 
-This second exercise takes after its tutorial activity "Spy Profile Generator" and was enhanced to make it more fun. Inspired by the corpora project from Darius Kazemi (a wonderful creative programmer worth looking up) that contains all kinds of lists in easily accessible form, I want to offer more context to make it interactive.
+This third exercise takes after its tutorial activity "Spy Profile Generator" and was enhanced to make it more fun. Inspired by the corpora project from Darius Kazemi (a wonderful creative programmer worth looking up) that contains all kinds of lists in easily accessible form, I want to offer more context to make it interactive.
 
 [Take a look at the corpora project](https://github.com/dariusk/corpora) on Github.
 
