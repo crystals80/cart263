@@ -10,7 +10,7 @@ Generate a redacted text being revealed and user has to make it redacted
 // Redact text onclick
 $(`.top-secret`).on(`click`, redact);
 // Make redactions disappears after every half a second
-setInterval(revelation, 500);
+setInterval(revelation, 750);
 
 // Function to redact text
 function redact(event) {
