@@ -46,6 +46,11 @@ $(`.top-secret`).on(`click`, function(event) {
     $(`h2`).fadeOut(2000, function() {
       // .. then fade it back in over two seconds
       $(this).fadeIn(2000);
+      // Fade out the p over two seconds...
+      $(`p`).fadeOut(2000, function() {
+        // .. then fade them back in over two seconds
+        $(this).fadeIn(2000);
+      });
     });
   });
 });
