@@ -10,7 +10,7 @@ Also hides overflow.
 **********************************************/
 body {
   margin: auto;
-  padding: 2rem;
+  padding: .5rem;
   display: grid;
   /* Set up the grid and justify/align to center */
   /* justify-content: center;
@@ -19,21 +19,50 @@ body {
   height: 100vh;
   /* Hide anything that goes off the window size */
   overflow: hidden;
+  background-color: #afafaf;
 }
 
+/* CUSTOMIZE TEXT AREA FOR REDACTIONS */
 #secret-doc {
   font-family: monospace;
-  font-size: 1.25rem;
+  font-size: 1rem;
   width: 75vw;
   margin: auto;
+  color: #141414;
 }
 
 .redacted {
-  background-color: black;
+  background-color: #141414;
   user-select: none;
 }
 
 .revealed {
-  color: red;
+  color: #D23;
   text-decoration: underline;
+}
+
+/* CUSTOMIZE STAMP EFFECT FOR TITLES */
+.stamp {
+  /* position: absolute;
+  left: 50%;
+  top: 12%; */
+  font-family: 'Courier';
+  font-weight: 700;
+  font-size: 3rem;
+  color: #D23;
+  /* border-radius: 1rem; */
+  border: .75rem solid #D23;
+  display: inline-block;
+  padding: 0.25rem 1rem;
+  margin-bottom: 1rem;
+  -webkit-mask-position: 13rem 6rem;
+  -webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
+  /* transform: rotate(5deg); */
+  -webkit-mask-size: 944px 604px;
+  mix-blend-mode: multiply;
+}
+
+.recipe {
+  color: #6b3e37;
+  border: .5rem solid #6b3e37;
 }
