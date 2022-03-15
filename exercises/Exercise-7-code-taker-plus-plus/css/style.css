@@ -30,6 +30,10 @@ body {
   border: 1px dashed #141414;
 }
 
+#hint {
+  font-size: 1rem
+}
+
 .found {
   color: red;
 }

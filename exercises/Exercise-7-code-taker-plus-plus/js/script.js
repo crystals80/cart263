@@ -7,7 +7,7 @@ Create a poem by dragging the letters of another poem
 
 "use strict";
 
-const secretAnswer = `Theremin`
+const secretAnswer = `nothing`
 
 // (3) Have a dialog box appear as a pop-up message if all the letters are in the box (ending message)
 $(`#solved-dialog`).dialog({
