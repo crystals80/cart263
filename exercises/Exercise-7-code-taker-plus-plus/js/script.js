@@ -7,6 +7,8 @@ Create a poem by dragging the letters of another poem
 
 "use strict";
 
+const secretAnswer = `Theremin`
+
 // (3) Have a dialog box appear as a pop-up message if all the letters are in the box (ending message)
 $(`#solved-dialog`).dialog({
   // Hide dialog box till user succeeded the game
@@ -50,7 +52,7 @@ $(`#answer`).droppable({
     ui.draggable.removeClass(`found`);
 
     // Check if the letters are in the correct order
-    if ($(this).text() === `Theremin`) {
+    if ($(this).text() === secretAnswer) {
       // Open dialog box
       $(`#solved-dialog`).dialog(`open`);
     }
