@@ -9,11 +9,12 @@ Also hides overflow.
 
 **********************************************/
 body {
-  padding: 0 2em;
+  padding: 7rem;
   margin: 0;
   /* Set up the grid and justify/align to center */
-  /* justify-content: center;
-  align-content: center; */
+  display: flex;
+  justify-content: center;
+  align-content: center;
   height: 100vh;
   /* Body is the height of the viewport */
   overflow: hidden;
@@ -50,4 +51,9 @@ body {
   display: grid;
   justify-content: center;
   align-content: center;
+}
+
+.prisoner-dragging {
+  color: #4444ff;
+  text-decoration: underline;
 }
