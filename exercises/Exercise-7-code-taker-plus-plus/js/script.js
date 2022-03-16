@@ -59,6 +59,7 @@ $(`.complete-dialog`).dialog({
 // (1) Make a letter red when mouse hover over it ONCE
 $(`.secret`).one(`mouseover`, function(event) {
   $(this).addClass(`found`, 500);
+  $(this).css(`cursor`, `grab`)
   // Make the lette draggable
   $(this).draggable({
     // Clone the letter so that you can drag it while the poem is still intact and not broken
