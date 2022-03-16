@@ -1,5 +1,5 @@
 /**
-Exercise 7: Code Taker++
+Exercise 7: Riddle Expert
 Lam Ky Anh Do
 
 Create a poem by dragging the letters of another poem
