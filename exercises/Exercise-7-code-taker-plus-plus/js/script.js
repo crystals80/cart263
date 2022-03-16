@@ -11,19 +11,38 @@ const secretAnswer1 = `short`;
 const secretAnswer2 = `few`;
 const secretAnswer3 = `nothing`;
 
-// (3) Have a dialog box appear as a pop-up message if all the letters are in the box (ending message)
+// (4) Hide 2nd and 3rd riddles
+$(`.two, .three`).hide();
+
+// (3.1) Have a dialog box appear as a pop-up message if all the letters are in the box for the 1st riddle completed
 $(`.solved-dialog`).dialog({
   // Hide dialog box till user succeeded the game
   autoOpen: false,
   // Create button for dialog
   buttons: {
-    "I know.": function() {
+    "Yes!": function() {
       // Close dialog box
       $(this).dialog(`close`);
+      $(`.two`).show();
     }
   }
 });
 
+// (3.2) Make a dialog box appear for the 2nd riddle completed
+$(`.solved-again-dialog`).dialog({
+  // Hide dialog box till user succeeded the game
+  autoOpen: false,
+  // Create button for dialog
+  buttons: {
+    "Too easy~~": function() {
+      // Close dialog box
+      $(this).dialog(`close`);
+      $(`.three`).show();
+    }
+  }
+});
+
+// (3.3) Create a final dialog box appear for the 3rd riddle completed
 $(`.complete-dialog`).dialog({
   // Hide dialog box till user succeeded the game
   autoOpen: false,
@@ -32,18 +51,12 @@ $(`.complete-dialog`).dialog({
     "It was a piece of cake!": function() {
       // Close dialog box
       $(this).dialog(`close`);
-      // $(`body`).css(`background-color`, `black`)
+      $(`body`).css(`background-color`, `black`)
     }
   }
 });
 
-// (1.1) Make a letter red when mouse hover over it
-// $(`.secret`).on(`mouseover`, function(event) {
-//   // But the poem is broken as letters are missing
-//   $(this).addClass(`found`, 500);
-// });
-
-// (1.2) Make a letter red when mouse hover over it ONCE
+// (1) Make a letter red when mouse hover over it ONCE
 $(`.secret`).one(`mouseover`, function(event) {
   $(this).addClass(`found`, 500);
   // Make the lette draggable
@@ -74,7 +87,7 @@ $(`.answer`).droppable({
     // Check if the letters are in the correct order
     else if ($(this).text() === secretAnswer2) {
       // Open dialog box
-      $(`.solved-dialog`).dialog(`open`);
+      $(`.solved-again-dialog`).dialog(`open`);
     }
     // Check if the letters are in the correct order
     else if ($(this).text() === secretAnswer3) {
