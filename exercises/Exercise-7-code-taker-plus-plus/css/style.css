@@ -16,8 +16,19 @@ body {
   align-content: center; */
   /* Body is the height of the viewport */
   height: 100vh;
-  /* Hide anything that goes off the window size */
-  overflow: hidden;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .riddle {
