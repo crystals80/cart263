@@ -11,6 +11,40 @@ const secretAnswer1 = `short`;
 const secretAnswer2 = `few`;
 const secretAnswer3 = `nothing`;
 
+// (4) Hide all riddles
+$(`.one, .two, .three`).hide();
+
+// (5) Show a draggable advice dialog box
+$(`#advice`).dialog({
+  width: 600,
+  height: 150,
+  closeOnEscape: false,
+  open: function(event, ui) {
+    $(".ui-dialog-titlebar-close", ui.dialog || ui).hide();
+  }
+});
+
+// (7) Display a modal dialog box at the start of the simulation
+$(`#welcome`).dialog({
+  modal: true,
+  // Set a size for dialog box
+  width: 600,
+  height: 250,
+  // Create button for dialog
+  buttons: {
+    "Bring it on!": function() {
+      // Close dialog box
+      $(this).dialog(`close`);
+      $(`.one`).show();
+    },
+    "Not interested!": function() {
+      // Close dialog box
+      $(this).dialog(`close`);
+      $(`body`).css(`background-color`, `black`);
+    }
+  }
+});
+
 // (6) Set a randomized coloured background onclick
 let randomColour = function() {
   let r = Math.floor((Math.random() * 256));
@@ -24,9 +58,6 @@ $(document).ready(function(event) {
     $(this).css(`background`, randomColour());
   });
 });
-
-// (4) Hide 2nd and 3rd riddles
-$(`.two, .three`).hide();
 
 // (3.1) Have a dialog box appear as a pop-up message if all the letters are in the box for the 1st riddle completed
 $(`.solved-dialog`).dialog({
@@ -65,7 +96,6 @@ $(`.complete-dialog`).dialog({
     "It was a piece of cake!": function() {
       // Close dialog box
       $(this).dialog(`close`);
-      $(`body`).css(`background-color`, `black`)
     }
   }
 });
@@ -109,15 +139,5 @@ $(`.answer`).droppable({
       // Open dialog box for riddle 3
       $(`.complete-dialog`).dialog(`open`);
     }
-  }
-});
-
-// (5) Show a draggable advice dialog box
-$(`#advice`).dialog({
-  width: 600,
-  height: 150,
-  closeOnEscape: false,
-  open: function(event, ui) {
-    $(".ui-dialog-titlebar-close", ui.dialog || ui).hide();
   }
 });
