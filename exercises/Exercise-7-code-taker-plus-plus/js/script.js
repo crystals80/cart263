@@ -38,9 +38,8 @@ $(`#welcome`).dialog({
       $(`.one`).show();
     },
     "Not interested!": function() {
-      // Close dialog box
-      $(this).dialog(`close`);
-      $(`body`).css(`background-color`, `black`);
+      // MAke unclickable button for dialog box
+      $(this).dialog();
     }
   }
 });
