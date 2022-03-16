@@ -20,17 +20,20 @@ body {
   overflow: hidden;
 }
 
-#poem {
+.riddle {
   font-size: 1.2rem;
 }
 
-#answer {
+.answer {
   width: 10rem;
   height: 2rem;
   border: 1px dashed #141414;
+  display: grid;
+  justify-content: center;
+  align-content: center;
 }
 
-#hint {
+.hint {
   font-size: 1rem
 }
 

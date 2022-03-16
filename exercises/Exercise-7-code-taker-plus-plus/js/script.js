@@ -7,10 +7,10 @@ Create a poem by dragging the letters of another poem
 
 "use strict";
 
-const secretAnswer = `nothing`
+const secretAnswer1 = `nothing`
 
 // (3) Have a dialog box appear as a pop-up message if all the letters are in the box (ending message)
-$(`#solved-dialog`).dialog({
+$(`.solved-dialog`).dialog({
   // Hide dialog box till user succeeded the game
   autoOpen: false,
   // Create button for dialog
@@ -39,7 +39,7 @@ $(`.secret`).one(`mouseover`, function(event) {
 });
 
 // (2) Drop letters in the customizable poem box (elsewhere the letter will disappear as if going back to its original place)
-$(`#answer`).droppable({
+$(`.answer`).droppable({
   // Call drop function
   drop: function(event, ui) {
     // Create var for draggable letter
@@ -52,9 +52,9 @@ $(`#answer`).droppable({
     ui.draggable.removeClass(`found`);
 
     // Check if the letters are in the correct order
-    if ($(this).text() === secretAnswer) {
+    if ($(this).text() === secretAnswer1) {
       // Open dialog box
-      $(`#solved-dialog`).dialog(`open`);
+      $(`.solved-dialog`).dialog(`open`);
     }
   }
 });
