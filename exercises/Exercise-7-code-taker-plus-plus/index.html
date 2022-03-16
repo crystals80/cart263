@@ -16,22 +16,52 @@
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
   </head>
 
-  <body>
+  <body class="scrollbar">
     <!-- The poem, secret letters are in spans with class "secret" -->
-    <section class="riddle">
+    <section class="riddle one">
 
       <h1>Riddle #1</h1>
-      <p>What does ma<span class="secret">n</span> love more than life, hate m<span class="secret">o</span>re than death or mor<span class="secret">t</span>al strife; that which contented men desire; the poor <span class="secret">h</span>ave, the
-        rich require; the m<span class="secret">i</span>ser spends, the spendthrift saves, and all me<span class="secret">n</span> carry to their <span class="secret">g</span>raves?</p>
+      <p>What five-le<span class="secret">t</span>ter word becomes <span class="secret">s</span>horter w<span class="secret">h</span>en you add tw<span class="secret">o</span> lette<span class="secret">r</span>s to it?</p>
 
       <h3>The answer is</h3>
       <!-- The secret answer area-->
       <div class="answer"></div>
-      <p class="hint">Hint: Synonym of emptiness</p>
+      <p class="hint">Hint: Dwarf</p>
+
     </section>
 
-    <!-- The ending dialog -->
-    <div class="solved-dialog" title="¡Mission Accomplished!">
+    <section class="riddle two">
+
+      <h1>Riddle #2</h1>
+      <p>I am a word of letters three;<br>add two and <span class="secret">f</span>ewer ther<span class="secret">e</span> will be.<br>What <span class="secret">w</span>ord am I?</p>
+
+      <h3>The answer is</h3>
+      <!-- The secret answer area-->
+      <div class="answer"></div>
+      <p class="hint">Hint: Little</p>
+
+    </section>
+
+    <section class="riddle three">
+
+      <h1>Riddle #3</h1>
+      <p>What does ma<span class="secret">n</span> love more than life,<br>hate m<span class="secret">o</span>re than death or mor<span class="secret">t</span>al strife;<br>that which contented men desire;<br>the poor <span
+          class="secret">h</span>ave,
+        the rich require;<br>the m<span class="secret">i</span>ser spends, the spendthrift saves,<br>and all me<span class="secret">n</span> carry to their <span class="secret">g</span>raves?</p>
+
+      <h3>The answer is</h3>
+      <!-- The secret answer area-->
+      <div class="answer"></div>
+      <p class="hint">Hint: Emptiness</p>
+
+    </section>
+
+    <!-- The ending dialogs -->
+    <div class="solved-dialog" title="¡Good job!">
+      <p>Ready for the next one?</p>
+    </div>
+
+    <div class="complete-dialog" title="¡Mission Accomplished!">
       <p>You are soooooo smart!</p>
     </div>
 
