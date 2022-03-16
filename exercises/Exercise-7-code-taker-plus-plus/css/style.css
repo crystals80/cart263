@@ -48,6 +48,10 @@ body {
   font-size: 1rem
 }
 
+.ui-dialog-titlebar-close {
+  visibility: hidden;
+}
+
 .found {
   color: red;
 }

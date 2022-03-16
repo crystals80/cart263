@@ -80,20 +80,30 @@ $(`.answer`).droppable({
     // Stop highlighting the letter in red once it the box (also stop mouseover on poem)
     ui.draggable.removeClass(`found`);
 
-    // Check if the letters are in the correct order
+    // Check if the letters are in the correct order for riddle 1
     if ($(this).text() === secretAnswer1) {
-      // Open dialog box
+      // Open dialog box for riddle 1
       $(`.solved-dialog`).dialog(`open`);
     }
-    // Check if the letters are in the correct order
+    // Check if the letters are in the correct order for riddle 2
     else if ($(this).text() === secretAnswer2) {
-      // Open dialog box
+      // Open dialog box for riddle 2
       $(`.solved-again-dialog`).dialog(`open`);
     }
-    // Check if the letters are in the correct order
+    // Check if the letters are in the correct order for riddle 3
     else if ($(this).text() === secretAnswer3) {
-      // Open dialog box
+      // Open dialog box for riddle 3
       $(`.complete-dialog`).dialog(`open`);
     }
+  }
+});
+
+// (5) Show a draggable advice dialog box
+$(`#advice`).dialog({
+  width: 600,
+  height: 150,
+  closeOnEscape: false,
+  open: function(event, ui) {
+    $(".ui-dialog-titlebar-close", ui.dialog || ui).hide();
   }
 });
