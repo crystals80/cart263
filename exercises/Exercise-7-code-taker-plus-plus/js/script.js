@@ -11,6 +11,20 @@ const secretAnswer1 = `short`;
 const secretAnswer2 = `few`;
 const secretAnswer3 = `nothing`;
 
+// (6) Set a randomized coloured background onclick
+let randomColour = function() {
+  let r = Math.floor((Math.random() * 256));
+  let g = Math.floor((Math.random() * 256));
+  let b = Math.floor((Math.random() * 256));
+  return `#` + r + g + b;
+}
+
+$(document).ready(function(event) {
+  $(`body`).click(function(event) {
+    $(this).css(`background`, randomColour());
+  });
+});
+
 // (4) Hide 2nd and 3rd riddles
 $(`.two, .three`).hide();
 
