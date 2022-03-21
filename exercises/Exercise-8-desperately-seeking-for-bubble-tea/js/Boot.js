@@ -62,7 +62,7 @@ class Boot extends Phaser.Scene {
     this.add.text(75, 150, titleString, titleStyle);
     this.add.text(188, 275, introString, textStyle);
     this.add.text(180, 375, instructionString1, textStyle);
-    this.add.text(285, 500, instructionString2, instructionStyle);
+    this.add.text(281, 500, instructionString2, instructionStyle);
 
     // Switch boot scene to play scene
     this.switchToPlayScene();

@@ -20,7 +20,7 @@ let config = {
   },
   // Property specifying different game scenes
 
-  scene: [Boot, Play], // Call Play and Boot scenes
+  scene: [Boot, Play, Ending], // Call Play, Boot and Ending scenes
 };
 
 // Start the game giving it the configuration object
