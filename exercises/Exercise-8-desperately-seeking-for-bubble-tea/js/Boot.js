@@ -57,12 +57,22 @@ class Boot extends Phaser.Scene {
     let titleString = `Desperately Seeking for Bubble Tea!`;
     let introString = `It has been 8 hours since midnight that \n Mx. Emoji missed out of his bubble tea intake!`;
     let instructionString1 = `Help Mx. Emoji get their daily dose of bubble tea!`;
-    let instructionString2 = `Press any key to lend Mx. Emoji a hand`;
+    let instructionString2 = `Click anywhere to lend Mx. Emoji a hand`;
     // Display strings
     this.add.text(75, 150, titleString, titleStyle);
     this.add.text(188, 275, introString, textStyle);
     this.add.text(180, 375, instructionString1, textStyle);
     this.add.text(285, 500, instructionString2, instructionStyle);
+
+    // Switch boot scene to play scene
+    this.switchToPlayScene();
+  }
+
+  // Function allowing user to switch to next scene on mouseclick
+  switchToPlayScene() {
+    this.input.once(`pointerdown`, function(event) {
+      this.scene.start(`play`);
+    }, this);
   }
 
   update() {
