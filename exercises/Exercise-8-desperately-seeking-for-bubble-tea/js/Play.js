@@ -113,8 +113,8 @@ class Play extends Phaser.Scene {
     // Generate new position for bubble tea emoji once it is hit by hungry avatar
     Phaser.Actions.RandomRectangle([bubbleTea], this.physics.world.bounds);
 
-    // Add 5 points every time bubble tea is overlapped by hungry avatar emoji
-    this.score += 5;
+    // Add 10 points every time bubble tea is overlapped by hungry avatar emoji
+    this.score += 10;
     this.scoreText.setText(`Mx. Emoji Satisfied: ` + this.score);
   }
 
@@ -127,8 +127,8 @@ class Play extends Phaser.Scene {
     Phaser.Actions.RandomRectangle([taco], this.physics.world.bounds);
     Phaser.Actions.RandomRectangle([fries], this.physics.world.bounds);
 
-    // Add 1 point every time bubble tea is overlapped by hungry avatar emoji
-    this.score += 1;
+    // Add a range of 1 to 3 points every time bubble tea is overlapped by hungry avatar emoji
+    this.score += Math.floor(Math.random() * 3) + 1;
     this.scoreText.setText(`Mx. Emoji Satisfied: ` + this.score);
   }
 
