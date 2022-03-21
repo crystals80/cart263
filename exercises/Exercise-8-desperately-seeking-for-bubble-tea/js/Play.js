@@ -17,8 +17,26 @@ class Play extends Phaser.Scene {
     this.satisfiedFood();
     this.dislikedFood();
 
+    // Display score on top of simulation
+    this.score();
+
     // Allow user to use keyboard arrows to move hungry avatar emoji
     this.cursors = this.input.keyboard.createCursorKeys();
+  }
+
+  score() {
+    // Define score vars
+    this.score = 0;
+    // Style text strings
+    let textStyle = {
+      fontFamily: `sans-serif`,
+      fontSize: `16px`,
+      color: `#fff`,
+      backgroundColor: `rgba(255,255,255, 0.1)'`,
+      padding: 10,
+    };
+    // Create strings
+    this.scoreText = this.add.text(50, 50, `Mx. Emoji Satisfied: 0`, textStyle);
   }
 
   // Function storing THE satisfying food constructors
@@ -41,7 +59,7 @@ class Play extends Phaser.Scene {
     // Create random position for peach emoji
     Phaser.Actions.RandomRectangle([this.peach], this.physics.world.bounds);
     // Check overlap of hungry avatar emoji and peach emoji
-    this.physics.add.overlap(this.hungryAvatar, this.peach, this.satisfied, null, this);
+    this.physics.add.overlap(this.hungryAvatar, this.peach, this.happy, null, this);
     // Check collision of hungry avatar emoji and peach emoji
     this.physics.add.collider(this.hungryAvatar, this.peach);
 
@@ -52,7 +70,7 @@ class Play extends Phaser.Scene {
     // Create random position for strawberry emoji
     Phaser.Actions.RandomRectangle([this.strawberry], this.physics.world.bounds);
     // Check overlap of hungry avatar emoji and strawberry emoji
-    this.physics.add.overlap(this.hungryAvatar, this.strawberry, this.satisfied, null, this);
+    this.physics.add.overlap(this.hungryAvatar, this.strawberry, this.happy, null, this);
     // Check collision of hungry avatar emoji and strawberry emoji
     this.physics.add.collider(this.hungryAvatar, this.strawberry);
 
@@ -63,7 +81,7 @@ class Play extends Phaser.Scene {
     // Create random position for sushi emoji
     Phaser.Actions.RandomRectangle([this.sushi], this.physics.world.bounds);
     // Check overlap of hungry avatar emoji and sushi emoji
-    this.physics.add.overlap(this.hungryAvatar, this.sushi, this.satisfied, null, this);
+    this.physics.add.overlap(this.hungryAvatar, this.sushi, this.happy, null, this);
     // Check collision of hungry avatar emoji and sushi emoji
     this.physics.add.collider(this.hungryAvatar, this.sushi);
 
@@ -74,7 +92,7 @@ class Play extends Phaser.Scene {
     // Create random position for taco emoji
     Phaser.Actions.RandomRectangle([this.taco], this.physics.world.bounds);
     // Check overlap of hungry avatar emoji and taco emoji
-    this.physics.add.overlap(this.hungryAvatar, this.taco, this.satisfied, null, this);
+    this.physics.add.overlap(this.hungryAvatar, this.taco, this.happy, null, this);
     // Check collision of hungry avatar emoji and taco emoji
     this.physics.add.collider(this.hungryAvatar, this.taco);
 
@@ -85,21 +103,33 @@ class Play extends Phaser.Scene {
     // Create random position for fries emoji
     Phaser.Actions.RandomRectangle([this.fries], this.physics.world.bounds);
     // Check overlap of hungry avatar emoji and fries emoji
-    this.physics.add.overlap(this.hungryAvatar, this.fries, this.satisfied, null, this);
+    this.physics.add.overlap(this.hungryAvatar, this.fries, this.happy, null, this);
     // Check collision of hungry avatar emoji and fries emoji
     this.physics.add.collider(this.hungryAvatar, this.fries);
   }
 
   // Function to call new position of satisfying food emoji
-  satisfied(avatar, bubbleTea, peach, strawberry, sushi, taco, fries) {
+  satisfied(avatar, bubbleTea) {
     // Generate new position for bubble tea emoji once it is hit by hungry avatar
     Phaser.Actions.RandomRectangle([bubbleTea], this.physics.world.bounds);
-    // Same for the other satisfying food
+
+    // Add 5 points every time bubble tea is overlapped by hungry avatar emoji
+    this.score += 5;
+    this.scoreText.setText(`Mx. Emoji Satisfied: ` + this.score);
+  }
+
+  // Function to call new position of good food emojis
+  happy(avatar, peach, strawberry, sushi, taco, fries) {
+    // Generate new position for all good food emojis once it is hit by hungry avatar
     Phaser.Actions.RandomRectangle([peach], this.physics.world.bounds);
     Phaser.Actions.RandomRectangle([strawberry], this.physics.world.bounds);
     Phaser.Actions.RandomRectangle([sushi], this.physics.world.bounds);
     Phaser.Actions.RandomRectangle([taco], this.physics.world.bounds);
     Phaser.Actions.RandomRectangle([fries], this.physics.world.bounds);
+
+    // Add 1 point every time bubble tea is overlapped by hungry avatar emoji
+    this.score += 1;
+    this.scoreText.setText(`Mx. Emoji Satisfied: ` + this.score);
   }
 
   // Function storing disliked food constructors
