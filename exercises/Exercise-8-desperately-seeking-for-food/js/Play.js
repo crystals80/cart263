@@ -18,11 +18,11 @@ class Play extends Phaser.Scene {
     let x = Math.random() * this.sys.canvas.width;
     let y = Math.random() * this.sys.canvas.height;
     // Display thumbs-down emoji
-    this.sadness = this.physics.add.sprite(x, y, `thumbs-down`);
+    this.sadness = this.physics.add.sprite(x, y, `bubble-tea`);
 
     // Create agroup of thumbs-up emojis
     this.happiness = this.physics.add.group({
-      key: 'thumbs-up',
+      key: 'alcohol',
       quantity: 120,
       bounceX: 0.5,
       bounceY: 0.5,

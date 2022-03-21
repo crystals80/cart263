@@ -11,9 +11,9 @@ class Boot extends Phaser.Scene {
   // Function to load assets
   preload() {
     // Load image
-    this.load.image(`avatar`, `assets/images/neutral-face.png`);
-    this.load.image(`thumbs-down`, `assets/images/thumbs-down.png`);
-    this.load.image(`thumbs-up`, `assets/images/thumbs-up.png`);
+    this.load.image(`avatar`, `assets/images/dizzy-face.png`);
+    this.load.image(`bubble-tea`, `assets/images/bubble-tea.png`);
+    this.load.image(`alcohol`, `assets/images/cocktail.png`);
     // Once assets are loaded, launch play scene
     this.load.on(`complete`, () => {
       this.scene.start(`play`);

@@ -1,5 +1,5 @@
 /**
-Desperately Seeking Sadness
+Desperately Seeking for Bubble Tea
 Lam Ky Anh Do
 
 An emoji in search of satisfying sadness in a world of positivity (seeking for emotions in space)
