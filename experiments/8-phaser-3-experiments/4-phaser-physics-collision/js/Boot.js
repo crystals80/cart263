@@ -5,11 +5,11 @@ Lam Ky Anh Do
 Setting up class Boot for first scene of game (loading scene)
 */
 
-// (11) Create Play class
+// (11) Create Boot class
 class Boot extends Phaser.Scene {
-  // (12) Construct Play class
+  // (12) Construct Boot class
   constructor() {
-    // Key name of this scene is "play"
+    // Key name of this scene is "boot"
     super({
       key: `boot`,
     });
