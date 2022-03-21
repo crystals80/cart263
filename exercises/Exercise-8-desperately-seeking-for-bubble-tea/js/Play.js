@@ -14,15 +14,15 @@ class Play extends Phaser.Scene {
     // Set boundary to keep hungry avatar on canvas
     this.hungryAvatar.setCollideWorldBounds(true);
 
-    this.happyStomach();
-    this.agitatedStomach();
+    this.satisfiedFood();
+    this.dislikedFood();
 
     // Allow user to use keyboard arrows to move hungry avatar emoji
     this.cursors = this.input.keyboard.createCursorKeys();
   }
 
-  // Function storing THE satisfying food constructor
-  happyStomach() {
+  // Function storing THE satisfying food constructors
+  satisfiedFood() {
     // Display bubble tea emoji
     this.bubbleTea = this.physics.add.sprite(0, 0, `bubble-tea`);
     // Set boundary to keep hungry avatar on canvas
@@ -33,16 +33,77 @@ class Play extends Phaser.Scene {
     this.physics.add.overlap(this.hungryAvatar, this.bubbleTea, this.satisfied, null, this);
     // Check collision of hungry avatar emoji and bubble tea emoji
     this.physics.add.collider(this.hungryAvatar, this.bubbleTea);
+
+    // Display peach emoji
+    this.peach = this.physics.add.sprite(0, 0, `peach`);
+    // Set boundary to keep hungry avatar on canvas
+    this.peach.setCollideWorldBounds(true);
+    // Create random position for peach emoji
+    Phaser.Actions.RandomRectangle([this.peach], this.physics.world.bounds);
+    // Check overlap of hungry avatar emoji and peach emoji
+    this.physics.add.overlap(this.hungryAvatar, this.peach, this.satisfied, null, this);
+    // Check collision of hungry avatar emoji and peach emoji
+    this.physics.add.collider(this.hungryAvatar, this.peach);
+
+    // Display strawberry emoji
+    this.strawberry = this.physics.add.sprite(0, 0, `strawberry`);
+    // Set boundary to keep hungry avatar on canvas
+    this.strawberry.setCollideWorldBounds(true);
+    // Create random position for strawberry emoji
+    Phaser.Actions.RandomRectangle([this.strawberry], this.physics.world.bounds);
+    // Check overlap of hungry avatar emoji and strawberry emoji
+    this.physics.add.overlap(this.hungryAvatar, this.strawberry, this.satisfied, null, this);
+    // Check collision of hungry avatar emoji and strawberry emoji
+    this.physics.add.collider(this.hungryAvatar, this.strawberry);
+
+    // Display sushi emoji
+    this.sushi = this.physics.add.sprite(0, 0, `sushi`);
+    // Set boundary to keep hungry avatar on canvas
+    this.sushi.setCollideWorldBounds(true);
+    // Create random position for sushi emoji
+    Phaser.Actions.RandomRectangle([this.sushi], this.physics.world.bounds);
+    // Check overlap of hungry avatar emoji and sushi emoji
+    this.physics.add.overlap(this.hungryAvatar, this.sushi, this.satisfied, null, this);
+    // Check collision of hungry avatar emoji and sushi emoji
+    this.physics.add.collider(this.hungryAvatar, this.sushi);
+
+    // Display taco emoji
+    this.taco = this.physics.add.sprite(0, 0, `taco`);
+    // Set boundary to keep hungry avatar on canvas
+    this.taco.setCollideWorldBounds(true);
+    // Create random position for taco emoji
+    Phaser.Actions.RandomRectangle([this.taco], this.physics.world.bounds);
+    // Check overlap of hungry avatar emoji and taco emoji
+    this.physics.add.overlap(this.hungryAvatar, this.taco, this.satisfied, null, this);
+    // Check collision of hungry avatar emoji and taco emoji
+    this.physics.add.collider(this.hungryAvatar, this.taco);
+
+    // Display fries emoji
+    this.fries = this.physics.add.sprite(0, 0, `fries`);
+    // Set boundary to keep hungry avatar on canvas
+    this.fries.setCollideWorldBounds(true);
+    // Create random position for fries emoji
+    Phaser.Actions.RandomRectangle([this.fries], this.physics.world.bounds);
+    // Check overlap of hungry avatar emoji and fries emoji
+    this.physics.add.overlap(this.hungryAvatar, this.fries, this.satisfied, null, this);
+    // Check collision of hungry avatar emoji and fries emoji
+    this.physics.add.collider(this.hungryAvatar, this.fries);
   }
 
-  // Function to call new position of bubble tea emoji
-  satisfied(avatar, bubbleTea) {
+  // Function to call new position of satisfying food emoji
+  satisfied(avatar, bubbleTea, peach, strawberry, sushi, taco, fries) {
     // Generate new position for bubble tea emoji once it is hit by hungry avatar
     Phaser.Actions.RandomRectangle([bubbleTea], this.physics.world.bounds);
+    // Same for the other satisfying food
+    Phaser.Actions.RandomRectangle([peach], this.physics.world.bounds);
+    Phaser.Actions.RandomRectangle([strawberry], this.physics.world.bounds);
+    Phaser.Actions.RandomRectangle([sushi], this.physics.world.bounds);
+    Phaser.Actions.RandomRectangle([taco], this.physics.world.bounds);
+    Phaser.Actions.RandomRectangle([fries], this.physics.world.bounds);
   }
 
   // Function storing disliked food constructors
-  agitatedStomach() {
+  dislikedFood() {
     // Create a group of cocktail emojis
     this.alcohol = this.physics.add.group({
       key: 'alcohol',
@@ -76,7 +137,7 @@ class Play extends Phaser.Scene {
       dragY: 50,
     });
 
-    // this.dislikedFood = [this.alcohol, this.eggplant, this.onion];
+    // this.dislikedFoodGroup = [this.alcohol, this.eggplant, this.onion];
 
     // Generate alcohol emojis (this.alcohol.getChildren()) at random position within the canvas (this.physics.world.bounds)
     Phaser.Actions.RandomRectangle(this.alcohol.getChildren(), this.physics.world.bounds);
