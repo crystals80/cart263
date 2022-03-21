@@ -15,7 +15,7 @@ class Play extends Phaser.Scene {
     this.avatar.setCollideWorldBounds(true);
 
     // Display bubble tea emoji
-    this.bubbleTea = this.physics.add.sprite(x, y, `bubble-tea`);
+    this.bubbleTea = this.physics.add.sprite(0, 0, `bubble-tea`);
     // Create random position for bubble tea emoji
     Phaser.Actions.RandomRectangle([this.bubbleTea], this.physics.world.bounds);
 
@@ -53,6 +53,10 @@ class Play extends Phaser.Scene {
   }
 
   update() {
+    this.handleInput();
+  }
+
+  handleInput() {
     // Set up cursors movement
     if (this.cursors.left.isDown) {
       // If either left or right is pressed, rotate appropriately
@@ -75,5 +79,4 @@ class Play extends Phaser.Scene {
       this.avatar.setAcceleration(0);
     }
   }
-
 }
