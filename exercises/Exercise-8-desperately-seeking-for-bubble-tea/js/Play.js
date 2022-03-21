@@ -9,18 +9,42 @@ class Play extends Phaser.Scene {
   }
 
   create() {
-    // Create neutral-face emoji
+    // Create avatar emoji
     this.avatar = this.physics.add.sprite(400, 300, `avatar`);
     // Set boundary to keep avatar on canvas
     this.avatar.setCollideWorldBounds(true);
 
+    this.happyStomach();
+    this.agitatedStomach();
+
+    // Allow user to use keyboard arrows to move avatar emoji
+    this.cursors = this.input.keyboard.createCursorKeys();
+  }
+
+  // Function storing THE satisfying food constructor
+  happyStomach() {
     // Display bubble tea emoji
     this.bubbleTea = this.physics.add.sprite(0, 0, `bubble-tea`);
+    // Set boundary to keep avatar on canvas
+    this.bubbleTea.setCollideWorldBounds(true);
     // Create random position for bubble tea emoji
     Phaser.Actions.RandomRectangle([this.bubbleTea], this.physics.world.bounds);
+    // Check overlap of avatar emoji and bubble tea emoji
+    this.physics.add.overlap(this.avatar, this.bubbleTea, this.satisfied, null, this);
+    // Check collision of avatar emoji and bubble tea emoji
+    this.physics.add.collider(this.avatar, this.bubbleTea);
+  }
 
-    // Create agroup of thumbs-up emojis
-    this.disgusted = this.physics.add.group({
+  // Function to call new position of bubble tea emoji
+  satisfied(avatar, bubbleTea) {
+    // Generate new position for bubble tea emoji once it is hit by avatar
+    Phaser.Actions.RandomRectangle([bubbleTea], this.physics.world.bounds);
+  }
+
+  // Function storing disliked food constructors
+  agitatedStomach() {
+    // Create a group of cocktail emojis
+    this.alcohol = this.physics.add.group({
       key: 'alcohol',
       quantity: 20,
       bounceX: 0.5,
@@ -30,32 +54,19 @@ class Play extends Phaser.Scene {
       dragY: 50,
     });
 
-    // Generate thumbs-up emojis (this.happiness.getChildren()) at random position within the canvas (this.physics.world.bounds)
-    Phaser.Actions.RandomRectangle(this.disgusted.getChildren(), this.physics.world.bounds);
-
-    // Check overlap of neutral-face emoji and thumbs-down emoji
-    this.physics.add.overlap(this.avatar, this.bubbleTea, this.happyStomach, null, this);
-    // Check collision of neutral-face emoji and thumbs-down emoji
-    this.physics.add.collider(this.avatar, this.bubbleTea);
-    // Check collision of neutral-face emoji and group of thumbs-up emojis
-    this.physics.add.collider(this.avatar, this.disgusted);
-    // Check collision of between each thumb-up emoji
-    this.physics.add.collider(this.disgusted, this.disgusted);
-
-    // Allow user to use keyboard arrows to move neutral-face emoji
-    this.cursors = this.input.keyboard.createCursorKeys();
-  }
-
-  // Function to call new position of thumbs-down emoji
-  happyStomach(avatar, bubbleTea) {
-    // Generate new position for bubble tea emoji once it is hit by avatar
-    Phaser.Actions.RandomRectangle([bubbleTea], this.physics.world.bounds);
+    // Generate alcohol emojis (this.alcohol.getChildren()) at random position within the canvas (this.physics.world.bounds)
+    Phaser.Actions.RandomRectangle(this.alcohol.getChildren(), this.physics.world.bounds);
+    // Check collision between avatar emoji and group of cocktail emojis
+    this.physics.add.collider(this.avatar, this.alcohol);
+    // Check collision between each cocktail emoji
+    this.physics.add.collider(this.alcohol, this.alcohol);
   }
 
   update() {
     this.handleInput();
   }
 
+  // Function storing avatar control using arrow keys
   handleInput() {
     // Set up cursors movement
     if (this.cursors.left.isDown) {
