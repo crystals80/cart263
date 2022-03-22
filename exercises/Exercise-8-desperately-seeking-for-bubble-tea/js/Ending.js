@@ -40,13 +40,16 @@ class Ending extends Phaser.Scene {
     this.add.text(278, 500, instructionString, instructionStyle);
 
     // Switch boot scene to play scene
-    this.switchToBootScene();
+    this.restartGame();
   }
 
+  update() {}
+
   // Function allowing user to switch to next scene on mouseclick
-  switchToBootScene() {
+  restartGame() {
     this.input.once(`pointerdown`, function(event) {
       this.scene.start(`boot`);
+      console.log(this.scene);
     }, this);
   }
 }

@@ -17,15 +17,15 @@ class Play extends Phaser.Scene {
     this.satisfiedFood();
     this.dislikedFood();
 
-    // Display score on top of simulation
-    this.score();
+    // Display score counter on top of simulation
+    this.scoreUpdate();
 
     // Allow user to use keyboard arrows to move hungry avatar emoji
     this.cursors = this.input.keyboard.createCursorKeys();
   }
 
-  score() {
-    // Define score vars
+  scoreUpdate() {
+    // Set score counter at 0
     this.score = 0;
     // Style text strings
     let textStyle = {
@@ -53,59 +53,29 @@ class Play extends Phaser.Scene {
     this.physics.add.collider(this.hungryAvatar, this.bubbleTea);
 
     // Display peach emoji
-    this.peach = this.physics.add.sprite(0, 0, `peach`);
-    // Set boundary to keep hungry avatar on canvas
-    this.peach.setCollideWorldBounds(true);
-    // Create random position for peach emoji
-    Phaser.Actions.RandomRectangle([this.peach], this.physics.world.bounds);
-    // Check overlap of hungry avatar emoji and peach emoji
-    this.physics.add.overlap(this.hungryAvatar, this.peach, this.happy, null, this);
-    // Check collision of hungry avatar emoji and peach emoji
-    this.physics.add.collider(this.hungryAvatar, this.peach);
-
+    this.handleFood(this.peach, `peach`);
     // Display strawberry emoji
-    this.strawberry = this.physics.add.sprite(0, 0, `strawberry`);
-    // Set boundary to keep hungry avatar on canvas
-    this.strawberry.setCollideWorldBounds(true);
-    // Create random position for strawberry emoji
-    Phaser.Actions.RandomRectangle([this.strawberry], this.physics.world.bounds);
-    // Check overlap of hungry avatar emoji and strawberry emoji
-    this.physics.add.overlap(this.hungryAvatar, this.strawberry, this.happy, null, this);
-    // Check collision of hungry avatar emoji and strawberry emoji
-    this.physics.add.collider(this.hungryAvatar, this.strawberry);
-
+    this.handleFood(this.strawberry, `strawberry`);
     // Display sushi emoji
-    this.sushi = this.physics.add.sprite(0, 0, `sushi`);
-    // Set boundary to keep hungry avatar on canvas
-    this.sushi.setCollideWorldBounds(true);
-    // Create random position for sushi emoji
-    Phaser.Actions.RandomRectangle([this.sushi], this.physics.world.bounds);
-    // Check overlap of hungry avatar emoji and sushi emoji
-    this.physics.add.overlap(this.hungryAvatar, this.sushi, this.happy, null, this);
-    // Check collision of hungry avatar emoji and sushi emoji
-    this.physics.add.collider(this.hungryAvatar, this.sushi);
-
+    this.handleFood(this.sushi, `sushi`);
     // Display taco emoji
-    this.taco = this.physics.add.sprite(0, 0, `taco`);
-    // Set boundary to keep hungry avatar on canvas
-    this.taco.setCollideWorldBounds(true);
-    // Create random position for taco emoji
-    Phaser.Actions.RandomRectangle([this.taco], this.physics.world.bounds);
-    // Check overlap of hungry avatar emoji and taco emoji
-    this.physics.add.overlap(this.hungryAvatar, this.taco, this.happy, null, this);
-    // Check collision of hungry avatar emoji and taco emoji
-    this.physics.add.collider(this.hungryAvatar, this.taco);
-
+    this.handleFood(this.taco, `taco`);
     // Display fries emoji
-    this.fries = this.physics.add.sprite(0, 0, `fries`);
+    this.handleFood(this.fries, `fries`);
+  }
+
+  // Function to storing food constructors, which avoid repetition
+  handleFood(foodName, imageKey) {
+    // Display fries emoji
+    foodName = this.physics.add.sprite(0, 0, imageKey);
     // Set boundary to keep hungry avatar on canvas
-    this.fries.setCollideWorldBounds(true);
+    foodName.setCollideWorldBounds(true);
     // Create random position for fries emoji
-    Phaser.Actions.RandomRectangle([this.fries], this.physics.world.bounds);
+    Phaser.Actions.RandomRectangle([foodName], this.physics.world.bounds);
     // Check overlap of hungry avatar emoji and fries emoji
-    this.physics.add.overlap(this.hungryAvatar, this.fries, this.happy, null, this);
+    this.physics.add.overlap(this.hungryAvatar, foodName, this.happy, null, this);
     // Check collision of hungry avatar emoji and fries emoji
-    this.physics.add.collider(this.hungryAvatar, this.fries);
+    this.physics.add.collider(this.hungryAvatar, foodName);
   }
 
   // Function to call new position of satisfying food emoji
@@ -115,6 +85,7 @@ class Play extends Phaser.Scene {
 
     // Add 10 points every time bubble tea is overlapped by hungry avatar emoji
     this.score += 10;
+    console.log(this.score);
     this.scoreText.setText(`Mx. Emoji Satisfied: ` + this.score);
   }
 
@@ -129,6 +100,7 @@ class Play extends Phaser.Scene {
 
     // Add a range of 1 to 3 points every time bubble tea is overlapped by hungry avatar emoji
     this.score += Math.floor(Math.random() * 3) + 1;
+    console.log(this.score);
     this.scoreText.setText(`Mx. Emoji Satisfied: ` + this.score);
   }
 
@@ -186,7 +158,10 @@ class Play extends Phaser.Scene {
   }
 
   update() {
+    // Run handleInput on every frame
     this.handleInput();
+    // Switch play scene to ending scene
+    this.switchToEndingScene();
   }
 
   // Function storing avatar control using arrow keys
@@ -211,6 +186,15 @@ class Play extends Phaser.Scene {
     // Otherwise, zero the acceleration
     else {
       this.hungryAvatar.setAcceleration(0);
+    }
+  }
+
+  // Function allowing user to the next scene once score 100 is achieved
+  switchToEndingScene() {
+    // Switch to ending scene
+    if (this.score >= 10) {
+      this.scene.start(`ending`);
+      console.log(this.scene);
     }
   }
 }

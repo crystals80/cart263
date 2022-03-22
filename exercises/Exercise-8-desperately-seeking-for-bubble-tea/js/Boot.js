@@ -28,6 +28,7 @@ class Boot extends Phaser.Scene {
     // Once assets are loaded, launch play scene
     this.load.on(`complete`, () => {
       this.scene.start(`boot`);
+      console.log(this.scene);
     });
   }
 
