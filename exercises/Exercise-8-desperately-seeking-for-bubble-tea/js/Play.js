@@ -193,7 +193,7 @@ class Play extends Phaser.Scene {
   // Function allowing user to the next scene once score 100 is achieved
   switchToEndingScene() {
     // Switch to ending scene
-    if (this.score >= 10) {
+    if (this.score >= 50) {
       this.scene.start(`ending`);
       console.log(this.scene);
     }
