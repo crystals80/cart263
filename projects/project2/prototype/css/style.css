@@ -13,10 +13,10 @@ body {
   display: grid;
   /* Set up the grid and justify/align to center */
   justify-content: center;
-  align-content: center;
+  align-content: flex-start;
   /* Body is the height of the viewport */
   height: 100vh;
   /* Hide anything that goes off the window size */
   overflow: hidden;
-  /* background-color: #afafaf; */
+  background-color: #202020;
 }
