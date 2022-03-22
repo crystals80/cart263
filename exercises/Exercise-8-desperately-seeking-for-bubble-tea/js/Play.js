@@ -39,24 +39,24 @@ class Play extends Phaser.Scene {
     this.scoreText = this.add.text(50, 50, `Mx. Emoji Satisfied: 0`, textStyle);
   }
 
-  // Function storing THE satisfying food constructors
+  // Function displaying THE satisfying food
   satisfiedFood() {
     // Display bubble tea emoji
-    this.handleFood(this.bubbleTea, `bubbleTea`);
+    this.handleSatisfyingFood(this.bubbleTea, `bubbleTea`);
     // Display peach emoji
-    this.handleFood(this.peach, `peach`);
+    this.handleSatisfyingFood(this.peach, `peach`);
     // Display strawberry emoji
-    this.handleFood(this.strawberry, `strawberry`);
+    this.handleSatisfyingFood(this.strawberry, `strawberry`);
     // Display sushi emoji
-    this.handleFood(this.sushi, `sushi`);
+    this.handleSatisfyingFood(this.sushi, `sushi`);
     // Display taco emoji
-    this.handleFood(this.taco, `taco`);
+    this.handleSatisfyingFood(this.taco, `taco`);
     // Display fries emoji
-    this.handleFood(this.fries, `fries`);
+    this.handleSatisfyingFood(this.fries, `fries`);
   }
 
   // Function to storing food constructors, which avoid repetition
-  handleFood(foodName, imageKey) {
+  handleSatisfyingFood(foodName, imageKey) {
     // Display fries emoji
     foodName = this.physics.add.sprite(0, 0, imageKey);
     // Set boundary to keep hungry avatar on canvas
@@ -95,7 +95,7 @@ class Play extends Phaser.Scene {
     this.scoreText.setText(`Mx. Emoji Satisfied: ` + this.score);
   }
 
-  // Function storing disliked food constructors
+  // Function displaying the disliked food
   dislikedFood() {
     // Create a group of cocktail emojis
     this.alcohol = this.physics.add.group({
@@ -130,20 +130,22 @@ class Play extends Phaser.Scene {
       dragY: 50,
     });
 
-    // Generate alcohol emojis (this.alcohol.getChildren()) at random position within the canvas (this.physics.world.bounds)
-    Phaser.Actions.RandomRectangle(this.alcohol.getChildren(), this.physics.world.bounds);
-    // Check collision between hungry avatar emoji and group of cocktail emojis
-    this.physics.add.collider(this.hungryAvatar, this.alcohol);
-    // Check collision between each cocktail emoji
-    this.physics.add.collider(this.alcohol, this.alcohol);
+    // Display alcohol emoji
+    this.handleDislikedFood(this.alcohol);
+    // Display eggplant emoji
+    this.handleDislikedFood(this.eggplant);
+    // Display onion emoji
+    this.handleDislikedFood(this.onion);
+  }
 
-    // Same for eggplant and onion
-    Phaser.Actions.RandomRectangle(this.eggplant.getChildren(), this.physics.world.bounds);
-    this.physics.add.collider(this.hungryAvatar, this.eggplant);
-    this.physics.add.collider(this.eggplant, this.eggplant);
-    Phaser.Actions.RandomRectangle(this.onion.getChildren(), this.physics.world.bounds);
-    this.physics.add.collider(this.hungryAvatar, this.onion);
-    this.physics.add.collider(this.onion, this.onion);
+  // Function storing disliked food constructors
+  handleDislikedFood(foodName) {
+    // Generate alcohol emojis (this.alcohol.getChildren()) at random position within the canvas (this.physics.world.bounds)
+    Phaser.Actions.RandomRectangle(foodName.getChildren(), this.physics.world.bounds);
+    // Check collision between hungry avatar emoji and group of cocktail emojis
+    this.physics.add.collider(this.hungryAvatar, foodName);
+    // Check collision between each cocktail emoji
+    this.physics.add.collider(foodName, foodName);
   }
 
   update() {
