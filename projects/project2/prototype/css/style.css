@@ -1,0 +1,22 @@
+/*********************************************
+
+Here is a description of any special CSS used.
+In this case it's just padding and margin to 0
+and then centring the canvas (and anything else)
+using the CSS Grid.
+
+Also hides overflow.
+
+**********************************************/
+body {
+  margin: auto;
+  display: grid;
+  /* Set up the grid and justify/align to center */
+  justify-content: center;
+  align-content: center;
+  /* Body is the height of the viewport */
+  height: 100vh;
+  /* Hide anything that goes off the window size */
+  overflow: hidden;
+  /* background-color: #afafaf; */
+}
