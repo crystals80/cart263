@@ -14,7 +14,7 @@ class Boot extends Phaser.Scene {
     this.load.image(`hungry-avatar`, `assets/images/dizzy-face.png`);
     this.load.image(`satisfied-avatar`, `assets/images/relieved-face.png`);
     // Load THE satisfying food images
-    this.load.image(`bubble-tea`, `assets/images/bubble-tea.png`);
+    this.load.image(`bubbleTea`, `assets/images/bubble-tea.png`);
     // Load the good food images
     this.load.image(`peach`, `assets/images/peach.png`);
     this.load.image(`strawberry`, `assets/images/strawberry.png`);

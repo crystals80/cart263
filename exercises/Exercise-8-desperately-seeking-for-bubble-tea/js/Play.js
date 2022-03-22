@@ -42,16 +42,7 @@ class Play extends Phaser.Scene {
   // Function storing THE satisfying food constructors
   satisfiedFood() {
     // Display bubble tea emoji
-    this.bubbleTea = this.physics.add.sprite(0, 0, `bubble-tea`);
-    // Set boundary to keep hungry avatar on canvas
-    this.bubbleTea.setCollideWorldBounds(true);
-    // Create random position for bubble tea emoji
-    Phaser.Actions.RandomRectangle([this.bubbleTea], this.physics.world.bounds);
-    // Check overlap of hungry avatar emoji and bubble tea emoji
-    this.physics.add.overlap(this.hungryAvatar, this.bubbleTea, this.satisfied, null, this);
-    // Check collision of hungry avatar emoji and bubble tea emoji
-    this.physics.add.collider(this.hungryAvatar, this.bubbleTea);
-
+    this.handleFood(this.bubbleTea, `bubbleTea`);
     // Display peach emoji
     this.handleFood(this.peach, `peach`);
     // Display strawberry emoji
@@ -138,8 +129,6 @@ class Play extends Phaser.Scene {
       dragX: 50,
       dragY: 50,
     });
-
-    // this.dislikedFoodGroup = [this.alcohol, this.eggplant, this.onion];
 
     // Generate alcohol emojis (this.alcohol.getChildren()) at random position within the canvas (this.physics.world.bounds)
     Phaser.Actions.RandomRectangle(this.alcohol.getChildren(), this.physics.world.bounds);
