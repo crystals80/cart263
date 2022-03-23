@@ -118,3 +118,20 @@ function enkanomiya() {
   text(`ENKANOMIYA`, width / 2, height / 2);
   pop();
 }
+
+// Function storing keyboard inputs
+function keyPressed() {
+  if (keyCode === 77) {
+    state = `mondstadt`
+  } else if (keyCode === 76) {
+    state = `liyue`
+  } else if (keyCode === 73) {
+    state = `inazuma`
+  } else if (keyCode === 83) {
+    state = `sereniteaPot`
+  } else if (keyCode === 67) {
+    state = `celestia`
+  } else if (keyCode === 69) {
+    state = `enkanomiya`
+  }
+}
