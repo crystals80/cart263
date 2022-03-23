@@ -9,7 +9,10 @@ Note: I will attempt making the puzzle understandable for non- Genshin Impact pl
 
 "use strict";
 
-let state = `lobby`; // Declare state(s) var
+let state = `mondstadt`; // Declare state(s) var
+
+// Declare areas-related and directions-related vars
+let currentArea = 0; // Set the area the player is facing
 
 // Declare fonts vars
 let extraBold;
@@ -31,18 +34,18 @@ function draw() {
     title();
   } else if (state === `welcomeMsg`) {
     welcomeMsg();
-  } else if (state === `lobby`) {
-    lobby();
-  } else if (state === `gamingArea`) {
-    gamingArea();
-  } else if (state === `changingArea`) {
-    changingArea();
-  } else if (state === `restingArea`) {
-    restingArea();
-  } else if (state === `ceiling`) {
-    ceiling();
-  } else if (state === `floor`) {
-    floor();
+  } else if (state === `mondstadt`) {
+    mondstadt();
+  } else if (state === `liyue`) {
+    liyue();
+  } else if (state === `inazuma`) {
+    inazuma();
+  } else if (state === `sereniteaPot`) {
+    sereniteaPot();
+  } else if (state === `celestia`) {
+    celestia();
+  } else if (state === `enkanomiya`) {
+    enkanomiya();
   } else if (state === `ending`) {
     ending();
   }
@@ -57,61 +60,61 @@ function textStyling() {
 }
 
 // Function displaying the lobby of the escape room
-function lobby() {
-  background(`#30c990`);
+function mondstadt() {
+  background(`#1bfec5`);
 
   push();
   textStyling();
-  text(`LOBBY`, width / 2, height / 2);
+  text(`MONDSTADT`, width / 2, height / 2);
   pop();
 }
 
 // Function displaying the gaming area of the escape room
-function gamingArea() {
-  background(`#fd2663`);
+function liyue() {
+  background(`#ffc800`);
 
   push();
   textStyling();
-  text(`GAMING AREA`, width / 2, height / 2);
+  text(`LIYUE`, width / 2, height / 2);
   pop();
 }
 
 // Function displaying the changing area of the escape room
-function changingArea() {
+function inazuma() {
   background(`#8203a1`);
 
   push();
   textStyling();
-  text(`CHANGING AREA`, width / 2, height / 2);
+  text(`INAZUMA`, width / 2, height / 2);
   pop();
 }
 
 // Function displaying the resting area of the escape room
-function restingArea() {
-  background(`#1d2563`);
+function sereniteaPot() {
+  background(`#ffa95e`);
 
   push();
   textStyling();
-  text(`RESTING AREA`, width / 2, height / 2);
+  text(`SERENITEA POT`, width / 2, height / 2);
   pop();
 }
 
 // Function displaying the ceiling of the escape room
-function ceiling() {
-  background(`#b8e12b`);
+function celestia() {
+  background(`#98f2fa`);
 
   push();
   textStyling();
-  text(`CEILING`, width / 2, height / 2);
+  text(`CELESTIA`, width / 2, height / 2);
   pop();
 }
 
 // Function displaying the floor of the escape room
-function floor() {
-  background(`#131635`);
+function enkanomiya() {
+  background(`#1d2563`);
 
   push();
   textStyling();
-  text(`FLOOR`, width / 2, height / 2);
+  text(`ENKANOMIYA`, width / 2, height / 2);
   pop();
 }
