@@ -14,17 +14,19 @@ let state = `lobby`; // Declare state(s) var
 // Declare fonts vars
 let extraBold;
 
+// Function loading fonts, images and sounds
 function preload() {
   extraBold = loadFont(`assets/fonts/Montserrat-ExtraBold.ttf`);
 }
 
+// Function configurating the simulation
 function setup() {
   createCanvas(1200, 600);
 }
 
+// Function running the simulation
 function draw() {
-  background(255);
-
+  // Set states as scenes for simulation
   if (state === `title`) {
     title();
   } else if (state === `welcomeMsg`) {
@@ -46,6 +48,7 @@ function draw() {
   }
 }
 
+// Function styling p5.js text
 function textStyling() {
   textFont(extraBold);
   textSize(64);
@@ -53,6 +56,7 @@ function textStyling() {
   fill(`#202020`);
 }
 
+// Function displaying the lobby of the escape room
 function lobby() {
   background(`#30c990`);
 
@@ -62,6 +66,7 @@ function lobby() {
   pop();
 }
 
+// Function displaying the gaming area of the escape room
 function gamingArea() {
   background(`#fd2663`);
 
@@ -71,6 +76,7 @@ function gamingArea() {
   pop();
 }
 
+// Function displaying the changing area of the escape room
 function changingArea() {
   background(`#8203a1`);
 
@@ -80,6 +86,7 @@ function changingArea() {
   pop();
 }
 
+// Function displaying the resting area of the escape room
 function restingArea() {
   background(`#1d2563`);
 
@@ -89,6 +96,7 @@ function restingArea() {
   pop();
 }
 
+// Function displaying the ceiling of the escape room
 function ceiling() {
   background(`#b8e12b`);
 
@@ -98,6 +106,7 @@ function ceiling() {
   pop();
 }
 
+// Function displaying the floor of the escape room
 function floor() {
   background(`#131635`);
 
