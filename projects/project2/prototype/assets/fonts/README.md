@@ -2,4 +2,4 @@
 
 This is the folder where you would keep all the fonts associated with your project, such as `.tff`, `.otf`, and other formats.
 
-<!-- Lato and Philosopher fonts are from Google, while Industry fonts is from Adobe. -->
+[Montserrat fonts](https://fonts.google.com/specimen/Montserrat) are from Google.
