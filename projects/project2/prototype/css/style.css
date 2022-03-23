@@ -1,3 +1,7 @@
+/* ===== TYPEFACE ===== */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* font-family: 'Montserrat', sans-serif; 100-900 & 1,100-1,900*/
 /*********************************************
 
 Here is a description of any special CSS used.
@@ -6,6 +10,7 @@ and then centring the canvas (and anything else)
 using the CSS Grid.
 
 Also hides overflow.
+
 
 / ==== CSS HEX ==== /
 --emerald: #63d26b;
@@ -32,15 +37,53 @@ Also hides overflow.
 --haiti: rgba(19,22,53,255,1);
 
 **********************************************/
+/* ===== DEFAULT LAYOUT SETUP ===== */
+* {
+  /* No margin or padding*/
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
 body {
-  margin: auto;
   display: grid;
-  /* Set up the grid and justify/align to center */
   justify-content: center;
   align-content: flex-start;
   /* Body is the height of the viewport */
   height: 100vh;
   /* Hide anything that goes off the window size */
   overflow: hidden;
+  /* Make text unselectable on Safari */
+  -webkit-user-select: none;
+  /* Make text unselectable on Firefox */
+  -moz-user-select: none;
+  /* Make text unselectable on IE10+/Edge */
+  -ms-user-select: none;
+  /* Make text unselectable on Standard */
+  user-select: none;
+  /* Set background */
   background-color: #202020;
+}
+
+canvas {
+  position: fixed;
+  left: 61%;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+/* ===== DIRECTION INDICATORS ===== */
+.direction-indicator {
+  font-weight: 800;
+  font-size: 1.75rem;
+  line-height: 3rem;
+  text-align: left;
+  color: #fff5ec;
+  width: 18rem;
+  height: 100%;
+  margin: 2rem 0 0 2.25rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }

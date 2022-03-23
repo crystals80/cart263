@@ -12,7 +12,7 @@ Note: I will attempt making the puzzle understandable for non- Genshin Impact pl
 let state = `lobby`;
 
 function setup() {
-  createCanvas(1000, 600);
+  createCanvas(1200, 600);
 }
 
 function draw() {
