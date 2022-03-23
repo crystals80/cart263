@@ -7,6 +7,30 @@ using the CSS Grid.
 
 Also hides overflow.
 
+/ ==== CSS HEX ==== /
+--emerald: #63d26b;
+--pear: #b8e12b;
+--shamrock: #30c990;
+--radical-red: #fd2663;
+--purple: #8203a1;
+--daisy-bush: #642ca4;
+--kashmir-blue: #4a6c9f;
+--biscay: #1d2563;
+--bunting: #171c48;
+--haiti: #131635;
+
+/ ==== SCSS RGB ==== /
+--emerald: rgba(99,210,107,255,1);
+--pear: rgba(184,225,43,255,1);
+--shamrock: rgba(48,201,144,255,1);
+--radical-red: rgba(253,38,99,255,1);
+--purple: rgba(130,3,161,255,1);
+--daisy-bush: rgba(100,44,164,255,1);
+--kashmir-blue: rgba(74,108,159,255,1);
+--biscay: rgba(29,37,99,255,1);
+--bunting: rgba(23,28,72,255,1);
+--haiti: rgba(19,22,53,255,1);
+
 **********************************************/
 body {
   margin: auto;
