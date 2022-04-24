@@ -15,12 +15,22 @@ let state = `title`; // Declare state(s) var
 // Declare areas-related and directions-related vars
 let currentArea = 0; // Set the area the player is facing
 
+// Declare images vars
+let bgMonstadt, bgLiyue, bgInazuma, bgSereniteaPot, bgCelestia, bgEnkanomiya;
 // Declare fonts vars
 let extraBold;
 
 // Function loading fonts, images and sounds
 function preload() {
+  // Load fonts
   extraBold = loadFont(`assets/fonts/Montserrat-ExtraBold.ttf`);
+  // Load images
+  bgMonstadt = loadImage(`assets/images/mondstadt.png`);
+  bgLiyue = loadImage(`assets/images/liyue.png`);
+  bgInazuma = loadImage(`assets/images/inazuma.png`);
+  bgSereniteaPot = loadImage(`assets/images/serenitea-pot.png`);
+  bgCelestia = loadImage(`assets/images/celestia.png`);
+  bgEnkanomiya = loadImage(`assets/images/enkanomiya.png`);
 }
 
 // Function configurating the simulation
@@ -33,8 +43,8 @@ function draw() {
   // Set states as scenes for simulation
   if (state === `title`) {
     title();
-  } else if (state === `welcomeMsg`) {
-    welcomeMsg();
+    // } else if (state === `welcomeMsg`) {
+    //   welcomeMsg();
   } else if (state === `mondstadt`) {
     mondstadt();
   } else if (state === `liyue`) {
@@ -62,21 +72,13 @@ function textStyling() {
 
 function title() {
   background(`#202020`);
-  // 
-  // push();
-  // textStyling();
-  // fill(`#fff5ec`);
-  // text(`ESCAPE THE GAMINGVERSE`, width / 4, height / 2);
-  // pop();
+
 }
 
-// function welcomeMsg() {
-//
-// }
 
 // Function displaying the lobby of the escape room
 function mondstadt() {
-  background(`#1bfec5`);
+  background(bgMonstadt);
 
   push();
   textStyling();
