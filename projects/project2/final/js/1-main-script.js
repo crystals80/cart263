@@ -106,7 +106,11 @@ function celestia() {
 function enkanomiya() {
   background(bgEnkanomiya);
 
-
+  push();
+  noFill();
+  noStroke();
+  ellipse(610, 300, 475, 475);
+  pop();
 }
 
 // Function storing keyboard inputs
@@ -123,5 +127,15 @@ function keyPressed() {
     state = `celestia`
   } else if (keyCode === 69) {
     state = `enkanomiya`
+  }
+}
+
+function mousePressed() {
+  if (state === `enkanomiya` && mouseIsPressed) {
+    let d = dist(mouseX, mouseY, 610, 300);
+    if (d < 50) {
+      // Change background image
+      bgEnkanomiya = bgCarpet;
+    }
   }
 }
