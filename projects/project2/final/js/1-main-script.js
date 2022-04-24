@@ -16,7 +16,7 @@ let state = `title`; // Declare state(s) var
 let currentArea = 0; // Set the area the player is facing
 
 // Declare images vars
-let bgMonstadt, bgLiyue, bgInazuma, bgSereniteaPot, bgCelestia, bgEnkanomiya;
+let bgMonstadt, bgLiyue, bgInazuma, bgSereniteaPot, bgCelestia, bgEnkanomiya, bgCarpet;
 // Declare fonts vars
 let extraBold;
 
@@ -31,6 +31,7 @@ function preload() {
   bgSereniteaPot = loadImage(`assets/images/serenitea-pot.png`);
   bgCelestia = loadImage(`assets/images/celestia.png`);
   bgEnkanomiya = loadImage(`assets/images/enkanomiya.png`);
+  bgCarpet = loadImage(`assets/images/lifted-carpet.png`);
 }
 
 // Function configurating the simulation
@@ -79,61 +80,33 @@ function title() {
 // Function displaying the lobby of the escape room
 function mondstadt() {
   background(bgMonstadt);
-
-  push();
-  textStyling();
-  text(`MONDSTADT`, width / 2, height / 2);
-  pop();
 }
 
 // Function displaying the gaming area of the escape room
 function liyue() {
-  background(`#ffc800`);
-
-  push();
-  textStyling();
-  text(`LIYUE`, width / 2, height / 2);
-  pop();
+  background(bgLiyue);
 }
 
 // Function displaying the changing area of the escape room
 function inazuma() {
-  background(`#8203a1`);
-
-  push();
-  textStyling();
-  text(`INAZUMA`, width / 2, height / 2);
-  pop();
+  background(bgInazuma);
 }
 
 // Function displaying the resting area of the escape room
 function sereniteaPot() {
-  background(`#ffa95e`);
-
-  push();
-  textStyling();
-  text(`SERENITEA POT`, width / 2, height / 2);
-  pop();
+  background(bgSereniteaPot);
 }
 
 // Function displaying the ceiling of the escape room
 function celestia() {
-  background(`#98f2fa`);
-
-  push();
-  textStyling();
-  text(`CELESTIA`, width / 2, height / 2);
-  pop();
+  background(bgCelestia);
 }
 
 // Function displaying the floor of the escape room
 function enkanomiya() {
-  background(`#1d2563`);
+  background(bgEnkanomiya);
 
-  push();
-  textStyling();
-  text(`ENKANOMIYA`, width / 2, height / 2);
-  pop();
+
 }
 
 // Function storing keyboard inputs
