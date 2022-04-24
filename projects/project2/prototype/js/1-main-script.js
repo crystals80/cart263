@@ -9,7 +9,7 @@ Note: I will attempt making the puzzle understandable for non- Genshin Impact pl
 
 "use strict";
 
-let state = `mondstadt`; // Declare state(s) var
+let state = `title`; // Declare state(s) var
 
 // Declare areas-related and directions-related vars
 let currentArea = 0; // Set the area the player is facing
@@ -58,6 +58,20 @@ function textStyling() {
   textAlign(CENTER, CENTER);
   fill(`#202020`);
 }
+
+function title() {
+  background(`#202020`);
+
+  push();
+  textStyling();
+  fill(`#fff5ec`);
+  text(`ESCAPE THE GAMINGVERSE`, width / 4, height / 2);
+  pop();
+}
+
+// function welcomeMsg() {
+//
+// }
 
 // Function displaying the lobby of the escape room
 function mondstadt() {

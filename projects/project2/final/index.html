@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+
+    <title>Escape the Gamingverse</title>
+
+    <!-- CSS stylesheet(s) -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <!-- Library script(s) -->
+    <!-- p5.js Libraries -->
+    <script src="js/libraries/p5.min.js"></script>
+    <script src="js/libraries/p5.sound.min.js"></script>
+
+    <!-- Jquery and Jquery UI Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+
+  </head>
+
+  <body>
+
+    <!-- TITLE SCREEN -->
+    <div id="title">
+      <h1>ESCAPE THE GAMINGVERSE</h1>
+      <button id="start-btn" type="button">START</button>
+    </div>
+
+    <div id="introduction">
+      <p id="line-1"><strong>Dear traveler</strong>,</p>
+      <p id="line-2" style="margin-bottom: 0">Welcome to the Gamingverse. It is a paradise for gamers—or so I was informed.</p>
+      <p id="line-3">You must have many questions at the moment. But I can only answer three of them.</p>
+      <p id="line-4"><strong>Who am I?</strong> I am your sub-consciousness. Let's just say that I am like Katheryne.</p>
+      <p id="line-5" style="margin-bottom: 0"><strong>Why are you here?</strong> Well, that is because you successfully played Genshin</p>
+      <p id="line-6">Impact for more than 24 hours consecutively and blacked out.</p>
+      <p id="line-7" style="margin-bottom: 0"><strong>How did you arrive here?</strong> Believe it or not, Genshin Impact is a real world from</p>
+      <p id="line-8" style="margin-bottom: 0">another dimension and someone made contact with Dainsleif...Anyhow, The Abyss</p>
+      <p id="line-9" style="margin-bottom: 0"> was experimenting with a teleportation spell so that they can find a new base. As</p>
+      <p id="line-10" style="margin-bottom: 0">the first player who hit the 24-hour Genshin Impact marathon, you were chosen to</p>
+      <p id="line-11">be their test subject.</p>
+      <p id="line-12" style="margin-bottom: 0">Time is almost up...When you wake up, your room will appear...different...and the</p>
+      <p id="line-13">instructions will appear as you look around.</p>
+      <p id="line-14">Oh! And remember, you are <strong>THE Traveler</strong>!</p>
+      <p id="line-15">Good luck and as astra abyssosque!</p>
+      <button id="read-btn" type="button">NEXT</button>
+    </div>
+
+    <!-- DIRECTION INDICATORS CONTAINER -->
+    <div class="direction-indicator">
+      <!-- DIRECTION INDICATORS -->
+      <div class="direction-text" id="dir-0" style="display:none">
+        <p>MONDSTADT</p>
+      </div>
+      <div class="direction-text" id="dir-1" style="display:none">
+        <p>LIYUE</p>
+      </div>
+      <div class="direction-text" id="dir-2" style="display:none">
+        <p>INAZUMA</p>
+      </div>
+      <div class="direction-text" id="dir-3" style="display:none">
+        <p>SERENITEA POT</p>
+      </div>
+      <div class="direction-text" id="dir-4" style="display:none">
+        <p>CELESTIA</p>
+      </div>
+      <div class="direction-text" id="dir-5" style="display:none">
+        <p>ENKANOMIYA</p>
+      </div>
+
+      <div id="nav-instruction">
+        <p id="nav-message">Navigate using the first letter of each areas</p>
+      </div>
+    </div>
+
+
+    <!-- Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor2"></div>
+
+    <!-- My script(s) -->
+    <script src="js/0-html.js"></script>
+    <script src="js/1-main-script.js"></script>
+  </body>
+
+</html>

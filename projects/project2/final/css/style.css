@@ -1,0 +1,198 @@
+/* ===== TYPEFACE ===== */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* font-family: 'Montserrat', sans-serif; 100-900 & 1,100-1,900*/
+/*********************************************
+
+Here is a description of any special CSS used.
+In this case it's just padding and margin to 0
+and then centring the canvas (and anything else)
+using the CSS Grid.
+
+Also hides overflow.
+
+
+/ ==== CSS HEX ==== /
+--sea-green-crayola: #1bfec5;
+--midako-yellow: #ffc800;
+--purple: #8203a1;
+--rajah: #ffa95e;
+--electric-blue: #98f2fa;
+--biscay: #1d2563;
+
+/ ==== SCSS RGB ==== /
+--sea-green-crayola: rgb(27,254,197);
+--midako-yellow: rgb(255,200,0);
+--purple: rgb(130,3,161);
+--rajah: rgb(255,169,94);
+--electric-blue: rgb(152,242,250);
+--biscay: rgb(29,37,99);
+
+**********************************************/
+/* ===== DEFAULT LAYOUT SETUP ===== */
+* {
+  /* No margin or padding*/
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background-color: #202020;
+  display: grid;
+  justify-content: center;
+  align-content: flex-start;
+  /* Body is the height of the viewport */
+  height: 100vh;
+  /* Hide anything that goes off the window size */
+  overflow: hidden;
+  /* Make text unselectable on Safari */
+  -webkit-user-select: none;
+  /* Make text unselectable on Firefox */
+  -moz-user-select: none;
+  /* Make text unselectable on IE10+/Edge */
+  -ms-user-select: none;
+  /* Make text unselectable on Standard */
+  user-select: none;
+  /* Set background */
+  background-color: #202020;
+}
+
+/****** TITLE SCREEN ******/
+#title h1 {
+  font-size: 7rem;
+  font-weight: 800;
+  color: #fff5ec;
+  text-align: center;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+#title button {
+  font-size: 3rem;
+  font-weight: 500;
+  color: #202020;
+  background-color: rgb(255, 169, 94);
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem;
+  position: fixed;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+/****** INTRODUCTION MESSAGE ******/
+#introduction {
+  font-size: 1.45rem;
+  color: #fff5ec;
+  text-align: left;
+  padding: 7rem;
+}
+
+/****** TYPEWRITER EFFECT ******/
+#introduction p {
+  display: none;
+  margin-bottom: 1rem;
+  width: 80vw;
+  overflow: hidden;
+}
+
+#introduction button {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #202020;
+  background-color: rgb(255, 169, 94);
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem;
+  position: fixed;
+  top: 85%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  display: none;
+}
+
+/****** DIRECTION INDICATORS ******/
+.direction-indicator {
+  font-weight: 800;
+  font-size: 1.75rem;
+  line-height: 3rem;
+  text-align: left;
+  color: #fff5ec;
+  width: 18rem;
+  height: 100%;
+  margin: 2rem 0 0 2.25rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#nav-instruction {
+  display: none;
+  padding-top: 3rem;
+}
+
+#nav-message {
+  width: 10rem;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: normal;
+  border: 1px solid #fff5ec;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+/****** CURSOR ******/
+.cursor {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  border: 1px solid #141414;
+  transition: all 200ms ease-out;
+  position: fixed;
+  pointer-events: none;
+  left: 0;
+  top: 0;
+  transform: translate(calc(-50% + 15px), -50%);
+  z-index: 200;
+}
+
+.cursor2 {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: #141414;
+  opacity: .3;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  z-index: 200;
+  pointer-events: none;
+  transition: width .3s, height .3s, opacity .3s;
+}
+
+.hover {
+  background-color: #40E0D0;
+  opacity: 0.5;
+}
+
+.cursorinnerhover {
+  width: 50px;
+  height: 50px;
+  opacity: .5;
+}
+
+/****** ESCAPE ROOM GAME CANVAS ******/
+canvas {
+  position: fixed;
+  left: 61%;
+  transform: translateX(-50%);
+  z-index: 0;
+  display: none;
+}
