@@ -194,5 +194,5 @@ canvas {
   left: 61%;
   transform: translateX(-50%);
   z-index: 0;
-  display: none;
+  /* display: none; */
 }
