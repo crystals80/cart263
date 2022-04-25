@@ -9,6 +9,8 @@ This JS file is a mix of p5.js, DOM and Jquery.
 */
 
 "use strict";
+let numDropItem = 0;
+let resetDraggableItem = false;
 
 let state = `title`; // Declare state(s) var
 
@@ -43,6 +45,21 @@ function preload() {
 // Function configurating the simulation
 function setup() {
   createCanvas(1200, 600);
+  $(`#inventory`).droppable({
+    classes: {
+      "ui-droppable-active": "ui-state-active",
+      "ui-droppable-hover": "ui-state-hover"
+    },
+    drop: function(event, ui) {
+      if (numDropItem < 2) {
+        console.log(ui.draggable[0].id);
+        $("#" + ui.draggable[0].id).draggable("disable");
+        numDropItem++;
+        console.log(numDropItem);
+      }
+      return true;
+    },
+  });
 }
 
 // Function running the simulation
@@ -86,6 +103,20 @@ function title() {
 // Function displaying the lobby of the escape room
 function mondstadt() {
   background(bgMonstadt);
+
+  if (numDropItem === 2 && resetDraggableItem === false) {
+    console.log(`2`);
+    resetDraggableItem = true;
+
+    $(`.fatui`).draggable("enable");
+    $(`.fatui`).draggable({
+      revert: `valid`,
+      containment: `document`,
+
+    });
+
+    // });
+  };
 }
 
 // Function displaying the gaming area of the escape room
@@ -163,10 +194,12 @@ function keyPressed() {
 function mousePressed() {
   // If Inazuma wall is visible on screen...
   if (state === `inazuma` && mouseIsPressed) {
+    console.log(mouseIsPressed);
     // Click on invisible rectangle to...
     $(`#invisible-lock`).click(function() {
+      console.log(`mouseIsPressed`);
       // Display lock
-      $(`#fatui1`).show();
+      $(`#lock-puzzle`).show();
     });
   }
   // If Serenitea Pot wall is visible on screen...
