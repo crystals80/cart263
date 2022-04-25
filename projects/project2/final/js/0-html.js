@@ -5,6 +5,8 @@ Lam Ky Anh Do
 This JS file is a mix of DOM and Jquery for code on the HTML page only.
 */
 
+
+
 /****** TITLE SCREEN ******/
 // Click on START button...
 $(`#start-btn`).click(function() {
@@ -37,6 +39,9 @@ $(`#read-btn`).ready(function() {
   // ...to hide the title "screen" or message...
   $(`#introduction`).fadeOut(1500);
   // ...show the game introduction message...
+  $(`#dialog-box`).fadeIn(2000, function() {
+    innerPara();
+  });
   $(`#dir-0`).fadeIn(5000);
   $(`canvas`).delay(2000).fadeIn(2000);
   $(`#dir-1`).delay(2000).fadeIn(2000);
@@ -52,24 +57,37 @@ $(`#read-btn`).ready(function() {
 $(`.fatui`).draggable({
   revert: `invalid`,
   containment: `document`,
-  cursor: `crosshair`,
-});
-
-$(`#inventory`).droppable({
-  classes: {
-    "ui-droppable-active": "ui-state-active",
-    "ui-droppable-hover": "ui-state-hover"
-  },
-  drop: function(event, ui) {
-    return true;
-  },
 
 });
+
+/****** TYPEWRITER EFFECT ******/
+function innerPara() {
+
+  let text = $(`#dialog`).html();
+  $(`#dialog`).html(``); //clear
+  $(`#dialog`).css(`display`, `block`); //display
+
+  let i = 0; //which char are we on....
+  let speed = 75;
+  let outString = ''; //to build the outstring
+
+  let timer = setInterval(function() {
+
+    if (i < text.length) {
+      outString += text.charAt(i);
+      $(`#dialog`).html(outString);
+      console.log(outString);
+      i++;
+    } else {
+
+      clearInterval(timer);
+    }
+  }, speed);
+} //inner
 
 /****** CURSOR ******/
 const cursor = document.querySelector(`.cursor`);
 const cursorinner = document.querySelector(`.cursor2`);
-const a = document.querySelectorAll(`a`);
 
 document.addEventListener(`mousemove`, (e) => {
   const x = e.clientX;
