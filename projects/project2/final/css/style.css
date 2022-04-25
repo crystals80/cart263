@@ -134,6 +134,23 @@ body {
   z-index: 1;
 }
 
+/* NAVIGATION INSTRUCTION */
+#inventory {
+  display: none;
+  padding-top: 3rem;
+}
+
+/* INVENTORY BOX */
+#inv-message {
+  width: 10rem;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: normal;
+  border: 1px solid #fff5ec;
+  border-radius: 1rem;
+  padding: 1rem 1rem 10rem 1rem;
+}
+
 #nav-instruction {
   display: none;
   padding-top: 3rem;
@@ -195,4 +212,60 @@ canvas {
   transform: translateX(-50%);
   z-index: 0;
   /* display: none; */
+}
+
+/* FATUI SIGN PUZZLE */
+.fatui {
+  width: 100px;
+}
+
+#fatui-sign {
+  position: fixed;
+  top: 13.5%;
+  left: 48.5%;
+  display: none;
+}
+
+#fatui1 {
+  position: fixed;
+  top: 13.5%;
+  left: 48.5%;
+  display: none;
+  z-index: 5;
+}
+
+#fatui2 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: none;
+  z-index: 5;
+}
+
+#fatui3 {
+  position: fixed;
+  top: 13.5%;
+  left: 48.5%;
+  display: none;
+  z-index: 5;
+}
+
+#fatui4 {
+  position: fixed;
+  top: 13.5%;
+  left: 48.5%;
+  display: none;
+  z-index: 5;
+}
+
+#invisible-carpet {
+  width: 405px;
+  height: 405px;
+  background-color: transparent;
+  border-radius: 50%;
+  position: fixed;
+  top: 13.5%;
+  left: 48.5%;
+  display: block;
+  z-index: 2;
 }

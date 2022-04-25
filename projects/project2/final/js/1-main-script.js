@@ -16,7 +16,7 @@ let state = `title`; // Declare state(s) var
 let currentArea = 0; // Set the area the player is facing
 
 // Declare images vars
-let bgMonstadt, bgLiyue, bgInazuma, bgSereniteaPot, bgCelestia, bgEnkanomiya, bgCarpet;
+let bgMonstadt, bgLiyue, bgInazuma, bgSereniteaPot, bgCelestia, bgEnkanomiya, bgCarpet, fatuiSign, fatuiPuzzlePiece1, fatuiPuzzlePiece2, fatuiPuzzlePiece3, fatuiPuzzlePiece4;
 // Declare fonts vars
 let extraBold;
 
@@ -24,7 +24,7 @@ let extraBold;
 function preload() {
   // Load fonts
   extraBold = loadFont(`assets/fonts/Montserrat-ExtraBold.ttf`);
-  // Load images
+  // Load background images
   bgMonstadt = loadImage(`assets/images/mondstadt.png`);
   bgLiyue = loadImage(`assets/images/liyue.png`);
   bgInazuma = loadImage(`assets/images/inazuma.png`);
@@ -32,6 +32,12 @@ function preload() {
   bgCelestia = loadImage(`assets/images/celestia.png`);
   bgEnkanomiya = loadImage(`assets/images/enkanomiya.png`);
   bgCarpet = loadImage(`assets/images/lifted-carpet.png`);
+  fatuiSign = loadImage(`assets/images/fatui-sign.png`);
+  // Load item images for puzzles
+  fatuiPuzzlePiece1 = loadImage(`assets/images/fatui-piece-1.png`);
+  fatuiPuzzlePiece2 = loadImage(`assets/images/fatui-piece-2.png`);
+  fatuiPuzzlePiece3 = loadImage(`assets/images/fatui-piece-3.png`);
+  fatuiPuzzlePiece4 = loadImage(`assets/images/fatui-piece-4.png`);
 }
 
 // Function configurating the simulation
@@ -106,6 +112,7 @@ function celestia() {
 function enkanomiya() {
   background(bgEnkanomiya);
 
+  // Display invisible circle as button to trigger background change onclick (see mousePressed function)
   push();
   noFill();
   noStroke();
@@ -130,12 +137,23 @@ function keyPressed() {
   }
 }
 
+// Function storing mouseclicks inputs
 function mousePressed() {
+  // If Enkanomiya wall is visible on screen...
   if (state === `enkanomiya` && mouseIsPressed) {
+    // ...and clicked within invisible circle/yellow carpet
     let d = dist(mouseX, mouseY, 610, 300);
-    if (d < 50) {
+    if (d < 200) {
       // Change background image
       bgEnkanomiya = bgCarpet;
+      // Display the puzzle piece 2 (as if it was hidden under the carpet)
+      image(fatuiPuzzlePiece2, width / 3, 75 + height / 2, 100, 100);
     }
+
+    // Click on invisible circle to...
+    $(`#invisible-carpet`).click(function() {
+      // Show Fatui puzzle piece 2
+      $(`#fatui2`).show();
+    });
   }
 }

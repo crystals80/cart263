@@ -5,6 +5,7 @@ Lam Ky Anh Do
 This JS file is a mix of DOM and Jquery for code on the HTML page only.
 */
 
+/****** TITLE SCREEN ******/
 // Click on START button...
 $(`#start-btn`).click(function() {
   // ...to hide the title "screen" or message...
@@ -29,6 +30,7 @@ $(`#start-btn`).click(function() {
   $(`#read-btn`).delay(31000).fadeIn(5000);
 });
 
+/****** INTRODUCTION MESSAGE SCREEN ******/
 // Click on NEXT button...
 // $(`#read-btn`).click(function() {
 $(`#read-btn`).ready(function() {
@@ -36,13 +38,32 @@ $(`#read-btn`).ready(function() {
   $(`#introduction`).fadeOut(1500);
   // ...show the game introduction message...
   $(`#dir-0`).fadeIn(5000);
-  $(`canvas`).delay(2000).fadeIn(5000);
-  $(`#dir-1`).delay(2000).fadeIn(5000);
-  $(`#dir-2`).delay(4000).fadeIn(5000);
-  $(`#dir-3`).delay(6000).fadeIn(5000);
-  $(`#dir-4`).delay(8000).fadeIn(5000);
-  $(`#dir-5`).delay(10000).fadeIn(5000);
-  $(`#nav-instruction`).delay(12000).fadeIn(5000);
+  $(`canvas`).delay(2000).fadeIn(2000);
+  $(`#dir-1`).delay(2000).fadeIn(2000);
+  $(`#dir-2`).delay(4000).fadeIn(2000);
+  $(`#dir-3`).delay(6000).fadeIn(2000);
+  $(`#dir-4`).delay(8000).fadeIn(2000);
+  $(`#dir-5`).delay(10000).fadeIn(2000);
+  $(`#nav-instruction`).delay(12000).fadeIn(2000);
+  $(`#inventory`).delay(14000).fadeIn(2000);
+});
+
+/****** DRAGGABLE INVENTORY ITEMS ******/
+$(`.fatui`).draggable({
+  revert: `invalid`,
+  containment: `document`,
+  cursor: `crosshair`,
+});
+
+$(`#inventory`).droppable({
+  classes: {
+    "ui-droppable-active": "ui-state-active",
+    "ui-droppable-hover": "ui-state-hover"
+  },
+  drop: function(event, ui) {
+    return true;
+  },
+
 });
 
 /****** CURSOR ******/
