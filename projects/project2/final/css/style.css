@@ -167,6 +167,47 @@ body {
   padding: 1rem;
 }
 
+/****** DIALOG-BOX ******/
+#dialog-box {
+  width: 1190px;
+  height: 138px;
+  background-color: #202020;
+  color: #fff5ec;
+  border: 5px solid #2e2e2e;
+  border-radius: 10px;
+  position: fixed;
+  bottom: 1%;
+  right: 0%;
+  display: none;
+  z-index: 100;
+}
+
+#dialog-box p {
+  padding: 3.5rem 2rem 0 2rem;
+}
+
+#paimon {
+  width: 1190px;
+  height: 32px;
+  background-color: #2e2e2e;
+  color: #fff5ec;
+  border: 5px solid #2e2e2e;
+  border-radius: 10px;
+  position: fixed;
+  bottom: 15%;
+  right: 0%;
+  z-index: 101;
+}
+
+#paimon p {
+  font-weight: 600;
+  padding: 0.35rem 2rem;
+}
+
+#dialog {
+  display: none;
+}
+
 /****** CURSOR ******/
 .cursor {
   width: 50px;
@@ -273,6 +314,7 @@ canvas {
   position: absolute;
   top: 0%;
   right: 0%;
+  z-index: 51;
 }
 
 #lock {
@@ -287,7 +329,7 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 50;
+  z-index: 52;
 }
 
 .lock-number {
@@ -301,7 +343,7 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 50;
+  z-index: 53;
 }
 
 .close-btn {
@@ -343,7 +385,7 @@ canvas {
   top: 30.5%;
   left: 63.25%;
   display: block;
-  z-index: 2;
+  z-index: 5;
 }
 
 #invisible-carpet {
