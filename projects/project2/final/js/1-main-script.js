@@ -16,10 +16,11 @@ let state = `title`; // Declare state(s) var
 let currentArea = 0; // Set the area the player is facing
 
 // Declare images vars
-let bgMonstadt, bgLiyue, bgInazuma, bgSereniteaPot, bgCelestia, bgEnkanomiya, bgCarpet, fatuiSign, fatuiPuzzlePiece1, fatuiPuzzlePiece2, fatuiPuzzlePiece3, fatuiPuzzlePiece4;
+let bgMonstadt, bgLiyue, bgInazuma, bgSereniteaPot, bgCelestia, bgEnkanomiya, bgCarpet;
 // Declare fonts vars
 let extraBold;
 
+// Declare vars for found fatui sign pieces
 let foundFatui1 = false;
 let foundFatui2 = false;
 let foundFatui3 = false;
@@ -41,12 +42,6 @@ function preload() {
   bgCelestia = loadImage(`assets/images/celestia.png`);
   bgEnkanomiya = loadImage(`assets/images/enkanomiya.png`);
   bgCarpet = loadImage(`assets/images/lifted-carpet.png`);
-  fatuiSign = loadImage(`assets/images/fatui-sign.png`);
-  // Load item images for puzzles
-  fatuiPuzzlePiece1 = loadImage(`assets/images/fatui-piece-1.png`);
-  fatuiPuzzlePiece2 = loadImage(`assets/images/fatui-piece-2.png`);
-  fatuiPuzzlePiece3 = loadImage(`assets/images/fatui-piece-3.png`);
-  fatuiPuzzlePiece4 = loadImage(`assets/images/fatui-piece-4.png`);
 }
 
 // Function configurating the simulation
@@ -289,6 +284,28 @@ function keyPressed() {
 
 // Function storing mouseclicks inputs
 function mousePressed() {
+  // If Liyue wall is visible on screen...
+  if (state === `liyue` && mouseIsPressed) {
+    /****** CLUE PAPER 1 & 3 ******/
+    // Click on invisible rectangle to...
+    $(`#invisible-note-1`).click(function() {
+      // Display clue paper 1
+      $(`#clue-to-read-1`).show();
+    });
+    // Click on invisible rectangle to...
+    $(`#invisible-note-2`).click(function() {
+      // Display clue paper 2
+      $(`#clue-to-read-2`).show();
+    });
+
+    /****** CLUE PAPER 1 & 3 - CLOSE BUTTON ******/
+    // Click button to close the (overlay screen) clue paper 1 & 3...
+    $(`.clue-btn`).click(function() {
+      // ...by hiding it
+      $(`#clue-to-read-1, #clue-to-read-2`).hide();
+    });
+  }
+
   /****** DIGIT LOCK PUZZLE ******/
   // If Inazuma wall is visible on screen...
   if (state === `inazuma` && mouseIsPressed) {
@@ -304,9 +321,9 @@ function mousePressed() {
       // ...by hiding it
       $(`#lock-puzzle`).hide();
     });
-    // Click button to close the (overlay screen) digit lock puzzle...
+    // Click button to submit chosen digits...
     $(`.confirm-btn`).click(function() {
-      // ...by hiding it
+      // ...then show Fatui puzzle piece 1
       $(`#fatui1`).show();
     });
   }
@@ -319,6 +336,23 @@ function mousePressed() {
     $(`#invisible-plush`).click(function() {
       // Show Fatui puzzle piece 3
       $(`#fatui3`).show();
+    });
+  }
+
+  // If Celestia ceiling is visible on screen...
+  if (state === `celestia` && mouseIsPressed) {
+    /****** CLUE PAPER 2 ******/
+    // Click on invisible rectangle to...
+    $(`#invisible-note-3`).click(function() {
+      // Display clue paper 3
+      $(`#clue-to-read-3`).show();
+    });
+
+    /****** CLUE PAPER 2 - CLOSE BUTTON ******/
+    // Click button to close the (overlay screen) clue paper 2...
+    $(`.clue-btn`).click(function() {
+      // ...by hiding it
+      $(`#clue-to-read-3`).hide();
     });
   }
 
