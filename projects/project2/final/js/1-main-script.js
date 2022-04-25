@@ -161,6 +161,14 @@ function keyPressed() {
 
 // Function storing mouseclicks inputs
 function mousePressed() {
+  // If Inazuma wall is visible on screen...
+  if (state === `inazuma` && mouseIsPressed) {
+    // Click on invisible rectangle to...
+    $(`#invisible-lock`).click(function() {
+      // Display lock
+      $(`#fatui1`).show();
+    });
+  }
   // If Serenitea Pot wall is visible on screen...
   if (state === `sereniteaPot` && mouseIsPressed) {
     // Click on invisible ellipse to...

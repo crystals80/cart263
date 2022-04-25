@@ -259,6 +259,81 @@ canvas {
   z-index: 5;
 }
 
+/* COMBO NUMBERS LOCK PUZZLE */
+#lock-puzzle {
+  display: none;
+  z-index: 50;
+}
+
+#lock-puzzle-overlay {
+  width: 1200px;
+  height: 600px;
+  background-color: #202020;
+  opacity: 0.75;
+  position: absolute;
+  top: 0%;
+  right: 0%;
+}
+
+#lock {
+  height: 256px;
+  width: 420px;
+  background-color: #202020;
+  text-align: center;
+  position: fixed;
+  top: 35%;
+  left: 59%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.lock-number {
+  height: 245px;
+  width: 133px;
+  background-color: #82817f;
+  font-weight: 600;
+  font-size: 9rem;
+  color: #fff5ec;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.close-btn {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #202020;
+  background-color: #fff5ec;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem;
+  position: fixed;
+  top: 70%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+
+.close-btn:hover {
+  background-color: rgb(130, 3, 161);
+  color: #fff5ec;
+}
+
+.confirm-btn {
+  position: fixed;
+  top: 70%;
+  left: 80%;
+}
+
+.confirm-btn:hover {
+  background-color: rgb(255, 169, 94);
+}
+
 /* INVISIBLE CLICKABLE BUTTONS/TRIGGERS  */
 #invisible-lock {
   width: 10px;
