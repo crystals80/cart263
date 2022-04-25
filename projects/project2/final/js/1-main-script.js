@@ -98,9 +98,31 @@ function inazuma() {
   background(bgInazuma);
 }
 
+// // change the combination in the lock
+// function changeCode() {
+//   // get current combo
+//   let num = $(this).text();
+//   // if reaches 9, reset to 0
+//   if (num === "9") {
+//     $(this).text("0");
+//     // add 1 to the digit
+//   } else {
+//     num = int(num) + 1;
+//     $(this).text(num);
+//   }
+//   // SOUND_COMBO_LOCK.play();
+// }
+
 // Function displaying the resting area of the escape room
 function sereniteaPot() {
   background(bgSereniteaPot);
+
+  // Display invisible elllipse as button to trigger background change onclick (see mousePressed function)
+  push();
+  noFill();
+  noStroke();
+  ellipse(210, 475, 100, 135);
+  pop();
 }
 
 // Function displaying the ceiling of the escape room
@@ -123,31 +145,38 @@ function enkanomiya() {
 // Function storing keyboard inputs
 function keyPressed() {
   if (keyCode === 77) {
-    state = `mondstadt`
+    state = `mondstadt`;
   } else if (keyCode === 76) {
-    state = `liyue`
+    state = `liyue`;
   } else if (keyCode === 73) {
-    state = `inazuma`
+    state = `inazuma`;
   } else if (keyCode === 83) {
-    state = `sereniteaPot`
+    state = `sereniteaPot`;
   } else if (keyCode === 67) {
-    state = `celestia`
+    state = `celestia`;
   } else if (keyCode === 69) {
-    state = `enkanomiya`
+    state = `enkanomiya`;
   }
 }
 
 // Function storing mouseclicks inputs
 function mousePressed() {
-  // If Enkanomiya wall is visible on screen...
+  // If Serenitea Pot wall is visible on screen...
+  if (state === `sereniteaPot` && mouseIsPressed) {
+    // Click on invisible ellipse to...
+    $(`#invisible-plush`).click(function() {
+      // Show Fatui puzzle piece 3
+      $(`#fatui3`).show();
+    });
+  }
+
+  // If Enkanomiya floor is visible on screen...
   if (state === `enkanomiya` && mouseIsPressed) {
     // ...and clicked within invisible circle/yellow carpet
     let d = dist(mouseX, mouseY, 610, 300);
     if (d < 200) {
       // Change background image
       bgEnkanomiya = bgCarpet;
-      // Display the puzzle piece 2 (as if it was hidden under the carpet)
-      image(fatuiPuzzlePiece2, width / 3, 75 + height / 2, 100, 100);
     }
 
     // Click on invisible circle to...
