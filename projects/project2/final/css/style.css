@@ -336,8 +336,8 @@ canvas {
 
 #fatui4 {
   position: fixed;
-  top: 13.5%;
-  left: 48.5%;
+  top: 58%;
+  left: 80%;
   display: none;
   z-index: 5;
 }
@@ -409,9 +409,18 @@ canvas {
 }
 
 .confirm-btn {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #202020;
+  background-color: #fff5ec;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem;
   position: fixed;
   top: 70%;
   left: 80%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
 }
 
 .confirm-btn:hover {
@@ -450,6 +459,18 @@ canvas {
   left: 27.5%;
   display: block;
   z-index: 5;
+}
+
+#invisible-lamp {
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+  border-radius: 50%;
+  position: fixed;
+  top: 50%;
+  left: 78%;
+  display: block;
+  z-index: 2;
 }
 
 #invisible-lock {
