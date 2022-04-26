@@ -465,7 +465,7 @@ canvas {
 #invisible-keypad {
   width: 125px;
   height: 125px;
-  background-color: #fff5ec;
+  background-color: transparent;
   position: fixed;
   top: 30%;
   left: 23%;

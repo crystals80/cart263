@@ -16,7 +16,7 @@ let state = `title`; // Declare state(s) var
 let currentArea = 0; // Set the area the player is facing
 
 // Declare images vars
-let bgMonstadt, bgLiyue, bgInazuma, bgSereniteaPot, bgCelestia, bgEnkanomiya, bgCarpet, bgMonstadtNoSeal;
+let bgMondstadt, bgLiyue, bgInazuma, bgSereniteaPot, bgCelestia, bgEnkanomiya, bgCarpet, bgMondstadtNoSeal;
 // Declare fonts vars
 let extraBold;
 
@@ -39,14 +39,14 @@ function preload() {
   // Load fonts
   extraBold = loadFont(`assets/fonts/Montserrat-ExtraBold.ttf`);
   // Load background images
-  bgMonstadt = loadImage(`assets/images/mondstadt.png`);
+  bgMondstadt = loadImage(`assets/images/mondstadt.png`);
   bgLiyue = loadImage(`assets/images/liyue.png`);
   bgInazuma = loadImage(`assets/images/inazuma.png`);
   bgSereniteaPot = loadImage(`assets/images/serenitea-pot.png`);
   bgCelestia = loadImage(`assets/images/celestia.png`);
   bgEnkanomiya = loadImage(`assets/images/enkanomiya.png`);
   bgCarpet = loadImage(`assets/images/lifted-carpet.png`);
-  bgMonstadtNoSeal = loadImage(`assets/images/mondstadt-no-seal.png`);
+  bgMondstadtNoSeal = loadImage(`assets/images/mondstadt-no-seal.png`);
 } // END OF PRELOAD FUNCTION
 
 // Function configurating the simulation
@@ -101,7 +101,7 @@ function keypad() {
         // When the complete fatui sign is dropped in the keypad zone, fade it out...
         $(`#fatui-sign`).fadeOut(1000, function() {
           // ...and show change the background by removing the circle seal
-          bgMonstadt = bgMonstadtNoSeal;
+          bgMondstadt = bgMondstadtNoSeal;
         });
         // Check which fatui sign dragged and put in the inventory through console
         console.log(ui.draggable[0].id);
@@ -188,7 +188,7 @@ function title() {
 // Function displaying the lobby of the escape room
 function mondstadt() {
   // Display the lobby/entrance/exit's background image
-  background(bgMonstadt);
+  background(bgMondstadt);
 
   enableDragAgain(); // Setup renabling draggable option to mondstadt state
 } // END OF MONDSTADT FUNCTION
