@@ -372,7 +372,10 @@ function mousePressed() {
 
   // If the title state is visible on screen...
   if (state === `title` && mouseIsPressed) {
-    // ...change dialog sentences by clicking on the orange buttons
+    // ...hide all objects interactions from other states
+    $(`.mondstadt-objects, .liyue-objects, .inazuma-objects, .sereniteaPot-objects, .celestia-objects, .enkanomiya-objects`).hide();
+
+    // Change dialog sentences by clicking on the orange buttons
     $(`#user-answer-1`).click(function() {
       // Fade out this orange button...
       $(this).fadeOut(1000);
@@ -404,7 +407,12 @@ function mousePressed() {
 
   // If Mondstadt wall is visible on screen...
   if (state === `mondstadt` && mouseIsPressed) {
-    // ...Trigger interaction by clicking on an object
+    // ...hide all objects interactions from other states
+    $(`.liyue-objects, .inazuma-objects, .sereniteaPot-objects, .celestia-objects, .enkanomiya-objects`).hide();
+    // ...but only show all objects interactions from the Mondstadt state
+    $(`.mondstadt-objects`).show();
+
+    // Trigger interaction by clicking on an object
     $(`#invisible-figurine`).click(function() {
       // ...while an orange button fade in
       $(`#user-answer-4`).delay(1500).fadeIn(1000);
@@ -473,6 +481,11 @@ function mousePressed() {
 
   // If Inazuma wall is visible on screen...
   if (state === `inazuma` && mouseIsPressed) {
+    // ...hide all objects interactions from other states
+    $(`.mondstadt-objects, .liyue-objects, .sereniteaPot-objects, .celestia-objects, .enkanomiya-objects`).hide();
+    // ...but only show all objects interactions from the Inazuma state
+    $(`.inazuma-objects`).show();
+
     /* DIGIT LOCK PUZZLE */
     // Click on invisible rectangular box on wall to...
     $(`#invisible-lock`).click(function() {
@@ -532,6 +545,11 @@ function mousePressed() {
 
   // If Liyue wall is visible on screen...
   if (state === `liyue` && mouseIsPressed) {
+    // ...hide all objects interactions from other states
+    $(`.mondstadt-objects, .inazuma-objects, .sereniteaPot-objects, .celestia-objects, .enkanomiya-objects`).hide();
+    // ...but only show all objects interactions from the Liyue state
+    $(`.liyue-objects`).show();
+
     /* CLUE PAPER 1 & 3 */
     // Click on invisible books to...
     $(`#invisible-note-1`).click(function() {
@@ -545,7 +563,7 @@ function mousePressed() {
     });
     /* CLUE PAPER 1 & 3 - CLOSE BUTTON */
     // Click button to close the (overlay screen) clue paper 1 & 3...
-    $(`.clue`).click(function() {
+    $(`.clue-btn`).click(function() {
       // ...by hiding it
       $(`#clue-to-read-1, #clue-to-read-2`).hide();
     });
@@ -591,6 +609,11 @@ function mousePressed() {
 
   // If Celestia ceiling is visible on screen...
   if (state === `celestia` && mouseIsPressed) {
+    // ...hide all objects interactions from other states
+    $(`.mondstadt-objects, .liyue-objects, .inazuma-objects, .sereniteaPot-objects, .enkanomiya-objects`).hide();
+    // ...but only show all objects interactions from the Celestia state
+    $(`.celestia-objects`).show();
+
     /* CLUE PAPER 2 */
     // Click on invisible note to...
     $(`#invisible-note-3`).click(function() {
@@ -600,7 +623,7 @@ function mousePressed() {
 
     /* CLUE PAPER 2 - CLOSE BUTTON */
     // Click button to close the (overlay screen) clue paper 2...
-    $(`.clue`).click(function() {
+    $(`.clue-btn`).click(function() {
       // ...by hiding it
       $(`#clue-to-read-3`).hide();
     });
@@ -626,6 +649,11 @@ function mousePressed() {
 
   // If Serenitea Pot wall is visible on screen...
   if (state === `sereniteaPot` && mouseIsPressed) {
+    // ...hide all objects interactions from other states
+    $(`.mondstadt-objects, .liyue-objects, .inazuma-objects, .celestia-objects, .enkanomiya-objects`).hide();
+    // ...but only show all objects interactions from the Serenitea Pot state
+    $(`.sereniteaPot-objects`).show();
+
     // Click on invisible plush to...
     $(`#invisible-plush`).click(function() {
       // Show Fatui puzzle piece 3
@@ -668,7 +696,12 @@ function mousePressed() {
 
   // If Enkanomiya floor is visible on screen...
   if (state === `enkanomiya` && mouseIsPressed) {
-    // ...and click within yellow carpet
+    // ...hide all objects interactions from other states
+    $(`.mondstadt-objects, .liyue-objects, .inazuma-objects, .sereniteaPot-objects, .celestia-objects`).hide();
+    // ...but only show all objects interactions from the Enkanomiya state
+    $(`.enkanomiya-objects`).show();
+
+    // Click within yellow carpet
     let d = dist(mouseX, mouseY, 610, 300);
     if (d < 200) {
       // Change background image
@@ -701,6 +734,11 @@ function mousePressed() {
 
   // If Mondstadt-with-no-seal wall is visible on screen...
   if (state === `mondstadtNoSeal` && mouseIsPressed) {
+    // ...hide all objects interactions from other states
+    $(`.liyue-objects, .inazuma-objects, .sereniteaPot-objects, .celestia-objects, .enkanomiya-objects`).hide();
+    // ...but only show all objects interactions from the Mondstadt-with-no-seal state
+    $(`.mondstadt-objects`).show();
+
     // Click on invisible door handle to...
     $(`#invisible-door-handle`).click(function() {
       // ...hide escape room game, which includes the canvas...

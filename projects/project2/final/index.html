@@ -24,7 +24,7 @@
   <body>
 
     <!-- TITLE SCREEN -->
-    <div id="title">
+    <!-- <div id="title">
       <h1>ESCAPE THE GAMINGVERSE</h1>
       <button id="start-btn" type="button">START</button>
     </div>
@@ -46,7 +46,7 @@
       <p id="line-14">Oh! And remember, you are <strong>THE Traveler</strong>!</p>
       <p id="line-15">Good luck and as astra abyssosque!</p>
       <button id="read-btn" type="button">NEXT</button>
-    </div>
+    </div> -->
 
     <!-- DIRECTION INDICATORS CONTAINER -->
     <div class="direction-indicator">
@@ -88,147 +88,150 @@
       <button id="user-answer-4" type="button">Why are you-?</button>
       <button id="user-answer-5" type="button">That's because-</button>
       <button id="user-answer-6" type="button">Okay!</button>
-      <button id="user-answer-7" type="button">No Stealing, Paimon...</button>
+      <button id="user-answer-7" type="button">No Stealing...</button>
       <!-- USER INTERACTIONS WITH OBJECTS -->
       <!-- In Mondstadt -->
-      <div id="invisible-figurine"></div>
-      <div id="invisible-ghost"></div>
-      <div id="invisible-lyre"></div>
-      <div id="invisible-polearm"></div>
+      <div id="invisible-figurine" class="mondstadt-objects"></div>
+      <div id="invisible-ghost" class="mondstadt-objects"></div>
+      <div id="invisible-lyre" class="mondstadt-objects"></div>
+      <div id="invisible-polearm" class="mondstadt-objects"></div>
       <!-- In Liyue -->
-      <!-- <div id="invisible-book"></div>
-      <div id="invisible-flower-1" class="invisible-flower"></div>
-      <div id="invisible-flower-2" class="invisible-flower"></div>
-      <div id="invisible-flower-3" class="invisible-flower"></div>
-      <div id="invisible-plant"></div>
-      <div id="invisible-poster-1"></div>
-      <div id="invisible-computer"></div>
-      <div id="cabinet-1" class="invisible-cabinet"></div>
-      <div id="cabinet-2" class="invisible-cabinet"></div> -->
+      <div id="invisible-book"></div>
+      <div id="invisible-flower-1" class="invisible-flower liyue-objects"></div>
+      <div id="invisible-flower-2" class="invisible-flower liyue-objects"></div>
+      <div id="invisible-flower-3" class="invisible-flower liyue-objects"></div>
+      <div id="invisible-plant" class="liyue-objects"></div>
+      <div id="invisible-poster-1" class="liyue-objects"></div>
+      <div id="invisible-computer" class="liyue-objects"></div>
+      <div id="cabinet-1" class="invisible-cabinet liyue-objects"></div>
+      <div id="cabinet-2" class="invisible-cabinet liyue-objects"></div>
       <!-- In Inazuma -->
-      <!-- <div id="cabinet-3" class="invisible-closet"></div>
-      <div id="cabinet-4" class="invisible-closet"></div>
-      <div id="invisible-mirror"></div>
-      <div id="invisible-poster-2"></div>
-      <div id="invisible-elemental"></div> -->
+      <div id="cabinet-3" class="invisible-closet inazuma-objects"></div>
+      <div id="cabinet-4" class="invisible-closet inazuma-objects"></div>
+      <div id="invisible-mirror" class="inazuma-objects"></div>
+      <div id="invisible-poster-2" class="inazuma-objects"></div>
+      <div id="invisible-elemental" class="inazuma-objects"></div>
       <!-- In Serenitea Pot -->
-      <!-- <div id="invisible-poster-3"></div>
-      <div id="invisible-couch"></div>
-      <div id="invisible-bed"></div>
-      <div id="invisible-plush-1"></div>
-      <div id="invisible-plush-2"></div> -->
+      <div id="invisible-poster-3" class="sereniteaPot-objects"></div>
+      <div id="invisible-couch" class="sereniteaPot-objects"></div>
+      <div id="invisible-bed" class="sereniteaPot-objects"></div>
+      <div id="invisible-plush-1" class="sereniteaPot-objects"></div>
+      <div id="invisible-plush-2" class="sereniteaPot-objects"></div>
       <!-- In Celestia -->
-      <!-- <div id="lamp-1" class="invisible-star-lamp"></div>
-      <div id="lamp-2" class="invisible-star-lamp"></div>
-      <div id="lamp-3" class="invisible-star-lamp"></div>
-      <div id="lamp-4" class="invisible-star-lamp"></div> -->
+      <div id="lamp-1" class="invisible-star-lamp celestia-objects"></div>
+      <div id="lamp-2" class="invisible-star-lamp celestia-objects"></div>
+      <div id="lamp-3" class="invisible-star-lamp celestia-objects"></div>
+      <div id="lamp-4" class="invisible-star-lamp celestia-objects"></div>
       <!-- In Enkanomiya -->
-      <!-- <div id="invisible-poster-4"></div>
-      <div id="invisible-poster-5"></div>
-    </div> -->
+      <div id="invisible-poster-4" class="enkanomiya-objects"></div>
+      <div id="invisible-poster-5" class="enkanomiya-objects"></div>
+    </div>
 
-      <!-- PUZZLE PIECES -->
+    <!-- PUZZLE PIECES -->
+    <div>
+      <!-- Fatui Sign Complete -->
       <div>
-        <!-- Fatui Sign Complete -->
-        <div>
-          <div id="invisible-keypad"></div>
-          <img id="fatui-sign" class="fatui" src="assets/images/fatui-sign.png" alt="fatui puzzle piece 1">
-        </div>
-        <!-- Fatui Sign Piece 1 -->
-        <div>
-          <div id="invisible-lock"></div>
-          <img id="fatui1" class="fatui" src="assets/images/fatui-piece-1.png" alt="fatui puzzle piece 1">
-        </div>
-        <!-- Fatui Sign Piece 2 -->
-        <div>
-          <div id="invisible-carpet"></div>
-          <img id="fatui2" class="fatui" src="assets/images/fatui-piece-2.png" alt="fatui puzzle piece 2">
-        </div>
-        <!-- Fatui Sign Piece 3 -->
-        <div>
-          <div id="invisible-plush"></div>
-          <img id="fatui3" class="fatui" src="assets/images/fatui-piece-3.png" alt="fatui puzzle piece 3">
-        </div>
-        <!-- Fatui Sign Piece 4 -->
-        <div>
-          <div id="invisible-lamp"></div>
-          <img id="fatui4" class="fatui" src="assets/images/fatui-piece-4.png" alt="fatui puzzle piece 4">
-        </div>
+        <div id="invisible-keypad"></div>
+        <img id="fatui-sign" class="fatui" src="assets/images/fatui-sign.png" alt="fatui puzzle piece 1">
       </div>
-
-      <!-- PAPER CLUES -->
+      <!-- Fatui Sign Piece 1 -->
       <div>
-        <div id="invisible-note-1"></div>
-        <div id="clue-to-read-1">
-          <div id="lock-puzzle-overlay"></div>
-          <img id="clue1" class="clue" src="assets/images/clue-1.png" alt="clue paper 1">
-        </div>
-        <div id="invisible-note-2"></div>
-        <div id="clue-to-read-2">
-          <div id="lock-puzzle-overlay"></div>
-          <img id="clue2" class="clue" src="assets/images/clue-2.png" alt="clue paper 2">
-        </div>
-        <div id="invisible-note-3"></div>
-        <div id="clue-to-read-3">
-          <div id="lock-puzzle-overlay"></div>
-          <img id="clue3" class="clue" src="assets/images/clue-3.png" alt="clue paper 3">
-        </div>
+        <div id="invisible-lock"></div>
+        <img id="fatui1" class="fatui" src="assets/images/fatui-piece-1.png" alt="fatui puzzle piece 1">
       </div>
+      <!-- Fatui Sign Piece 2 -->
+      <div>
+        <div id="invisible-carpet"></div>
+        <img id="fatui2" class="fatui" src="assets/images/fatui-piece-2.png" alt="fatui puzzle piece 2">
+      </div>
+      <!-- Fatui Sign Piece 3 -->
+      <div>
+        <div id="invisible-plush"></div>
+        <img id="fatui3" class="fatui" src="assets/images/fatui-piece-3.png" alt="fatui puzzle piece 3">
+      </div>
+      <!-- Fatui Sign Piece 4 -->
+      <div>
+        <div id="invisible-lamp"></div>
+        <img id="fatui4" class="fatui" src="assets/images/fatui-piece-4.png" alt="fatui puzzle piece 4">
+      </div>
+    </div>
 
-      <!-- COMBO NUMBERS LOCK PUZZLE -->
-      <div id="lock-puzzle">
+    <!-- PAPER CLUES -->
+    <div>
+      <div id="invisible-note-1"></div>
+      <div id="clue-to-read-1">
         <div id="lock-puzzle-overlay"></div>
-        <div id="lock">
-          <div class="lock-number digit-1">0</div>
-          <div class="lock-number digit-2" style="margin: 0 0.35rem;">0</div>
-          <div class="lock-number digit-3">0</div>
-        </div>
-        <button class="close-btn" type="button">CLOSE</button>
-        <button class="confirm-btn" type="button">CONFIRM</button>
+        <img id="clue1" class="clue" src="assets/images/clue-1.png" alt="clue paper 1">
+        <button class="clue-btn" type="button">CLOSE</button>
+      </div>
+      <div id="invisible-note-2"></div>
+      <div id="clue-to-read-2">
+        <div id="lock-puzzle-overlay"></div>
+        <img id="clue2" class="clue" src="assets/images/clue-2.png" alt="clue paper 2">
+        <button class="clue-btn" type="button">CLOSE</button>
+      </div>
+      <div id="invisible-note-3"></div>
+      <div id="clue-to-read-3">
+        <div id="lock-puzzle-overlay"></div>
+        <img id="clue3" class="clue" src="assets/images/clue-3.png" alt="clue paper 3">
+        <button class="clue-btn" type="button">CLOSE</button>
+      </div>
+    </div>
+
+    <!-- COMBO NUMBERS LOCK PUZZLE -->
+    <div id="lock-puzzle">
+      <div id="lock-puzzle-overlay"></div>
+      <div id="lock">
+        <div class="lock-number digit-1">0</div>
+        <div class="lock-number digit-2" style="margin: 0 0.35rem;">0</div>
+        <div class="lock-number digit-3">0</div>
+      </div>
+      <button class="close-btn" type="button">CLOSE</button>
+      <button class="confirm-btn" type="button">CONFIRM</button>
+    </div>
+
+    <!-- DIALOG BOX FOR CONVERSATIONS -->
+    <div id="dialog-box">
+      <div id="paimon">
+        <p>Paimon</p>
       </div>
 
-      <!-- DIALOG BOX FOR CONVERSATIONS -->
-      <div id="dialog-box">
-        <div id="paimon">
-          <p>Paimon</p>
-        </div>
-
-        <div class="typewriter">
-          <p id="dialog">Traveler! Traveler! Can you hear me? Wake up!</p>
-        </div>
+      <div class="typewriter">
+        <p id="dialog">Traveler! Traveler! Can you hear me? Wake up!</p>
       </div>
+    </div>
 
-      <!-- EXIT DOOR -->
-      <div>
-        <div id="invisible-door"></div>
-        <div id="invisible-door-handle"></div>
+    <!-- EXIT DOOR -->
+    <div>
+      <div id="invisible-door"></div>
+      <div id="invisible-door-handle"></div>
+    </div>
+
+    <!-- ENDING SCREEN -->
+    <div id="ending">
+      <h1>CONGRATULATION!</h1>
+      <div id="conclusion">
+        <p id="end-line-1"><strong>Dear traveler</strong>,</p>
+        <p id="end-line-2" style="margin-bottom: 0">Welcome to <strong>The Abyss</strong>.</p>
+        <p id="end-line-3">You passed the recruitment test.</p>
+        <p id="end-line-4" style="margin-bottom: 0">Yes, this was <strong>a trick</strong> and you fell for it</p>
+        <p id="end-line-5">But you asked for it and had <strong>no way out</strong>.</p>
+        <p id="end-line-6" style="margin-bottom: 0">Get ready to fight Teyvat for <strong>Khaenri'ah</strong>.</p>
+        <p id="end-line-7" style="margin-bottom: 0">Do not worry! You are in good hands!</p>
+        <p id="end-line-8"><strong>Tartaglia</strong> will take good care of you and your training.</p>
+        <p id="end-line-9">Oh! By the way, you will not remember any of this.</p>
+        <p id="end-line-10">Good luck and as astra abyssosque!</p>
       </div>
+      <img id="fatui-seal" src="assets/images/fatui-sign.png" alt="fatui puzzle piece 1">
+    </div>
 
-      <!-- ENDING SCREEN -->
-      <div id="ending">
-        <h1>CONGRATULATION!</h1>
-        <div id="conclusion">
-          <p id="end-line-1"><strong>Dear traveler</strong>,</p>
-          <p id="end-line-2" style="margin-bottom: 0">Welcome to <strong>The Abyss</strong>.</p>
-          <p id="end-line-3">You passed the recruitment test.</p>
-          <p id="end-line-4" style="margin-bottom: 0">Yes, this was <strong>a trick</strong> and you fell for it</p>
-          <p id="end-line-5">But you asked for it and had <strong>no way out</strong>.</p>
-          <p id="end-line-6" style="margin-bottom: 0">Get ready to fight Teyvat for <strong>Khaenri'ah</strong>.</p>
-          <p id="end-line-7" style="margin-bottom: 0">Do not worry! You are in good hands!</p>
-          <p id="end-line-8"><strong>Tartaglia</strong> will take good care of you and your training.</p>
-          <p id="end-line-9">Oh! By the way, you will not remember any of this.</p>
-          <p id="end-line-10">Good luck and as astra abyssosque!</p>
-        </div>
-        <img id="fatui-seal" src="assets/images/fatui-sign.png" alt="fatui puzzle piece 1">
-      </div>
+    <!-- CURSOR -->
+    <div class="cursor"></div>
+    <div class="cursor2"></div>
 
-      <!-- CURSOR -->
-      <div class="cursor"></div>
-      <div class="cursor2"></div>
-
-      <!-- My script(s) -->
-      <script src="js/0-html.js"></script>
-      <script src="js/1-main-script.js"></script>
+    <!-- My script(s) -->
+    <script src="js/0-html.js"></script>
+    <script src="js/1-main-script.js"></script>
   </body>
 
 </html>

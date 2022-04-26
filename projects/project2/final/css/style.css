@@ -324,6 +324,26 @@ canvas {
   z-index: 60;
 }
 
+.clue-btn {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #202020;
+  background-color: #fff5ec;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem;
+  position: fixed;
+  top: 70%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+
+.clue-btn:hover {
+  background-color: rgb(130, 3, 161);
+  color: #fff5ec;
+}
+
 #clue-to-read-1 {
   display: none;
 }
