@@ -101,7 +101,7 @@ function keypad() {
         // When the complete fatui sign is dropped in the keypad zone, fade it out...
         $(`#fatui-sign`).fadeOut(1000, function() {
           // ...and show change the background by removing the circle seal
-          bgMondstadt = bgMondstadtNoSeal;
+          state = `mondstadtNoSeal`;
         });
         // Check which fatui sign dragged and put in the inventory through console
         console.log(ui.draggable[0].id);
@@ -174,8 +174,8 @@ function draw() {
     celestia();
   } else if (state === `enkanomiya`) {
     enkanomiya();
-  } else if (state === `ending`) {
-    ending();
+  } else if (state === `mondstadtNoSeal`) {
+    mondstadtNoSeal();
   }
 } // END OF DRAW FUNCTION
 
@@ -315,7 +315,7 @@ function celestia() {
 
 // Function displaying the floor of the escape room
 function enkanomiya() {
-  // Displa the floor's backgorund image
+  // Display the floor's background image
   background(bgEnkanomiya);
   // Hide fatui puzzle pieces by default to keep them on their specific state...
   $(`#fatui1`).hide();
@@ -338,6 +338,11 @@ function enkanomiya() {
     $(`#fatui2`).show();
   }
 } // END OF ENKANOMIYA FUNCTION
+
+function mondstadtNoSeal() {
+  // Display the Mondstadt-with-no-seal's background image
+  background(bgMondstadtNoSeal)
+} // END OF MONDSTADT-NO-SEAL FUNCTION
 
 // Function storing keyboard inputs
 function keyPressed() {
@@ -365,11 +370,20 @@ function keyPressed() {
 // Function storing mouseclicks inputs
 function mousePressed() {
 
+  // If Mondstadt wall is visible on screen...
+  if (state === `mondstadt` && mouseIsPressed) {
+    // Click on invisible door handle to...
+    $(`#invisible-lock`).click(function() {
+      // Display lock
+      $(`#lock-puzzle`).show();
+    });
+  }
+
   /****** FINDING THE CORRECT DIGITS ******/
   // If Inazuma wall is visible on screen...
   if (state === `inazuma` && mouseIsPressed) {
     /* DIGIT LOCK PUZZLE */
-    // Click on invisible rectangle to...
+    // Click on invisible rectangular box on wall to...
     $(`#invisible-lock`).click(function() {
       // Display lock
       $(`#lock-puzzle`).show();
@@ -404,12 +418,12 @@ function mousePressed() {
   // If Liyue wall is visible on screen...
   if (state === `liyue` && mouseIsPressed) {
     /* CLUE PAPER 1 & 3 */
-    // Click on invisible rectangle to...
+    // Click on invisible books to...
     $(`#invisible-note-1`).click(function() {
       // Display clue paper 1
       $(`#clue-to-read-1`).show();
     });
-    // Click on invisible rectangle to...
+    // Click on invisible trash to...
     $(`#invisible-note-2`).click(function() {
       // Display clue paper 2
       $(`#clue-to-read-2`).show();
@@ -426,7 +440,7 @@ function mousePressed() {
   // If Celestia ceiling is visible on screen...
   if (state === `celestia` && mouseIsPressed) {
     /* CLUE PAPER 2 */
-    // Click on invisible rectangle to...
+    // Click on invisible note to...
     $(`#invisible-note-3`).click(function() {
       // Display clue paper 3
       $(`#clue-to-read-3`).show();
@@ -441,7 +455,7 @@ function mousePressed() {
 
 
     /****** FINDING FATUI SIGN PIECES ******/
-    // Click on invisible ellipse to...
+    // Click on invisible lamp to...
     $(`#invisible-lamp`).click(function() {
       // Show Fatui puzzle piece 4
       $(`#fatui4`).show();
@@ -453,7 +467,7 @@ function mousePressed() {
 
   // If Serenitea Pot wall is visible on screen...
   if (state === `sereniteaPot` && mouseIsPressed) {
-    // Click on invisible ellipse to...
+    // Click on invisible plush to...
     $(`#invisible-plush`).click(function() {
       // Show Fatui puzzle piece 3
       $(`#fatui3`).show();
@@ -464,7 +478,7 @@ function mousePressed() {
 
   // If Enkanomiya floor is visible on screen...
   if (state === `enkanomiya` && mouseIsPressed) {
-    // ...and clicked within invisible circle/yellow carpet
+    // ...and click within yellow carpet
     let d = dist(mouseX, mouseY, 610, 300);
     if (d < 200) {
       // Change background image
@@ -479,4 +493,31 @@ function mousePressed() {
       foundFatui2 = true
     });
   } // END OF MOUSEISPRESSED ON ENKANOMIYA STATE
+
+  // If Mondstadt-with-no-seal wall is visible on screen...
+  if (state === `mondstadtNoSeal` && mouseIsPressed) {
+    // Click on invisible door handle to...
+    $(`#invisible-door-handle`).click(function() {
+      // ...hide escape room game, which includes the canvas...
+      $(`canvas`).fadeOut(2000);
+      // ...the direction indicators...
+      $(`.direction-indicator`).fadeOut(2000);
+      // ...and the dialog box
+      $(`#dialog-box`).fadeOut(2000);
+      // ...and show ending screen
+      $(`#ending`).fadeIn(4000);
+      $(`#end-line-1`).delay(3000).fadeIn(2000);
+      $(`#end-line-2`).delay(5000).fadeIn(2000);
+      $(`#end-line-3`).delay(6000).fadeIn(2000);
+      $(`#end-line-4`).delay(9000).fadeIn(2000);
+      $(`#end-line-5`).delay(10000).fadeIn(2000);
+      $(`#end-line-6`).delay(13000).fadeIn(2000);
+      $(`#end-line-7`).delay(14000).fadeIn(2000);
+      $(`#end-line-8`).delay(15000).fadeIn(2000);
+      $(`#end-line-9`).delay(20000).fadeIn(2000);
+      $(`#end-line-10`).delay(23000).fadeIn(2000);
+      $(`#fatui-seal`).delay(14500).fadeIn(2000);
+    });
+  }
+
 } // END OF MOUSEPRESSED FUNCTION
