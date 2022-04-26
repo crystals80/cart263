@@ -208,6 +208,9 @@ function enableDragAgain() {
     $(`#fatui-sign`).fadeIn(1000, function() {
       // ...and show it permanently once its pieces are hidden
       $(this).show();
+      // Trigger a dialog at the same time
+      innerPara(
+        $(`#dialog`).text(`Whoa! The Fatui seal! What kind of sorcery is that?!`));
     });
   };
 } // END OF ENABLE-DRAG-AGAIN FUNCTION
@@ -413,6 +416,25 @@ function mousePressed() {
     $(`.mondstadt-objects`).show();
 
     // Trigger interaction by clicking on an object
+    $(`#invisible-keypad`).click(function() {
+      // ...totrigger a dialog
+      innerPara(
+        $(`#dialog`).text(`It seems like we need to insert a square shape?`));
+    });
+    // Trigger interaction by clicking on an object
+    $(`#invisible-door-handle`).click(function() {
+      // ...totrigger a dialog
+      innerPara(
+        $(`#dialog`).text(`Ohhhh Yes!!! The door with Mona's seal!!!`));
+    });
+    // Trigger interaction by clicking on an object
+    $(`#invisible-door`).click(function() {
+      // ...totrigger a dialog
+      innerPara(
+        $(`#dialog`).text(`This reminds me of a similar situation...`));
+    });
+
+    // Trigger interaction by clicking on an object
     $(`#invisible-figurine`).click(function() {
       // ...while an orange button fade in
       $(`#user-answer-4`).delay(1500).fadeIn(1000);
@@ -491,6 +513,9 @@ function mousePressed() {
     $(`#invisible-lock`).click(function() {
       // Display lock
       $(`#lock-puzzle`).show();
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`The box is locked! We need to find the combination to this lock! Let's look around for clues!`));
     });
 
     /* DIGIT LOCK PUZZLE - CLOSE AND CONFIRM BUTTONS */
@@ -514,6 +539,9 @@ function mousePressed() {
         // Also show in console the correct answer
         console.log(`Correct Digits: 3-7-6`)
       }
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Yay! You did it! A puzzle fell out of the box!`));
     });
 
     // Trigger interaction by clicking on an object
@@ -555,11 +583,17 @@ function mousePressed() {
     $(`#invisible-note-1`).click(function() {
       // Display clue paper 1
       $(`#clue-to-read-1`).show();
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Ganyu? She participated in this?`));
     });
     // Click on invisible trash to...
     $(`#invisible-note-2`).click(function() {
       // Display clue paper 2
       $(`#clue-to-read-2`).show();
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`...Itto...I think he wasn't supposed to reveal the answer...`));
     });
     /* CLUE PAPER 1 & 3 - CLOSE BUTTON */
     // Click button to close the (overlay screen) clue paper 1 & 3...
@@ -619,6 +653,9 @@ function mousePressed() {
     $(`#invisible-note-3`).click(function() {
       // Display clue paper 3
       $(`#clue-to-read-3`).show();
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`It's Klee! Poor thing, I'm sure Kaeya made her do the math`));
     });
 
     /* CLUE PAPER 2 - CLOSE BUTTON */
@@ -635,6 +672,9 @@ function mousePressed() {
       $(`#fatui4`).show();
       // Make sure the fatui sign piece stay on screen but on their original state
       foundFatui4 = true
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`A piece of puzzle! Who the heck would hide something in a lamp?`));
     });
 
 
@@ -660,6 +700,9 @@ function mousePressed() {
       $(`#fatui3`).show();
       // Make sure the fatui sign piece stay on screen but on their original state
       foundFatui3 = true
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`A piece of puzzle? Let's find the others!`));
     });
 
     // Trigger interaction by clicking on an object
@@ -714,6 +757,9 @@ function mousePressed() {
       $(`#fatui2`).show();
       // Make sure the fatui sign piece stay on screen but on their original state
       foundFatui2 = true
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`A piece of puzzle? Let's find the others!`));
     });
 
 
@@ -738,6 +784,19 @@ function mousePressed() {
     $(`.liyue-objects, .inazuma-objects, .sereniteaPot-objects, .celestia-objects, .enkanomiya-objects`).hide();
     // ...but only show all objects interactions from the Mondstadt-with-no-seal state
     $(`.mondstadt-objects`).show();
+
+    // Trigger interaction by clicking on an object
+    $(`#invisible-keypad`).click(function() {
+      // ...totrigger a dialog
+      innerPara(
+        $(`#dialog`).text(`It's a Fatui security system!`));
+    });
+    // Trigger interaction by clicking on an object
+    $(`#invisible-door`).click(function() {
+      // ...totrigger a dialog
+      innerPara(
+        $(`#dialog`).text(`Come on! Open the door! Why are you pushing the door? Don't you know how to open the door? Use the door handle! `));
+    });
 
     // Click on invisible door handle to...
     $(`#invisible-door-handle`).click(function() {
