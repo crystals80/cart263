@@ -5,8 +5,6 @@ Lam Ky Anh Do
 This JS file is a mix of DOM and Jquery for code on the HTML page only.
 */
 
-
-
 /****** TITLE SCREEN ******/
 // Click on START button...
 $(`#start-btn`).click(function() {
@@ -57,7 +55,6 @@ $(`#read-btn`).ready(function() {
 $(`.fatui`).draggable({
   revert: `invalid`,
   containment: `document`,
-
 });
 
 /****** TYPEWRITER EFFECT ******/

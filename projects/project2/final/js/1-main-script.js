@@ -16,7 +16,7 @@ let state = `title`; // Declare state(s) var
 let currentArea = 0; // Set the area the player is facing
 
 // Declare images vars
-let bgMonstadt, bgLiyue, bgInazuma, bgSereniteaPot, bgCelestia, bgEnkanomiya, bgCarpet;
+let bgMonstadt, bgLiyue, bgInazuma, bgSereniteaPot, bgCelestia, bgEnkanomiya, bgCarpet, bgMonstadtNoSeal;
 // Declare fonts vars
 let extraBold;
 
@@ -30,8 +30,9 @@ let foundFatui3 = false;
 let foundFatui4 = false;
 
 // Declare vars for draggable function
-let numDropItem = 0;
+let numDropItem = 0; // For pieces of fatui sign
 let resetDraggableItem = false;
+let numDropNewItem = 0; // For complete fatui sign
 
 // Function loading fonts, images and sounds
 function preload() {
@@ -45,6 +46,7 @@ function preload() {
   bgCelestia = loadImage(`assets/images/celestia.png`);
   bgEnkanomiya = loadImage(`assets/images/enkanomiya.png`);
   bgCarpet = loadImage(`assets/images/lifted-carpet.png`);
+  bgMonstadtNoSeal = loadImage(`assets/images/mondstadt-no-seal.png`);
 } // END OF PRELOAD FUNCTION
 
 // Function configurating the simulation
@@ -53,6 +55,7 @@ function setup() {
   createCanvas(1200, 600);
 
   inventory(); // Set up an droppable inventory
+  keypad();
   digitLockPuzzle(); // Set up digit lock puzzle
 } // END OF SETUP FUNCTION
 
@@ -75,13 +78,42 @@ function inventory() {
         numDropItem++;
         // Check how many items are dropped in the inventory
         console.log(numDropItem);
+
       }
       return true;
     },
   });
 } // END OF INVENTORY FUNCTION
 
-
+// Function storing the setup for a droppable keypad zone
+function keypad() {
+  // Create a droppable keypad zone
+  $(`#invisible-keypad`).droppable({
+    classes: {
+      "ui-droppable-active": "ui-state-active",
+      "ui-droppable-hover": "ui-state-hover"
+    },
+    drop: function(event, ui) {
+      // If there is the complete fatui sign in the keypad zone...
+      if (numDropNewItem < 1) {
+        // ...disable the draggable option for this item
+        $("#" + ui.draggable[0].id).draggable("disable");
+        // When the complete fatui sign is dropped in the keypad zone, fade it out...
+        $(`#fatui-sign`).fadeOut(1000, function() {
+          // ...and show change the background by removing the circle seal
+          bgMonstadt = bgMonstadtNoSeal;
+        });
+        // Check which fatui sign dragged and put in the inventory through console
+        console.log(ui.draggable[0].id);
+        // Count the items in the keypad zone
+        numDropNewItem++;
+        // Check how many items are dropped in the keypad zone
+        console.log(numDropNewItem);
+      }
+      return true;
+    },
+  });
+} // END OF KEYPAD FUNCTION
 
 // Function storing digit lock puzzle setup
 function digitLockPuzzle() {
@@ -123,7 +155,7 @@ function digitLockPuzzle() {
     }
     $(`.digit-3`).text(currentDigit3);
   });
-}
+} // END OF DIGIT-LOCK-PUZZLE FUNCTION
 
 // Function running the simulation
 function draw() {
@@ -158,19 +190,27 @@ function mondstadt() {
   // Display the lobby/entrance/exit's background image
   background(bgMonstadt);
 
+  enableDragAgain(); // Setup renabling draggable option to mondstadt state
+} // END OF MONDSTADT FUNCTION
+
+// Function storing draggable code
+function enableDragAgain() {
   // If there are 4 pieces of fatui sign in the inventory and state is equal to mondstadt...
   if (numDropItem === 4 && resetDraggableItem === false) {
     // ...reset draggable to be able to drag items
     resetDraggableItem = true;
-    // ...enable draggable to game canvas
-    $(`.fatui`).draggable("enable");
-    // ...and make revert valid so that items will not be contained in the inventory
-    $(`.fatui`).draggable({
-      revert: `valid`,
-      containment: `document`,
+    // Fade out fatui sign pieces...
+    $(`#fatui1, #fatui2, #fatui3, #fatui4`).fadeOut(1000, function() {
+      // ...and hide them permanently
+      $(this).hide();
+    });
+    // ...to fade in the complete fatui sign
+    $(`#fatui-sign`).fadeIn(1000, function() {
+      // ...and show it permanently once its pieces are hidden
+      $(this).show();
     });
   };
-} // END OF MONDSTADT FUNCTION
+} // END OF ENABLE-DRAG-AGAIN FUNCTION
 
 // Function displaying the gaming area of the escape room
 function liyue() {

@@ -304,10 +304,11 @@ canvas {
 }
 
 #fatui-sign {
-  position: fixed;
-  top: 13.5%;
-  left: 48.5%;
+  position: absolute;
+  top: 75.5%;
+  left: 5%;
   display: none;
+  z-index: 110;
 }
 
 #fatui1 {
@@ -459,6 +460,17 @@ canvas {
   left: 27.5%;
   display: block;
   z-index: 5;
+}
+
+#invisible-keypad {
+  width: 125px;
+  height: 125px;
+  background-color: #fff5ec;
+  position: fixed;
+  top: 30%;
+  left: 23%;
+  display: block;
+  z-index: 2;
 }
 
 #invisible-lamp {
