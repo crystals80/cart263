@@ -384,6 +384,8 @@ function mousePressed() {
       $(this).fadeOut(1000);
       // ...while another orange button fade in
       $(`#user-answer-2`).delay(6000).fadeIn(1000);
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Yes! It's your best friend! I'm kind of stuck here...Help me get out of here!`));
@@ -394,6 +396,8 @@ function mousePressed() {
       $(this).fadeOut(1000);
       // ...while another orange button fade in
       $(`#user-answer-3`).delay(9000).fadeIn(1000);
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Uh...Right...Open your eyes first and you can nagivate using the first letter of each areas (listed on the top-left of the screen)`));
@@ -402,6 +406,8 @@ function mousePressed() {
     $(`#user-answer-3`).click(function() {
       // Fade out this orange button...
       $(this).fadeOut(1000);
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Hehe! It's nothing! Oh! I'm here on the stand!`));
@@ -417,19 +423,25 @@ function mousePressed() {
 
     // Trigger interaction by clicking on an object
     $(`#invisible-keypad`).click(function() {
-      // ...totrigger a dialog
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
+      // ...to trigger a dialog
       innerPara(
         $(`#dialog`).text(`It seems like we need to insert a square shape?`));
     });
     // Trigger interaction by clicking on an object
     $(`#invisible-door-handle`).click(function() {
-      // ...totrigger a dialog
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
+      // ...to trigger a dialog
       innerPara(
         $(`#dialog`).text(`Ohhhh Yes!!! The door with Mona's seal!!!`));
     });
     // Trigger interaction by clicking on an object
     $(`#invisible-door`).click(function() {
-      // ...totrigger a dialog
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
+      // ...to trigger a dialog
       innerPara(
         $(`#dialog`).text(`This reminds me of a similar situation...`));
     });
@@ -438,6 +450,8 @@ function mousePressed() {
     $(`#invisible-figurine`).click(function() {
       // ...while an orange button fade in
       $(`#user-answer-4`).delay(1500).fadeIn(1000);
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Hey! Careful!`));
@@ -448,6 +462,8 @@ function mousePressed() {
       $(this).fadeOut(1000);
       // ...while another orange button fade in
       $(`#user-answer-5`).delay(5000).fadeIn(1000);
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`...Don't laugh! I don't know why I became like this and not you! We were fishing and suddenly...`));
@@ -458,6 +474,8 @@ function mousePressed() {
       $(this).fadeOut(1000);
       // ...while another orange button fade in
       $(`#user-answer-6`).delay(5000).fadeIn(1000);
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`I DONT WANT TO HEAR IT!!! Anyhow, let's look around to get out of here!`));
@@ -466,18 +484,24 @@ function mousePressed() {
     $(`#user-answer-6`).click(function() {
       // ...while another orange button fade in
       $(this).fadeOut(1000);
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`All right! Be Paimon's right arm and help me!`));
     });
     // Trigger interaction by clicking on an object
     $(`#invisible-ghost`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Uh...That's Hu Tao's friend...D-Don't touch it!`));
     });
     // Trigger interaction by clicking on an object
     $(`#invisible-lyre`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Venti's lyre?!`));
@@ -486,6 +510,8 @@ function mousePressed() {
     $(`#invisible-polearm`).click(function() {
       // ...while another orange button fade in
       $(`#user-answer-7`).delay(2000).fadeIn(1000);
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Whoa! The Engulfing Lightning! TAKE IT!!!`));
@@ -494,6 +520,8 @@ function mousePressed() {
     $(`#user-answer-7`).click(function() {
       // ...while another orange button fade in
       $(this).fadeOut(1000);
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Agh! Fineeeee...`));
@@ -513,6 +541,8 @@ function mousePressed() {
     $(`#invisible-lock`).click(function() {
       // Display lock
       $(`#lock-puzzle`).show();
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`The box is locked! We need to find the combination to this lock! Let's look around for clues!`));
@@ -535,10 +565,12 @@ function mousePressed() {
         // ...then show Fatui puzzle piece 1
         $(`#fatui1`).show();
         // Make sure the fatui sign piece stay on screen but on their original state
-        foundFatui1 = true
+        foundFatui1 = true;
         // Also show in console the correct answer
         console.log(`Correct Digits: 3-7-6`)
       }
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Yay! You did it! A puzzle fell out of the box!`));
@@ -546,24 +578,32 @@ function mousePressed() {
 
     // Trigger interaction by clicking on an object
     $(`#invisible-mirror`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Hmm...Doesn't it looks like Mirror Maiden's mirror?`));
     });
     // Trigger interaction by clicking on an object
     $(`#invisible-poster-2`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`To ge-t out?`));
     });
     // Trigger interaction by clicking on an object
     $(`#invisible-elemental`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Ooh! Neon Elemental Symbols!`));
     });
     // Trigger interaction by clicking on an object
     $(`.invisible-closet`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Nothing here, just clothes.`));
@@ -583,6 +623,8 @@ function mousePressed() {
     $(`#invisible-note-1`).click(function() {
       // Display clue paper 1
       $(`#clue-to-read-1`).show();
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Ganyu? She participated in this?`));
@@ -591,6 +633,8 @@ function mousePressed() {
     $(`#invisible-note-2`).click(function() {
       // Display clue paper 2
       $(`#clue-to-read-2`).show();
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`...Itto...I think he wasn't supposed to reveal the answer...`));
@@ -605,36 +649,48 @@ function mousePressed() {
 
     // Trigger interaction by clicking on an object
     $(`#invisible-book`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Hmm...Remind me of the Artifacts we had to farm.`));
     });
     // Trigger interaction by clicking on an object
     $(`.invisible-flower`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`That is one gigantic Glaze Lily!`));
     });
     // Trigger interaction by clicking on an object
     $(`#invisible-plant`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Just an ordinary plant...`));
     });
     // Trigger interaction by clicking on an object
     $(`#invisible-poster-1`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Fi-nd t-he F-a-t-u-i S-ig-n?`));
     });
     // Trigger interaction by clicking on an object
     $(`#invisible-computer`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`They don't seem to work?`));
     });
     // Trigger interaction by clicking on an object
     $(`.invisible-cabinet`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`It's locked.`));
@@ -653,6 +709,8 @@ function mousePressed() {
     $(`#invisible-note-3`).click(function() {
       // Display clue paper 3
       $(`#clue-to-read-3`).show();
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`It's Klee! Poor thing, I'm sure Kaeya made her do the math`));
@@ -671,7 +729,9 @@ function mousePressed() {
       // Show Fatui puzzle piece 4
       $(`#fatui4`).show();
       // Make sure the fatui sign piece stay on screen but on their original state
-      foundFatui4 = true
+      foundFatui4 = true;
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`A piece of puzzle! Who the heck would hide something in a lamp?`));
@@ -680,6 +740,8 @@ function mousePressed() {
 
     // Trigger interaction by clicking on an object
     $(`.invisible-star-lamp`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Primogems?! Nooo! It's just a lamp...`));
@@ -699,7 +761,9 @@ function mousePressed() {
       // Show Fatui puzzle piece 3
       $(`#fatui3`).show();
       // Make sure the fatui sign piece stay on screen but on their original state
-      foundFatui3 = true
+      foundFatui3 = true;
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`A piece of puzzle? Let's find the others!`));
@@ -707,30 +771,40 @@ function mousePressed() {
 
     // Trigger interaction by clicking on an object
     $(`#invisible-poster-3`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`And S-olv-e all t-he P-uzzles?`));
     });
     // Trigger interaction by clicking on an object
     $(`#invisible-couch`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Ooh! Comfy! And is that a Taroumaru plush?!`));
     });
     // Trigger interaction by clicking on an object
     $(`#invisible-bed`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`I wanna sleep there!`));
     });
     // Trigger interaction by clicking on an object
     $(`#invisible-plush-1`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`So cute! A Cryo slime plush!`));
     });
     // Trigger interaction by clicking on an object
     $(`#invisible-plush-2`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`IS THAT A GUOBA PLUSH?! ADORABLE!`));
@@ -756,7 +830,9 @@ function mousePressed() {
       // Show Fatui puzzle piece 2
       $(`#fatui2`).show();
       // Make sure the fatui sign piece stay on screen but on their original state
-      foundFatui2 = true
+      foundFatui2 = true;
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`A piece of puzzle? Let's find the others!`));
@@ -765,6 +841,8 @@ function mousePressed() {
 
     // Trigger interaction by clicking on an object
     $(`#invisible-poster-4`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Good Luck ehe? Did that Tone-Deaf Bard wrote this?`));
@@ -772,6 +850,8 @@ function mousePressed() {
 
     // Trigger interaction by clicking on an object
     $(`#invisible-poster-5`).click(function() {
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
       // At the same time another dialog sentence appears
       innerPara(
         $(`#dialog`).text(`Touch Nothing? What? Then how are we supposed to get out?!`));
@@ -787,13 +867,17 @@ function mousePressed() {
 
     // Trigger interaction by clicking on an object
     $(`#invisible-keypad`).click(function() {
-      // ...totrigger a dialog
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
+      // ...to trigger a dialog
       innerPara(
         $(`#dialog`).text(`It's a Fatui security system!`));
     });
     // Trigger interaction by clicking on an object
     $(`#invisible-door`).click(function() {
-      // ...totrigger a dialog
+      // Clear timer for if other user interaction objects are clicked (preventing a flickering effect)
+      clearInterval(timer);
+      // ...to trigger a dialog
       innerPara(
         $(`#dialog`).text(`Come on! Open the door! Why are you pushing the door? Don't you know how to open the door? Use the door handle! `));
     });
