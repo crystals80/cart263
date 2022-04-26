@@ -370,16 +370,107 @@ function keyPressed() {
 // Function storing mouseclicks inputs
 function mousePressed() {
 
+  // If the title state is visible on screen...
+  if (state === `title` && mouseIsPressed) {
+    // ...change dialog sentences by clicking on the orange buttons
+    $(`#user-answer-1`).click(function() {
+      // Fade out this orange button...
+      $(this).fadeOut(1000);
+      // ...while another orange button fade in
+      $(`#user-answer-2`).delay(6000).fadeIn(1000);
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Yes! It's your best friend! I'm kind of stuck here...Help me get out of here!`));
+    })
+    // Change dialog sentences by clicking on the orange buttons
+    $(`#user-answer-2`).click(function() {
+      // Fade out this orange button...
+      $(this).fadeOut(1000);
+      // ...while another orange button fade in
+      $(`#user-answer-3`).delay(9000).fadeIn(1000);
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Uh...Right...Open your eyes first and you can nagivate using the first letter of each areas (listed on the top-left of the screen)`));
+    })
+    // Change dialog sentences by clicking on the orange buttons
+    $(`#user-answer-3`).click(function() {
+      // Fade out this orange button...
+      $(this).fadeOut(1000);
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Hehe! It's nothing! Oh! I'm here on the stand!`));
+    })
+  }
+
   // If Mondstadt wall is visible on screen...
   if (state === `mondstadt` && mouseIsPressed) {
-    // Click on invisible door handle to...
-    $(`#invisible-lock`).click(function() {
-      // Display lock
-      $(`#lock-puzzle`).show();
+    // ...Trigger interaction by clicking on an object
+    $(`#invisible-figurine`).click(function() {
+      // ...while an orange button fade in
+      $(`#user-answer-4`).delay(1500).fadeIn(1000);
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Hey! Careful!`));
+    });
+    // Change dialog sentences by clicking on the orange buttons
+    $(`#user-answer-4`).click(function() {
+      // Fade out this orange button...
+      $(this).fadeOut(1000);
+      // ...while another orange button fade in
+      $(`#user-answer-5`).delay(5000).fadeIn(1000);
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`...Don't laugh! I don't know why I became like this and not you! We were fishing and suddenly...`));
+    });
+    // Change dialog sentences by clicking on the orange buttons
+    $(`#user-answer-5`).click(function() {
+      // Fade out this orange button...
+      $(this).fadeOut(1000);
+      // ...while another orange button fade in
+      $(`#user-answer-6`).delay(5000).fadeIn(1000);
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`I DONT WANT TO HEAR IT!!! Anyhow, let's look around to get out of here!`));
+    });
+    // Trigger interaction by clicking on the orange button
+    $(`#user-answer-6`).click(function() {
+      // ...while another orange button fade in
+      $(this).fadeOut(1000);
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`All right! Be Paimon's right arm and help me!`));
+    });
+    // Trigger interaction by clicking on an object
+    $(`#invisible-ghost`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Uh...That's Hu Tao's friend...D-Don't touch it!`));
+    });
+    // Trigger interaction by clicking on an object
+    $(`#invisible-lyre`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Venti's lyre?!`));
+    });
+    // Trigger interaction by clicking on an object
+    $(`#invisible-polearm`).click(function() {
+      // ...while another orange button fade in
+      $(`#user-answer-7`).delay(2000).fadeIn(1000);
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Whoa! The Engulfing Lightning! TAKE IT!!!`));
+    });
+    // Trigger interaction by clicking on the orange button
+    $(`#user-answer-7`).click(function() {
+      // ...while another orange button fade in
+      $(this).fadeOut(1000);
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Agh! Fineeeee...`));
     });
   }
 
-  /****** FINDING THE CORRECT DIGITS ******/
+
   // If Inazuma wall is visible on screen...
   if (state === `inazuma` && mouseIsPressed) {
     /* DIGIT LOCK PUZZLE */
@@ -411,10 +502,34 @@ function mousePressed() {
         console.log(`Correct Digits: 3-7-6`)
       }
     });
+
+    // Trigger interaction by clicking on an object
+    $(`#invisible-mirror`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Hmm...Doesn't it looks like Mirror Maiden's mirror?`));
+    });
+    // Trigger interaction by clicking on an object
+    $(`#invisible-poster-2`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`To ge-t out?`));
+    });
+    // Trigger interaction by clicking on an object
+    $(`#invisible-elemental`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Ooh! Neon Elemental Symbols!`));
+    });
+    // Trigger interaction by clicking on an object
+    $(`.invisible-closet`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Nothing here, just clothes.`));
+    });
   } // END OF MOUSEISPRESSED ON INAZUMA STATE
 
 
-  /****** FINDING PAPER CLUES ******/
   // If Liyue wall is visible on screen...
   if (state === `liyue` && mouseIsPressed) {
     /* CLUE PAPER 1 & 3 */
@@ -428,12 +543,49 @@ function mousePressed() {
       // Display clue paper 2
       $(`#clue-to-read-2`).show();
     });
-
     /* CLUE PAPER 1 & 3 - CLOSE BUTTON */
     // Click button to close the (overlay screen) clue paper 1 & 3...
-    $(`.clue-btn`).click(function() {
+    $(`.clue`).click(function() {
       // ...by hiding it
       $(`#clue-to-read-1, #clue-to-read-2`).hide();
+    });
+
+
+    // Trigger interaction by clicking on an object
+    $(`#invisible-book`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Hmm...Remind me of the Artifacts we had to farm.`));
+    });
+    // Trigger interaction by clicking on an object
+    $(`.invisible-flower`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`That is one gigantic Glaze Lily!`));
+    });
+    // Trigger interaction by clicking on an object
+    $(`#invisible-plant`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Just an ordinary plant...`));
+    });
+    // Trigger interaction by clicking on an object
+    $(`#invisible-poster-1`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Fi-nd t-he F-a-t-u-i S-ig-n?`));
+    });
+    // Trigger interaction by clicking on an object
+    $(`#invisible-computer`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`They don't seem to work?`));
+    });
+    // Trigger interaction by clicking on an object
+    $(`.invisible-cabinet`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`It's locked.`));
     });
   } // END OF MOUSEISPRESSED ON LIYUE STATE
 
@@ -448,19 +600,26 @@ function mousePressed() {
 
     /* CLUE PAPER 2 - CLOSE BUTTON */
     // Click button to close the (overlay screen) clue paper 2...
-    $(`.clue-btn`).click(function() {
+    $(`.clue`).click(function() {
       // ...by hiding it
       $(`#clue-to-read-3`).hide();
     });
 
 
-    /****** FINDING FATUI SIGN PIECES ******/
     // Click on invisible lamp to...
     $(`#invisible-lamp`).click(function() {
       // Show Fatui puzzle piece 4
       $(`#fatui4`).show();
       // Make sure the fatui sign piece stay on screen but on their original state
       foundFatui4 = true
+    });
+
+
+    // Trigger interaction by clicking on an object
+    $(`.invisible-star-lamp`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Primogems?! Nooo! It's just a lamp...`));
     });
   } // END OF MOUSEISPRESSED ON CELESTIA STATE
 
@@ -473,6 +632,37 @@ function mousePressed() {
       $(`#fatui3`).show();
       // Make sure the fatui sign piece stay on screen but on their original state
       foundFatui3 = true
+    });
+
+    // Trigger interaction by clicking on an object
+    $(`#invisible-poster-3`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`And S-olv-e all t-he P-uzzles?`));
+    });
+    // Trigger interaction by clicking on an object
+    $(`#invisible-couch`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Ooh! Comfy! And is that a Taroumaru plush?!`));
+    });
+    // Trigger interaction by clicking on an object
+    $(`#invisible-bed`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`I wanna sleep there!`));
+    });
+    // Trigger interaction by clicking on an object
+    $(`#invisible-plush-1`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`So cute! A Cryo slime plush!`));
+    });
+    // Trigger interaction by clicking on an object
+    $(`#invisible-plush-2`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`IS THAT A GUOBA PLUSH?! ADORABLE!`));
     });
   } // END OF MOUSEISPRESSED ON SERENITEAPOT STATE
 
@@ -491,6 +681,21 @@ function mousePressed() {
       $(`#fatui2`).show();
       // Make sure the fatui sign piece stay on screen but on their original state
       foundFatui2 = true
+    });
+
+
+    // Trigger interaction by clicking on an object
+    $(`#invisible-poster-4`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Good Luck ehe? Did that Tone-Deaf Bard wrote this?`));
+    });
+
+    // Trigger interaction by clicking on an object
+    $(`#invisible-poster-5`).click(function() {
+      // At the same time another dialog sentence appears
+      innerPara(
+        $(`#dialog`).text(`Touch Nothing? What? Then how are we supposed to get out?!`));
     });
   } // END OF MOUSEISPRESSED ON ENKANOMIYA STATE
 
@@ -518,6 +723,6 @@ function mousePressed() {
       $(`#end-line-10`).delay(23000).fadeIn(2000);
       $(`#fatui-seal`).delay(14500).fadeIn(2000);
     });
-  }
+  } // END OF MOUSEISPRESSED ON MONDSTADT-NO-SEAL STATW
 
 } // END OF MOUSEPRESSED FUNCTION

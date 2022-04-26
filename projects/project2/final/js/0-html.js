@@ -46,6 +46,7 @@ $(`#read-btn`).ready(function() {
   $(`#dir-2`).delay(4000).fadeIn(2000);
   $(`#dir-3`).delay(6000).fadeIn(2000);
   $(`#dir-4`).delay(8000).fadeIn(2000);
+  $(`#user-answer-1`).delay(7000).fadeIn(2000);
   $(`#dir-5`).delay(10000).fadeIn(2000);
   $(`#nav-instruction`).delay(12000).fadeIn(2000);
   $(`#inventory`).delay(14000).fadeIn(2000);

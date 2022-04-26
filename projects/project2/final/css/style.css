@@ -118,6 +118,23 @@ body {
   display: none;
 }
 
+/****** USER INTERACTION ******/
+#user-interaction button {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #202020;
+  background-color: rgb(255, 169, 94);
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem;
+  position: fixed;
+  top: 40%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  z-index: 75;
+  display: none;
+}
+
 /****** ENDING SCREEN ******/
 #ending {
   background-color: #202020;
@@ -305,26 +322,6 @@ canvas {
   top: 10%;
   left: 47.5%;
   z-index: 60;
-}
-
-.clue-btn {
-  font-size: 1.75rem;
-  font-weight: 600;
-  color: #202020;
-  background-color: #fff5ec;
-  border: none;
-  border-radius: 1rem;
-  padding: 1rem;
-  position: fixed;
-  top: 70%;
-  left: 60%;
-  transform: translate(-50%, -50%);
-  z-index: 100;
-}
-
-.clue-btn:hover {
-  background-color: rgb(130, 3, 161);
-  color: #fff5ec;
 }
 
 #clue-to-read-1 {
@@ -581,4 +578,331 @@ canvas {
   left: 39.5%;
   display: block;
   z-index: 5;
+}
+
+#invisible-figurine {
+  width: 50px;
+  height: 100px;
+  background-color: transparent;
+  position: fixed;
+  top: 27%;
+  left: 73.5%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-ghost {
+  width: 75px;
+  height: 75px;
+  background-color: transparent;
+  position: fixed;
+  top: 50%;
+  left: 72.75%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-lyre {
+  width: 50px;
+  height: 85px;
+  background-color: transparent;
+  position: fixed;
+  top: 66%;
+  left: 73.5%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-polearm {
+  width: 175px;
+  height: 400px;
+  background-color: transparent;
+  position: fixed;
+  top: 25%;
+  left: 81%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-book {
+  width: 150px;
+  height: 50px;
+  background-color: transparent;
+  position: fixed;
+  top: 4%;
+  left: 32%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-flower-1 {
+  width: 60px;
+  height: 60px;
+  background-color: transparent;
+  position: fixed;
+  top: 50%;
+  left: 30%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-flower-2 {
+  width: 35px;
+  height: 60px;
+  background-color: transparent;
+  position: fixed;
+  top: 37.5%;
+  left: 28%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-flower-3 {
+  width: 40px;
+  height: 60px;
+  background-color: transparent;
+  position: fixed;
+  top: 46%;
+  left: 26.25%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-plant {
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  position: fixed;
+  top: 18%;
+  left: 46.5%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-poster-1 {
+  width: 150px;
+  height: 200px;
+  background-color: transparent;
+  position: fixed;
+  top: 11.05%;
+  left: 59.5%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-computer {
+  width: 260px;
+  height: 75px;
+  background-color: transparent;
+  position: fixed;
+  top: 39.5%;
+  left: 42%;
+  display: block;
+  z-index: 10;
+}
+
+#cabinet-1 {
+  width: 75px;
+  height: 150px;
+  background-color: transparent;
+  position: fixed;
+  top: 58.5%;
+  left: 59.5%;
+  display: block;
+  z-index: 10;
+}
+
+#cabinet-2 {
+  width: 200px;
+  height: 150px;
+  background-color: transparent;
+  position: fixed;
+  top: 58.5%;
+  left: 81.5%;
+  display: block;
+  z-index: 10;
+}
+
+#cabinet-3 {
+  width: 200px;
+  height: 470px;
+  background-color: transparent;
+  position: fixed;
+  top: 8%;
+  left: 22%;
+  display: block;
+  z-index: 10;
+}
+
+#cabinet-4 {
+  width: 400px;
+  height: 50px;
+  background-color: transparent;
+  position: fixed;
+  top: 71.5%;
+  left: 22.5%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-mirror {
+  width: 200px;
+  height: 470px;
+  background-color: transparent;
+  position: fixed;
+  top: 8%;
+  left: 36%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-poster-2 {
+  width: 140px;
+  height: 180px;
+  background-color: transparent;
+  position: fixed;
+  top: 9.5%;
+  left: 52%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-elemental {
+  width: 520px;
+  height: 320px;
+  background-color: transparent;
+  position: fixed;
+  top: 3.75%;
+  left: 64.95%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-poster-3 {
+  width: 130px;
+  height: 200px;
+  background-color: transparent;
+  position: fixed;
+  top: 6%;
+  left: 31.25%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-couch {
+  width: 220px;
+  height: 240px;
+  background-color: transparent;
+  position: fixed;
+  top: 46%;
+  left: 40%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-bed {
+  width: 525px;
+  height: 140px;
+  background-color: transparent;
+  position: fixed;
+  top: 60%;
+  left: 61%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-plush-1 {
+  width: 150px;
+  height: 115px;
+  background-color: transparent;
+  border-radius: 50%;
+  position: fixed;
+  top: 44.5%;
+  left: 65.25%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-plush-2 {
+  width: 135px;
+  height: 120px;
+  background-color: transparent;
+  border-radius: 50%;
+  position: fixed;
+  top: 43.5%;
+  left: 75%;
+  display: block;
+  z-index: 10;
+}
+
+#lamp-1 {
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+  border-radius: 50%;
+  position: fixed;
+  top: 15%;
+  left: 45%;
+  display: block;
+  z-index: 10;
+}
+
+#lamp-2 {
+  width: 50px;
+  height: 85px;
+  background-color: transparent;
+  border-radius: 50%;
+  position: fixed;
+  top: 62%;
+  left: 41%;
+  display: block;
+  z-index: 10;
+}
+
+#lamp-3 {
+  width: 130px;
+  height: 130px;
+  background-color: transparent;
+  border-radius: 50%;
+  position: fixed;
+  top: 41%;
+  left: 52.5%;
+  display: block;
+  z-index: 10;
+}
+
+#lamp-4 {
+  width: 50px;
+  height: 85px;
+  background-color: transparent;
+  border-radius: 50%;
+  position: fixed;
+  top: 24%;
+  left: 69%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-poster-4 {
+  width: 150px;
+  height: 200px;
+  background-color: transparent;
+  position: fixed;
+  top: 12%;
+  left: 28%;
+  display: block;
+  z-index: 10;
+}
+
+#invisible-poster-5 {
+  width: 175px;
+  height: 125px;
+  background-color: transparent;
+  border-radius: 50%;
+  position: fixed;
+  top: 47%;
+  left: 82%;
+  display: block;
+  z-index: 10;
 }
