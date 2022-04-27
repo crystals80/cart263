@@ -34,8 +34,7 @@ $(`#start-btn`).click(function() {
 
 /****** INTRODUCTION MESSAGE SCREEN ******/
 // Click on NEXT button...
-// $(`#read-btn`).click(function() {
-$(`#read-btn`).ready(function() {
+$(`#read-btn`).click(function() {
   // ...to hide the title "screen" or message...
   $(`#introduction`).fadeOut(1500);
   // ...show the game introduction message...
